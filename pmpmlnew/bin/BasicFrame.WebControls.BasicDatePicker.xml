@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BasicFrame.WebControls.BasicDatePicker</name>
+    </assembly>
+    <members>
+        <member name="P:BasicFrame.WebControls.SpecialDates.Dates">
+            <summary>
+            Gets the <see cref="T:BasicFrame.WebControls.SpecialDateCollection"/> of <see cref="T:BasicFrame.WebControls.SpecialDate"/> objects.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:BasicFrame.WebControls.LicenseManager">
+            <summary>
+            Summary description for LicenseManager.
+            </summary>
+        </member>
+        <member name="T:BasicFrame.WebControls.JavaScriptStyle">
+            <summary>
+            Converts Style Objects info Strings for JavaScript
+            </summary>
+        </member>
+        <member name="T:BasicFrame.WebControls.SpecialDatesDesigner">
+            <summary>
+            Summary description for SpecialDatesDesigner.
+            </summary>
+        </member>
+    </members>
+</doc>

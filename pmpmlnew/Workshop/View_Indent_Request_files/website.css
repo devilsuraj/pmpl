@@ -1,0 +1,412 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin-left: auto;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	background-color: #272c32;
+	background-image: url(../images/top_bg.gif);
+	background-repeat: repeat-x;
+}
+#header {
+	padding: 0px;
+	width: 1024px;
+	margin: auto;
+}
+#middal {
+	padding: 0px;
+	width: 1024px;
+	margin: auto;
+	height: auto;
+	clear: none;
+	vertical-align: top;
+	float: none;
+
+}
+#middal1 {
+	padding: 0px;
+	width: 1024px;
+	height: 600px;
+	clear: both;
+	float: none;
+	margin: 0px;
+}
+
+#footer {
+	padding: 0px;
+	width: 1024px;
+	margin: auto;
+	height: 12px;
+
+	float: none;
+	clear: both;
+}
+.logo {
+	float: left;
+	height: 134px;
+	width: 190px;
+	text-align: left;
+	margin: 0px;
+	padding: 0px;
+}
+.logotxt {
+	font-family: Utsaah;
+	font-size: 36px;
+	font-weight: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+	height: 134px;
+	float: left;
+	margin: 0px;
+	text-align: left;
+	padding-left: 10px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+}
+.signlink {
+	float: right;
+	width: 200px;
+	height: 134px;
+	clear: right;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: bottom;
+	text-align: right;
+}
+.signlink ul {
+	display : list-item;
+	list-style-type : none;
+	margin: 0px;
+	padding: 4px;
+	vertical-align: bottom;
+	
+} 
+.signlink li {
+	display : inline;
+	border-left-width: 1px;
+	border-left-style: none;
+	border-left-color: #FFFFFF;
+	margin: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	font-weight: normal;
+	color:#d1d1d1;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 12px;
+	vertical-align: bottom;
+} 
+.leftlinkbox {
+	float: left;
+	width: 189px;
+	margin: 0px;
+	clear: left;
+}
+.leftlinktopimg {
+	float: left;
+	height: 19px;
+	width: 189px;
+	background-image: url(../images/leftlink_top.gif);
+	background-repeat: no-repeat;
+	clear: both;
+}
+.leftlinkbg {
+	background-image: url(../images/leftlink_middal.gif);
+	background-repeat: repeat-x;
+	float: left;
+	height: 343px;
+	width: 189px;
+	clear: left;
+}
+.leftlinkbottam {
+	float: left;
+	height: 10px;
+	width: 190px;
+	background-image: url(../images/leftlink_bottam.gif);
+	background-repeat: no-repeat;
+}
+.contantbox {
+	padding: 0px;
+	float: right;
+	width: 804px;
+	margin: 0px;
+	clear: right;
+}
+.orgtop {
+	float: left;
+	width: 804px;
+	clear: left;
+	height: 9px;
+	padding: 0px;
+	margin: 0px;
+	background-position: bottom;
+	background-image: url(../images/org_topbg.gif);
+	background-repeat: no-repeat;
+}
+.orgbottam {
+	background-image: url(../images/org_bottambg.gif);
+	background-repeat: no-repeat;
+	float: left;
+	height: 9px;
+	width: 804px;
+	clear: left;
+}
+.orgmiddal {
+	background-image: url(../images/org_middalbg.gif);
+	background-repeat: repeat;
+	float: left;
+	width: 804px;
+	text-align: left;
+	height: auto;
+	clear: left;
+	padding: 0px;
+	margin: 0px;
+}
+.btn {
+font-family:arial;
+font-size:12px;
+font-weight:bold;
+color:#fff;
+text-decoration: none;
+background-color:#e0e0e0;
+text-align:center;
+background-image:url(../images/btn.gif);
+background-repeat:no-repeat;
+height:36px;
+width:88px;
+BORDER: #e1e1e1 0px solid;
+
+}
+.gridhead {
+	font-family:arial;
+	font-size:12px;
+	font-weight:bold;
+	color:#FFFFFF;
+	text-decoration: none;
+	padding-left:5px;
+	background-image: url(../images/greedheadbg.gif);
+	background-repeat: repeat-x;
+	height: 36px;
+}
+.normaltxt {
+font-family:arial;
+font-size:12px;
+font-weight:normal;
+color:#000000;
+text-decoration: none;
+
+}
+.textfield {
+	font-family:arial;
+	font-size:12px;
+	font-weight:normal;
+	color:#565656;
+	text-decoration: none;
+	BORDER: 1px solid #d9d9d9;
+	padding-left:5px;
+	height:20px;
+}
+.innerheading {
+font-family:Trebuchet MS;
+font-size:22px;
+font-weight:normal;
+color:#324149;
+text-decoration: none;
+BORDER-bottom: #e0e0e0 1px solid;
+padding-left:10px;
+}
+.gridtxt {
+	font-family:arial;
+	font-size:12px;
+	font-weight:normal;
+	color:#000000;
+	text-decoration: none;
+	background-color:#e2e2e2;
+	padding-left:5px;
+	height: 35px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFFFFF;
+}
+.signlink li a:link {
+	display : inline;
+	border-left-width: 1px;
+	border-left-style: none;
+	border-left-color: #FFFFFF;
+	font-weight: normal;
+	color:#d1d1d1;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 12px;
+}
+.signlink li a:visited {
+	display : inline;
+	border-left-width: 1px;
+	border-left-style: none;
+	border-left-color: #FFFFFF;
+	font-weight: normal;
+	color:#d1d1d1;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 12px;
+}
+.signlink li a:hover {
+	display : inline;
+	border-left-width: 1px;
+	border-left-style: none;
+	border-left-color: #FFFFFF;
+	font-weight: normal;
+	color:#d1d1d1;
+	text-decoration: underline;
+	font-family: Arial;
+	font-size: 12px;
+}
+.canceltxt {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: underline;
+}
+.canceltxt a:link {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: underline;
+}
+.canceltxt a:visited {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: underline;
+}
+.canceltxt a:hover {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+.loginbox {
+	background-image: url(../images/login_box.jpg);
+	background-repeat: no-repeat;
+	float: none;
+	width: 478px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 298px;
+	margin-top: 0px;
+	padding-top: 5px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	clear: none;
+	margin-bottom: 0px;
+	list-style-type: none;
+	vertical-align: middle;
+}
+.loginhead {
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	color: #272c32;
+	text-decoration: none;
+	float: none;
+	height: 30px;
+	margin-top: 5px;
+	margin-right: 80px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	text-transform: uppercase;
+	padding-top: 2px;
+	padding-right: 25px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+.logintxt {
+	font-family: Arial;
+	font-size: 14px;
+	font-weight: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+	text-align: right;
+	margin: 4px;
+	float: left;
+	height: 38px;
+	width: 145px;
+	vertical-align: middle;
+	padding: 0px;
+}
+.textboxlogin {
+	color: #000000;
+	text-align: left;
+	margin: 4px;
+	padding: 0px;
+	float: right;
+	height: 38px;
+	width: 310px;
+}
+.textfieldlog {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+	background-image: url(../images/log_bg.gif);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 223px;
+	border: 0px solid #003333;
+	padding-left: 8px;
+	padding-top: 3px;
+}
+.loginbtn {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #b9b9b9;
+	text-decoration: none;
+	background-image: url(../images/login_btn.gif);
+	background-repeat: no-repeat;
+	text-align: center;
+	height: 35px;
+	width: 84px;
+	border: 0px solid #006666;
+}
+.cor1 {
+	margin: 0px;
+	padding: 0px;
+	clear: left;
+	float: left;
+	height: 9px;
+	width: 8px;
+	background-image: url(../images/org_topbg.gif);
+	background-repeat: repeat-x;
+}
+.cor2 {
+	margin: 0px;
+	padding: 0px;
+	clear: right;
+	float: right;
+	height: 9px;
+	width: 8px;
+	background-image: url(../images/org_topbg.gif);
+	background-repeat: repeat-x;
+}
+.cortopbg {
+	margin: 0px;
+	padding: 0px;
+	clear: none;
+	float: none;
+	height: 9px;
+	background-image: url(../images/org_topbg.gif);
+	background-repeat: repeat-x;
+	width: auto;
+}

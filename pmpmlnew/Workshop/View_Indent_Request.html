@@ -1,0 +1,880 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="Head1">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>
+	View Indent Request
+</title>
+
+    <script language="javascript" type="text/javascript">
+    
+var Optype = 0
+var Fuel
+var ID = 0;
+ var rowcnt = 0;
+
+
+function addEmpDetails() {
+    
+    var txtsubrack = document.getElementById('txtsubrack');
+    var txtPartNo = document.getElementById('txtPartNo');
+    var txtItemName = document.getElementById('txtItemName');
+    var txtBusNo = document.getElementById('txtBusNo');
+    var txtAvaiQty = document.getElementById('txtAvailableQty');
+    var txtReqQty = document.getElementById('txtReqQty');
+    var txtIssQty = document.getElementById('txtIssQty');
+    var txtPenQty = document.getElementById('txtPenQty');
+    var tbody = document.getElementById('tbodyRIndent');
+    var tblIndent = document.getElementById('tblIndent');
+    var hdnrwcnt = document.getElementById('hdnrwcnt');
+    
+    if (rowcnt==0){
+        rowcnt = parseInt(hdnrwcnt.value);
+    }           
+    
+    var row  = tbody.insertRow(rowcnt);
+    row.setAttribute('id','trIndent_' + rowcnt);
+    
+    var cells1 = row.insertCell(0);
+    cells1.setAttribute('id','tdSubRack_' + rowcnt);
+    var cells2 = row.insertCell(1);
+    cells2.setAttribute('id','tdPartNo_' + rowcnt);
+    var cells3 = row.insertCell(2);
+    cells3.setAttribute('id','tdItemName_' + rowcnt);
+    var cells4 = row.insertCell(3);    
+    cells4.setAttribute('id','tdBusNo_' + rowcnt);
+    var cells5 = row.insertCell(4);    
+    cells5.setAttribute('id','tdAvailQty_' + rowcnt);
+    var cells6 = row.insertCell(5);
+    cells1.setAttribute('id','tdReqQty_' + rowcnt);
+    var cells7 = row.insertCell(6);
+    cells2.setAttribute('id','tdIssQty_' + rowcnt);
+    var cells8 = row.insertCell(7);
+    cells3.setAttribute('id','tdPenQty_' + rowcnt);
+    var cells9 = row.insertCell(8);     
+    
+   
+    cells1.innerHTML = txtsubrack.value;
+    cells2.innerHTML = txtPartNo.value;
+    cells3.innerHTML = txtItemName.value;
+    cells4.innerHTML = txtBusNo.value;    
+    cells5.innerHTML = txtAvaiQty.value;
+    cells6.innerHTML = txtReqQty.value;
+    cells7.innerHTML = txtIssQty.value;
+    cells8.innerHTML = txtPenQty.value;
+    cells9.innerHTML = '<a href="javascript:void(0)" OnClick= "deleteRow(\'trIndent_'+ rowcnt +'\')" ><IMG Type="Button" class="Button" src="../images/icon_delete.gif" Value="Delete" ></a>'
+    txtsubrack.value = '';
+    txtPartNo.value = '';
+    txtItemName.value = '';
+    txtBusNo.value = '';
+    txtReqQty.value = '';
+    txtAvaiQty.value = '';
+    txtIssQty.value = '';
+    txtPenQty.value = '';
+    txtsubrack.focus();        
+    rowcnt = rowcnt + 1; 
+    hdnrwcnt.value = rowcnt;   
+    
+}
+
+function deleteRow(cnt) {          
+    var tr = document.getElementById(cnt);
+    document.getElementById('tbodyRIndent').removeChild(tr);
+    var hdnrwcnt = document.getElementById('hdnrwcnt');
+    //hdnrwcnt.value = hdnrwcnt.value -1;
+    rowcnt = rowcnt - 1;    
+}
+
+
+
+function DeleteUnitConfirm()
+   {     
+     if(confirm("Are you sure you wan`t to delete.")){return true}
+        else{return false}  
+   }
+   
+    function Issue(id){
+        var AvailableQty = document.getElementById('tdAvailableQty_' + id);
+        var RequiredQty = document.getElementById('tdRequiredQty_' + id);
+        var IssuedQty = document.getElementById('txtIssuedQty_' + id);
+        var PendingQty = document.getElementById('txtPendingQty_' + id);
+        
+        if(parseInt(IssuedQty.value) > parseInt(AvailableQty.innerHTML)){
+            alert("Required Qty should be less than Availabe Qty");            
+            IssuedQty.focus();
+            return false;
+        }
+
+            if(parseInt(RequiredQty.innerHTML) < parseInt(IssuedQty.value)){
+                alert("Issued Qty should be less then or equale to RequiredQty Qty");            
+                IssuedQty.focus();
+                return false;
+            }
+        if (IssuedQty.value != '' ){
+            PendingQty.value = parseInt(RequiredQty.innerHTML) - parseInt(IssuedQty.value);
+        }
+        else{PendingQty.value = 0;}
+    }
+
+    function getIndent(){         
+        var ddl = document.getElementById('ddlIndNo');               
+        var url = '../tmtAjax/Common_ajax.aspx?action=getIndentDetails&IndNo=' +  ddl.options[ddl.selectedIndex].text;               
+        sendRequest(url);                                
+         return false;
+    }
+    
+    function DeleteDefect(ID){    
+        if (Optype==1){
+            alert('Please quit editing mode for deleting.');
+            return false;
+        }    
+        if (DeleteUnitConfirm()== true){    
+               Optype = 2;        
+            var url = "../tmtAjax/Master_ajax.aspx?action=DefectDetails&Id=" + ID + "&Optype=" + Optype;
+            sendRequest(url);
+            return false;
+        }     
+    }
+    
+    function ddlSelection(tdvalue,ddl){        
+        for (i=0;i<ddl.length;i++){         
+             if(ddl.options[i].text == tdvalue){
+                ddl.selectedIndex = i;
+             }
+         }
+    }
+    
+    function editDefect(id){    
+        var ddlDefPriority = document.getElementById('ddlDefPriority');         
+        ddlSelection(document.getElementById('tdDefPriority_'+ id).innerHTML,ddlDefPriority);         
+        document.getElementById('dtDefectDate_TextBox').value = document.getElementById('tdDefDate_'+ id).innerHTML;               
+        document.getElementById('txtBusNo').value = document.getElementById('tdBusNo_'+ id).innerHTML;
+        document.getElementById('txtDriverNo').value = document.getElementById('tdDriverNo_'+ id).innerHTML;
+        document.getElementById('txtDefectTime').value = document.getElementById('tdDefectTime_'+ id).innerHTML;
+        document.getElementById('txtDescription').value = document.getElementById('tdDescription_'+ id).innerHTML;                                                          
+        
+        document.getElementById('hdnID').value = id
+        Optype = 1;    
+    }
+    
+    function ValidateSave(){ 
+    var detvalues = '';
+    var i = 0;    
+
+        var hdnrwcnt = document.getElementById('hdnrwcnt').value;
+        var ddlIndent = document.getElementById('ddlIndNo');
+        var txtIndentNo = ddlIndent.options[ddlIndent.selectedIndex].text;
+        var ddlvendor = document.getElementById('ddlvendor').value;        
+        var dtIssueDate = document.getElementById('dtIssueDate_TextBox').value;                   
+        var txtwname = document.getElementById('txtwname').value;         
+        var txtapprovedby = document.getElementById('txtapproved').value;                        
+        var txtPartBus = document.getElementById('txtPartBus').value;                                
+        var txtgate = document.getElementById('txtgate').value;                                        
+        var txtremark = document.getElementById('txtremark').value;                
+        
+        for (i=0;i<hdnrwcnt ;i++){  
+            var IssQty = document.getElementById('txtIssuedQty_' + i);        
+            if (IssQty.value == '' && IssQty != null){
+                alert('Issued Qty. should not be empty')
+                IssQty.focus();  
+                return false;
+            }
+        }
+       
+        for (i=0;i<hdnrwcnt ;i++)
+              {    
+                if (document.getElementById('tdSubRackNo_' + i)!= null){
+                var ID = document.getElementById('tdID_' + i).innerHTML;
+                var SubRack = document.getElementById('tdSubRackNo_' + i).innerHTML;
+                var PartNo = document.getElementById('tdPartNo_' + i).innerHTML;
+                var ItemName = document.getElementById('tdItemName_' + i).innerHTML;
+                var BusNo = document.getElementById('tdBusNo_' + i).innerHTML;                
+                var AvaiQty = document.getElementById('tdAvailableQty_' + i).innerHTML;
+                var ReqQty = document.getElementById('tdRequiredQty_' + i).innerHTML;
+                var IssQty = document.getElementById('txtIssuedQty_' + i).value;
+                var PenQty = document.getElementById('txtPendingQty_' + i).value; 
+                
+                detvalues = detvalues + ID + '^' + SubRack + '^' + PartNo + '^' + ItemName + '^' + BusNo + '^' + AvaiQty + '^' + ReqQty + '^' + IssQty + '^' + PenQty + '|';
+                }
+              }              
+            
+        //if (document.getElementById('hdnID').value!=''){ID = document.getElementById('hdnID').value}
+        
+        if (Optype==0){                       
+             var url = "../tmtAjax/Master_ajax.aspx?action=IssueDetails&IndentNo=" + txtIndentNo + "&Vendor=" + ddlvendor + "&IssueDate=" + dtIssueDate + "&Wname=" + txtwname + "&Approvedby=" + txtapprovedby + "&PartBus="+ txtPartBus + "&Gate=" + txtgate + "&Remark=" + txtremark  + "&Indentdetails=" + detvalues  + "&Optype=" + Optype;                                     
+           
+        }
+        else{
+             var url = "../tmtAjax/Master_ajax.aspx?action=indentDetails&Id=" + ID +  "&txtindentdate=" + txtindentdate + "&txtapprovedby=" + txtapprovedby + "&txtremark=" + txtremark  + "&Optype=" + Optype;                         
+             Optype = 0;
+        }
+        sendRequest(url);
+    }
+ 
+    function Clean(){
+        window.location.href = "View_Indent_Request.aspx";
+    }
+    
+function ajaxFunction() {
+
+    try	{
+        // Firefox, Opera 8.0+, Safari
+        xmlHttp=new XMLHttpRequest();   
+    }
+    catch (e) {
+        // Internet Explorer
+        try {
+            xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+        }
+	    catch (e) {
+            try { 
+                xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+		    catch (e) {
+                alert("Your browser does not support AJAX!");
+			    return false;
+            }
+            
+        }
+    }
+
+    xmlHttp.onreadystatechange=handleresponse
+}
+
+ajaxFunction();
+
+function sendRequest(url) {    
+    url = url + '&t=' + new Date();    
+    xmlHttp.open("GET",url );   
+    xmlHttp.send(null);   
+}
+
+
+
+function handleresponse() { 
+var arrApp = new Array();
+    if(xmlHttp.readyState==4) {            
+        resp = xmlHttp.responseText;                         
+        if (resp.indexOf('PassIndent')!= -1) {                                                 
+            arrApp =  resp.split("|");           
+            resp = arrApp[0];
+            document.getElementById('txtapproved').value = arrApp[1];          
+            document.getElementById('hdnrwcnt').value = arrApp[2];                 
+            if (arrApp.length > 3){                        
+            document.getElementById('txtwname').value = arrApp[3];
+            document.getElementById('txtgate').value = arrApp[4];          
+            document.getElementById('txtPartBus').value = arrApp[5];                      
+            document.getElementById('dtIssueDate_TextBox').value = arrApp[6];                      
+            document.getElementById('txtremark').value = arrApp[8];
+            document.getElementById('ddlvendor').value = arrApp[7];                        
+            }
+            else{
+            var now = new Date();            
+            document.getElementById('dtIssueDate_TextBox').value = '';                                              
+            document.getElementById('txtwname').value = '';
+            document.getElementById('txtgate').value = '';          
+            document.getElementById('txtPartBus').value = '';                  
+            document.getElementById('dtIssueDate_TextBox').value = now.toString('dd-MMM-yyyy');
+            document.getElementById('txtremark').value = '';
+            document.getElementById('ddlvendor').value = '';     
+            }
+            document.getElementById('dvRIndent').innerHTML = resp.substring(10); 
+            return false;
+        }
+        else if(resp.indexOf('OptFail') != -1) {  
+            alert('Error Occur While Operation.');            
+            return false;
+        }
+        else if(resp.indexOf('Add') != -1) {      
+            alert('Data Added Successfully.');                    
+            Clean();
+            return false;
+        }
+        else if(resp.indexOf('Edit') != -1) {    
+            alert('Data Updated Successfully.');                              
+            Clean();
+            return false;
+        }
+        else if(resp.indexOf('Duplicate') != -1) {    
+            alert('Defect No. is already exist.');                              
+            Clean();
+            return false;
+        }
+        else if(resp.indexOf('Delete') != -1) {              
+            alert('Data Deleted Successfully.');                              
+            return false;
+        }           
+        else if(resp.indexOf('indentno') != -1) {                                           
+            document.getElementById('lblindent').innerHTML =  resp.substring(8)
+             Clean();          
+            return false;
+        }       
+        else if(resp.indexOf('FailIndent') != -1) {              
+            document.getElementById('dvRIndent').innerHTML = resp.substring(10);
+            return false;
+        }
+        
+    }
+}
+
+function addIndentReq(){
+
+}
+
+
+
+function getitemname()
+{
+
+var xmlHttp;
+try
+{
+// Firefox, Opera 8.0+, Safari
+xmlHttp=new XMLHttpRequest();   
+}
+catch (e)
+{
+// Internet Explorer
+try
+{
+xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+}
+catch (e)
+{
+try
+{ 
+xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+catch (e)
+{
+alert("Your browser does not support AJAX!");
+return false;
+}
+}
+}
+xmlHttp.onreadystatechange=function()
+{
+if(xmlHttp.readyState==4)
+{
+resp = xmlHttp.responseText;
+if (resp == 0)
+{
+document.getElementById("Select1").style.display='none';
+return false;
+}
+var ele = resp.split("!");
+while(document.getElementById("Select1").options.length > 0)
+document.getElementById("Select1").options.remove(document.getElementById("Select1").options.length-1);
+if(document.getElementById('txtItemName').value != "" || document.getElementById('txtsubrack').value != "" || document.getElementById('txtPartNo').value != "")
+{
+for (var i = 0; i < ele.length; i++)
+{
+var temp=document.getElementById("Select1")
+temp.style.display='';
+temp.size=ele.length;
+newOpt = document.createElement("option");
+document.getElementById("Select1").options.add(newOpt);
+newOpt.value = ele[i];
+newOpt.text  = ele[i];
+if (document.getElementById('txtItemName').value==ele[i])
+{
+}
+if (ele[i]=="0")
+{
+}			
+}
+}
+else
+{
+var temp=document.getElementById("Select1")
+temp.size=0
+temp.style.display='';
+}
+}
+}
+var txtsubrackno = document.getElementById('txtsubrack').value;
+var partno = document.getElementById('txtPartNo').value;
+xmlHttp.open("GET","../store/AjaxStore.aspx?Action=itemname1&itemid=''&item=" +  document.getElementById('txtItemName').value  + "&subrackno=" + txtsubrackno + "&partno=" + partno ,true);
+xmlHttp.send(null);
+}
+
+
+function Select()
+{
+ 
+    var resultStr = ""; 
+    objddl2 =document.getElementById('Select1');
+    for(var i = 0; i < objddl2.options.length; i++ )
+    {  
+    if( objddl2.options[i].selected ) 
+    {    
+    resultStr+= (objddl2.options[i].text);
+    var objddl1 = document.getElementById('txtItemName');
+    objddl1.value=resultStr;
+    var x=document.getElementById('Select1');
+       x.style.display="none";  
+    document.getElementById('txtItemName').focus();
+    return false;    
+    } 
+    } 
+
+}
+
+
+function emptytext()
+{
+
+    if (document .getElementById ('txtPartNo').value !='' && document .getElementById ('txtItemName').value !='' )
+    {
+    document .getElementById ('txtPartNo').value='';
+    document .getElementById ('txtItemName').value='';
+    }
+}
+
+function emptytextpart()
+{
+    if (document .getElementById ('txtsubrack').value !='' && document .getElementById ('txtItemName').value !='' )
+    {
+    document .getElementById ('txtsubrack').value='';
+    document .getElementById ('txtItemName').value='';
+    }
+}
+
+function display()
+{
+
+    var x=document.getElementById('Select1');
+       x.style.display="none";  
+}
+
+function Fromcombo2()
+{
+
+    var xmlHttp;
+    try
+    {
+    // Firefox, Opera 8.0+, Safari
+    xmlHttp=new XMLHttpRequest();   
+    }
+    catch (e)
+    {
+    // Internet Explorer
+    try
+    {
+    xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+    }
+    catch (e)
+    {
+    try
+    { 
+    xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    catch (e)
+    {
+    alert("Your browser does not support AJAX!");
+    return false;
+    }
+    }
+    }
+    xmlHttp.onreadystatechange=function()
+    {
+    if(xmlHttp.readyState==4)
+    {
+    resp = ""
+    resp = xmlHttp.responseText;
+    var ele1 = resp.split('|');
+    document.getElementById('txtPartNo').value=ele1[2];
+    document.getElementById('txtsubrack').value=ele1[3];
+    }
+    }
+    var itemname= document.getElementById('txtItemName').value  ;
+    var txtsubrack = document.getElementById('txtsubrack').value;
+    var partno = document.getElementById('txtPartNo').value;
+    xmlHttp.open("GET","../store/AjaxStore.aspx?Action=itemqty&itemid=" + itemname + "&subrack=" + txtsubrack + "&partno=" + partno ,true);
+    xmlHttp.send(null);
+}
+			
+///////////   for removing blaak spaces 
+String.prototype.trim = function()
+{
+
+return this.replace(/^\s+|\s+$/g,"");
+}
+	
+
+function  check1()
+{
+    var str = document.getElementById('txtItemName').value;
+    if (str.trim() !='')
+    {
+    Fromcombo2();
+    }
+    return false;
+}
+
+  function IsNumeric(strString)
+            {
+					var ValidChars = "0123456789.";
+					var Char;
+						for (i = 0; i < strString.length; i++) 
+					{ 
+							Char = strString.charAt(i); 
+							if (ValidChars.indexOf(Char) == -1) 
+						{
+							return false;
+						}
+					}
+						return true;
+			}
+
+function validateqty()
+			{
+			    if(document.getElementById ("txtReqQty").value.length>0)
+                {
+
+			        if(IsNumeric(document.getElementById ("txtReqQty").value))
+                    {
+			            addEmpDetails();
+			        }
+			        else
+			        {
+    			        
+			            alert("Enter Proper Value");
+			            document.getElementById ("txtReqQty").focus();
+			        }
+			    }
+			      else
+			        {
+    			        
+			            alert("Enter Proper Value");
+			            document.getElementById ("txtReqQty").focus();
+			        }
+			}	
+			
+			
+
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="View_Indent_Request.aspx" id="form1">
+<input name="__LASTFOCUS" id="__LASTFOCUS" value="" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTAzOTU1MDQ1MA9kFgICAw9kFgYCCw8QDxYGHg1EYXRhVGV4dEZpZWxkBQlJbmRlbnRfTm8eDkRhdGFWYWx1ZUZpZWxkBQlJbmRlbnRfSUQeC18hRGF0YUJvdW5kZ2QQFQMGU2VsZWN0AjExAjEyFQMBMAI0NwI0OBQrAwNnZ2dkZAINDxAPFgYfAAUJQ29udF9OYW1lHwEFB0NvbnRfSUQfAmdkEBUDBlNlbGVjdAhBc3VsZ2Fvbgh3b3Jrc2hvcBUDATABMgExFCsDA2dnZ2RkAg8PDxYCHgxTZWxlY3RlZERhdGUGAIQPWBcWz4hkZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAQULZHRJc3N1ZURhdGVyj0YZHOq/rgrxxsK9yEL1WIhM2w==" type="hidden">
+
+<script type="text/javascript">
+<!--
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+// -->
+</script>
+
+
+<script src="View_Indent_Request_files/WebResource.js" type="text/javascript"></script>
+
+
+<script src="View_Indent_Request_files/WebResource_002.js" type="text/javascript"></script>
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWDwLvo428BgKultGhBQKn7bzyAwLSu7yMDwLOu9iPDwLOu5yMDwKk2OSwDAK62OSwDAK72OSwDAKJ/76NDwKbzor0CALN1aKWAgLUmZHCCwLEhOy9DwKZvIuqAkN+9IuM7tzo2CI/2BanXeTqorKK" type="hidden">
+    <div align="center">
+        
+<link href="View_Indent_Request_files/website.css" rel="stylesheet" type="text/css">
+<script src="View_Indent_Request_files/SpryMenuBar.js" type="text/javascript"></script>
+<link href="View_Indent_Request_files/SpryMenuBarVertical.css" rel="stylesheet" type="text/css">
+<script src="View_Indent_Request_files/jquery-1.js" type="text/javascript"></script>
+<script language="javascript" src="View_Indent_Request_files/jquery.js"></script>
+<link rel="stylesheet" href="View_Indent_Request_files/jquery.css">
+
+<script type="text/javascript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function findValue(li) {
+	if( li == null ) return alert("No match!");
+
+	// if coming from an AJAX call, let's use the CityId as the value
+	if( !!li.extra ) var sValue = li.extra[0];
+
+	// otherwise, let's just display the value in the text box
+	else var sValue = li.selectValue;
+
+	//alert("The value you selected was: " + sValue);
+}
+
+function selectItem(li) {
+	findValue(li);
+}
+
+//-->
+</script>
+<div id="header">
+    <div class="logo"><img src="View_Indent_Request_files/logo.jpg"></div>
+    <div class="logotxt"><br>Navi Mumbai Municipal Transport</div>
+    <div style="color:White"> Powered by <a style="color: White;" target="_blank" href="http://www.aeonsoftware.net/">Aeon Software Pvt. Ltd.</a></div>
+    <div class="signlink"><br><br><br>
+    	<ul>
+       	  <li><a href="javascript:void(0);">aeon</a></li>	
+          <li>|</li>
+          <li><a href="http://comp1-pc/Workshop/Login.aspx">Sign Out</a></li>
+      </ul>
+    </div>
+  </div>
+  <br>
+        <input name="hdnID" id="hdnID" type="hidden">
+        <input name="hdnrwcnt" id="hdnrwcnt" value="0" type="hidden">
+    </div>
+    <div id="middal">
+        
+<div class="leftlinkbox">
+    <div class="leftlinktopimg">
+    </div>
+    <div class="leftlinkbg">
+        <ul class="MenuBarVertical MenuBarActive" id="MenuBar1">
+            <li><a href="http://localhost/Workshop/store/storeitemmaster.aspx" class="">Master</a></li>
+            <li><a href="http://localhost/Workshop/store/storemaster.aspx" class="">Stock Received</a></li>
+            <li><a href="http://localhost/Workshop/store/storeissue.aspx" class="">Stock Issue</a></li>
+            <li><a href="javascript:void(0);" class="MenuBarItemSubmenu">Item</a>
+                <ul class="">
+                    <li><a href="http://localhost/Workshop/store/Updateitem.aspx">Update Item</a></li>
+                    <li><a href="http://localhost/Workshop/store/deletereceiveitem.aspx">Delete Receive Item</a></li>
+                    <li><a href="http://localhost/Workshop/store/rejectitem.aspx">Reject Receive Item</a></li>
+                    <li><a href="http://localhost/Workshop/store/deleteitem.aspx">Delete Issue Item</a></li>
+                    <li><a href="http://localhost/Workshop/store/updatestock.aspx">Update Item Stock</a></li>
+                    
+                    <li><a href="http://localhost/Workshop/store/usermaster.aspx">User Master</a></li>
+                    
+                </ul>
+            </li>
+            <li><a href="javascript:void(0);" class="MenuBarItemSubmenu">Workshop</a>
+                <ul class="">
+                    <li><a href="http://localhost/Workshop/workshop/Vehicle_Master.aspx">Vehicle Master</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/Breakdown_details.aspx">Breakdown</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/defect_details.aspx">Defect Details</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/View_Defect_Details.aspx">View Defect Details</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/Retreading_Details.aspx">Retreading Details</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/View_Indent_Request.aspx">View Indent Requests</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/Part_Master.aspx">Part Master</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/Part_History.aspx">Part History</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/Part_Repair_Details.aspx">Part Repair Details</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/Scrap_Details.aspx">Scrap Details</a></li>
+                    <li><a href="http://localhost/Workshop/workshop/Authentication.aspx">Authentication</a></li>
+                    <li><a href="javascript:void(0);">Service Details</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost/Workshop/report/storereport.aspx" class="">Store Report</a></li>
+        </ul>
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+</script>
+
+
+        <div class="contantbox">
+            <div class="orgtop">
+            </div>
+            <div class="orgmiddal">
+                <table border="1" cellpadding="5" cellspacing="5" width="100%">
+                    <tbody><tr>
+                        <td colspan="4" class="innerheading">
+                            <span id="Label3">View Indent Request</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <span id="Label1" style="color:Black;">Your Indent No Is</span></td>
+                        <td>
+                            <select name="ddlIndNo" id="ddlIndNo" onchange="getIndent();">
+	<option selected="selected" value="0">Select</option>
+	<option value="47">11</option>
+	<option value="48">12</option>
+
+</select></td>
+                        <td>
+                            Contractor Name:
+                        </td>
+                        <td>
+                            <select name="ddlvendor" id="ddlvendor" style="width:216px;">
+	<option selected="selected" value="0">Select</option>
+	<option value="2">Asulgaon</option>
+	<option value="1">workshop</option>
+
+</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            Issue Date : -
+                        </td>
+                        <td align="left">
+                            <div id="dtIssueDate" class="bdplite" style="display: inline;">
+	
+<link rel="stylesheet" media="all" type="text/css" href="View_Indent_Request_files/WebResource.css"><input name="dtIssueDate:TextBox" value="12-Jun-2012" id="dtIssueDate_TextBox" type="text"><img id="dtIssueDate_Image" class="bdplButton " alt="" src="View_Indent_Request_files/WebResource.gif" border="0"><script type="text/javascript" src="View_Indent_Request_files/WebResource.axd"></script><script type="text/javascript" src="View_Indent_Request_files/WebResource_002.axd"></script><script type="text/javascript" src="View_Indent_Request_files/WebResource_003.axd"></script><script type="text/javascript"><!--
+var dtIssueDate = (Coolite.FreeDatePicker) ? new Coolite.FreeDatePicker({clientID:"dtIssueDate",eastImage:"/Workshop/WebResource.axd?d=sMB5gfV-nstrMCCnNTsQELz_1YHNRXbtOtLXTQNhVYvjXaPV7Aqa5nYDhtLj138DcRcCweZf8TjyYGbBDMuI0adWX-iwp1WRl4gE7VTOzWZSAOhdRNPUAvCmC3d-HPidWFV1T0iLYqKLhvLXv-KOnY26xidM30Gu2n09LJX27jZ6rlu2HxcW6QxU4vNDzcHhpTReKQ2&amp;t=633404593080000000",westImage:"/Workshop/WebResource.axd?d=89AxtPtZ-9TSgzGZE2i4Wlyhx2x9v4XTCFR8NFG0bU2NPz1xmRzhZhe0ElQ8NQszoeyLwWRI_vAZ1cR2CfHbdjRo6-szPwJ98qooDh9R5vVTNV6C-hHnq0oKT7wDmGeaWdcEtcZUygy_9P0WHcLKN0sixH74p3dLXRgPrbY01SF3nSu9q9-eIaLN8IEfAUTGKU407A2&amp;t=633404593080000000"}).applyTo({inputID:"dtIssueDate_TextBox",buttonID:"dtIssueDate_Image"}) : alert("Unable to find the required DatePicker JavaScript Library.");
+//--></script>
+</div>
+                        </td>
+                        <td align="right">
+                            Worker Name :
+                        </td>
+                        <td align="left">
+                            <input name="txtwname" id="txtwname" style="width: 168px;" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            Approved By :
+                        </td>
+                        <td align="left">
+                            <input name="txtapproved" id="txtapproved" style="width: 168px;" type="text">
+                        </td>
+                        <td align="right">
+                            Part Of Bus :
+                        </td>
+                        <td align="left">
+                            <input name="txtPartBus" id="txtPartBus" style="width: 168px;" type="text">
+                        </td>
+                    </tr>                    
+                    <tr>
+                        <td align="right">
+                            Gate Pass No. :
+                        </td>
+                        <td align="left">
+                            <input name="txtgate" id="txtgate" type="text">
+                        </td>
+                        <td align="right">
+                            Remark :
+                        </td>
+                        <td align="left">
+                            <textarea name="txtremark" id="txtremark" style="width: 168px;"></textarea>
+                        </td>
+                    </tr>
+                   
+                    <tr>
+                        <td id="tdindent" colspan="4">
+                            <table id="tblIndent" border="1" cellpadding="5" cellspacing="5" width="100%">
+                                <tbody id="tbodyIndent">
+                                    <tr class="gridhead">
+                                        <td>
+                                            Sub rack No.
+                                        </td>
+                                        <td>
+                                            Part No.
+                                        </td>
+                                        <td>
+                                            Item Name
+                                        </td>
+                                        <td>
+                                            Bus No
+                                        </td>
+                                        <td>
+                                            Available Qty.
+                                        </td>
+                                        <td>
+                                            Required Qty.
+                                        </td>
+                                        <td>
+                                            Issued Qty.
+                                        </td>
+                                        <td>
+                                            Pending Qty.
+                                        </td>
+                                        <td>
+                                            Remove
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="9">
+                                            <div id="dvRIndent">
+                                            </div>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="gridtxt">
+                                        <td>
+                                            <input id="txtsubrack" onblur="emptytext();getitemname();" name="txtsubrack" type="text">
+                                        </td>
+                                        <td>
+                                            <input id="txtPartNo" name="txtPartNo" onblur="emptytextpart();getitemname();" type="text">
+                                        </td>
+                                        <td>
+                                            <input id="txtItemName" name="txtItemName" onpropertychange="getitemname();" onblur="return check1();" type="text">
+                                            <select size="4" name="Select1" id="Select1" onclick="Select();" style="display: none; align: left">
+
+</select>
+                                        </td>
+                                        <td>
+                                            <input id="txtBusNo" onfocus="display();" name="txtBusNo" type="text">
+                                        </td>
+                                        <td>
+                                            <input id="txtAvailableQty" name="txtAvailableQty" type="text">
+                                        </td>
+                                        <td>
+                                            <input id="txtReqQty" name="txtReqQty" type="text">
+                                        </td>
+                                        <td>
+                                            <input id="txtIssQty" name="txtIssQty" type="text">
+                                        </td>
+                                        <td>
+                                            <input id="txtPenQty" name="txtPenQty" onblur="validateqty(this);" type="text">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="center">
+                            <input name="btnsave" id="btnsave" value="Save" onclick="ValidateSave();" type="button">
+                            <a href="http://localhost/Workshop/workshop/Indent_Request_Details.aspx">Reset</a>
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div class="orgbottam">
+            </div>
+        </div>
+    </div>
+    
+
+<script type="text/javascript">
+<!--
+WebForm_AutoFocus('ddlIndNo');// -->
+</script>
+</form>
+
+    <script>
+    var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+    </script>
+
+
+
+</body></html>

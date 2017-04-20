@@ -1,0 +1,49 @@
+﻿
+        table{border-collapse:collapse!important; }
+            table td, table th {
+                background-color: #fff !important;
+                text-align: left;
+                padding: 10px;
+                margin-top: 3px;
+             font-family: "Open Sans",sans-serif;
+             font-weight:400;
+             font-size:14px;
+            }
+               
+
+    table td input[type=number], input[type=text],input[type=date],input[type=time], input[type=password],input[type=email], select, textarea {
+                width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #c2cad8;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    max-width:300px;
+            } 
+
+    table td textarea{margin:0;font:inherit;color:inherit;overflow:auto;height:auto;}
+
+     table td input[type=submit] {
+                    color: #FFF;
+    background-color: #3598dc;
+    border-color: #3598dc;
+                }
+
+                table td input[type=submit] {
+                    color: #666;
+                    background-color: #c2cad8;
+                    border-color: #bcc5d4;
+                }
+     
+
+            table td lable{
+                    font-weight: 400;
+                        display: inline-block;
+                        max-width:100%;
+            }
+
