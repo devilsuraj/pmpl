@@ -9,7 +9,7 @@ Namespace Kdmt
         Dim DA As SqlClient.SqlDataAdapter
 
         Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-
+            Session("MenuId") = 2
             Try
                 If Not IsPostBack Then
                     FILLGRID()

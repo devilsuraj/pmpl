@@ -1,13 +1,8 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Indentrequestwithoutjobcard.aspx.vb"
-    Inherits="KDMT.Indentrequestwithoutjobcard" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+﻿<%@ Page Title="" Language="VB" enableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" 
+    CodeFile="Indentrequestwithoutjobcard.aspx.vb"
+    Inherits="kdmt.Indentrequestwithoutjobcard" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Indent Request</title>
 
     <script language="javascript" type="text/javascript">
@@ -502,18 +497,22 @@
  
     </script>
 
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+   <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Job Order Card Master</h1>
+    </div>
+  <div class="form-horizontal" style="overflow:auto">
+    
+  <asp:ScriptManager runat="server" ID="iod"></asp:ScriptManager>
         <input id="hdnID" runat="server" type="hidden" name="hdnID" />
         <input id="Hid_Rec" runat="server" type="hidden" name="Hid_Rec" />
         <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
         <input id="hdnsrno" runat="server" type="hidden" name="hdnsrno" />
     </div>
     <div id="middal">
-        <uc:leftmenu ID="Leftmenu1" runat="server" />
+
         <div class="contantbox">
             <div class="orgtop">
             </div>
@@ -529,9 +528,11 @@
                             Indent Date
                         </td>
                         <td>
-                            <BDP:BDPLite ID="dtIndentDate" onblur="getindent()" TextBoxStyle-Width="100px" runat="server">
-                                <TextBoxStyle Width="100px" />
-                            </BDP:BDPLite>
+                       
+                                  <asp:TextBox ID="dtIndentDate" onblur="getindent()" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="dtIndentDate"
+                                                    PopupButtonID="dtIndentDate" Format="dd-MMM-yyyy">
+                                                </asp:CalendarExtender>
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text="Your Indent No Is" ForeColor="black"></asp:Label>
@@ -653,7 +654,7 @@
             </div>
         </div>
     </div>
-    </form>
+
 
     <script type="text/javascript">
         function addEventHandler(elem, eventType, handler) {
@@ -671,5 +672,4 @@
 
     </script>
 
-</body>
-</html>
+</asp:Content>

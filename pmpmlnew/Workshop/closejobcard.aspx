@@ -1,12 +1,8 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="closejobcard.aspx.vb" Inherits="KDMT.closejobcard" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<%@ Page Title="" Language="VB" enableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" 
+    CodeFile="closejobcard.aspx.vb"
+    Inherits="kdmt.closejobcard" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Closing Job Card</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
@@ -194,13 +190,16 @@
             width: 155px;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-        <uc:header ID="Header1" runat="server" />
+   <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Closing Job Details</h1>
+    </div>
+    <div class="form-horizontal" style="overflow:auto">
+     
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+        
             <div class="contantbox">
                 <div class="orgtop">
                 </div>
@@ -210,11 +209,7 @@
                     <input id="hdnID" runat="server" type="hidden" name="hdnID" />
                     <div>
                         <table width="100%" border="1" align="left" cellpadding="5" cellspacing="5">
-                            <tr>
-                                <td colspan="4" class="innerheading">
-                                    <span id="Label3">Closing Job Details</span>
-                                </td>
-                            </tr>
+                         
                             <tr>
                                 <td align="right" style="width: 100px">
                                     Bus No
@@ -259,8 +254,10 @@
                                                 Closed Date
                                             </td>
                                             <td id="tdclosed" runat ="server" align="left">
-                                                 <BDP:BasicDatePicker ID="BDPLite1" runat="server" Width="160px">
-                                            </BDP:BasicDatePicker>
+                                                 <asp:TextBox ID="BDPLite1" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="BDPLite1"
+                                                    PopupButtonID="BDPLite1" Format="dd-MMM-yyyy">
+                                                </asp:CalendarExtender>
                                             </td>
                                             <td align="right">
                                     Close Job Time
@@ -346,11 +343,8 @@
             </div>
         </div>
     </div>
-    </form>
-
+ 
     <script>
-    var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
-//-->
 
 //$("#txtjocno").autocompleteArray(
 //		[<% =strjobno %>],
@@ -411,5 +405,4 @@ $(document).ready(function() {
       
     </script>
 
-</body>
-</html>
+</asp:Content>

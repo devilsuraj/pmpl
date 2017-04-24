@@ -10,6 +10,7 @@ Namespace kdmt
         Dim dr As SqlClient.SqlDataReader
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 2
             If Not Page.IsPostBack Then
 
             End If

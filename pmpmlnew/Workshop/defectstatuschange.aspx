@@ -1,13 +1,10 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="defectstatuschange.aspx.vb"
+<%@ Page Title="" Language="VB" enableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" 
+    CodeFile="defectstatuschange.aspx.vb"
     Inherits="kdmt.defectstatuschange" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+
     <title>Inspection Card</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <%--    <script language="javascript" src="../Scripts/LogSheetReceipt.js"></script>--%>
@@ -26,17 +23,20 @@
             padding-right: 5px;
         }
     </style>
-</head>
-<body onload="MM_preloadImages('../images/btn_h.gif');">
-    <form id="form1" runat="server">
-    <div>
-        <uc:header ID="Header1" runat="server" />
+   <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Inspection Card Master</h1>
+    </div>
+    <div class="form-horizontal" style="overflow:auto">
+  
         <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server">
         </asp:ScriptManager>
         <asp:UpdatePanel UpdateMode="Always" ID="UpdatePanel2" runat="server">
             <ContentTemplate>
                 <div id="middal">
-                    <uc:leftmenu ID="Leftmenu1" runat="server" />
+               
                     <div class="contantbox">
                         <div class="orgtop">
                         </div>
@@ -44,11 +44,7 @@
                             <input id="hdnID" runat="server" type="hidden" name="hdnID" />
                             <div>
                                 <table width="100%" border="1" align="left" cellpadding="5" cellspacing="5">
-                                    <tr>
-                                        <td colspan="4" class="innerheading">
-                                            <span id="Label3">Inspection Card Master</span>
-                                        </td>
-                                    </tr>
+                                  
                                     <tr>
                                         <td align="right" style="width: 500px">
                                             Bus No.
@@ -175,6 +171,4 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

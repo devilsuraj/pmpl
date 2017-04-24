@@ -20,7 +20,7 @@ Namespace KDMT
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             'btnsubmit.Attributes.Add("Onclick", "return chkBrakedown()")
             Try
-
+                Session("MenuId") = 2
                 If Not IsPostBack Then
                     edit_combo(ddlReason, "reason_id", "reason", "tblSickReasonMst", "0=0  ")
 

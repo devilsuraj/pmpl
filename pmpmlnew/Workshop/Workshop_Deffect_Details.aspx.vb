@@ -10,6 +10,7 @@ Namespace KDMT
         Public strmain As String = ""
         Public strsub As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 2
             Try
                 If Not IsPostBack Then
                     strmain = getAutoCompleteList("select deffect_decr from tbl_deffect_Master where subid=0 order by deffect_decr", "deffect_decr")

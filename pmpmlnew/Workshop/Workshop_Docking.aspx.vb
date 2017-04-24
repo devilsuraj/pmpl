@@ -24,6 +24,7 @@ Namespace KDMT
         Dim GraphHeight As String = "620"
         Dim color(12) As String
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 2
             Try
                 If Not IsPostBack Then
                     strBusno = getAutoCompleteList("select distinct busno from JobOrderCard_Master order by busno", "busno")

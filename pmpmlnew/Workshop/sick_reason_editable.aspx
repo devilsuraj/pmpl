@@ -1,12 +1,8 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="sick_reason_editable.aspx.vb" Inherits="KDMT.sick_reason_editable" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<%@ Page Title="" Language="VB" enableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" 
+    CodeFile="sick_reason_editable.aspx.vb"
+    Inherits="kdmt.sick_reason_editable" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Sick Reason Update</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
@@ -194,13 +190,16 @@
             width: 155px;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>        
-         <uc:header ID="Header1" runat="server" />
+   <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Sick Reason Update</h1>
+    </div>
+  <div class="form-horizontal" style="overflow:auto">        
+     
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+         
             <div class="contantbox">
                 <div class="orgtop">
                 </div>
@@ -210,11 +209,7 @@
                     <input id="hdnID" runat="server" type="hidden" name="hdnID" />
                     <div>
                         <table width="100%" border="1" align="left" cellpadding="5" cellspacing="5">
-                            <tr>
-                                <td colspan="4" class="innerheading">
-                                    <span id="Label3">Sick Reason Update</span>
-                                </td>
-                            </tr>
+                         
                             <tr>
                                 <td align="right" style="width: 100px">
                                     Bus No
@@ -259,10 +254,7 @@
                                             <td colspan="4" align="center">
                                              <table id="tbldata" runat="server" visible="false" width="100%" border="1" align="left"
                                         cellpadding="5" cellspacing="5">
-                                        <tr >
-                                       
-                                        </tr>
-                           
+                                                                   
                                         <tr >
                                             <td align="left" colspan="4">
                                               Old Sick Reason:
@@ -305,8 +297,4 @@
             </div>
         </div>
     </div>
-    </form>
-
-
-</body>
-</html>
+</asp:Content>

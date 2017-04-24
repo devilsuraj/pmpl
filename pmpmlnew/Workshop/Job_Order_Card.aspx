@@ -1,16 +1,11 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Job_Order_Card.aspx.vb"
-    Inherits="KDMT.Job_Order_Card" %>
+<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="Job_Order_Card.aspx.vb"
+    Inherits="kdmt.Job_Order_Card" %>
 
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title>Job Order Card</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <script language="javascript" src="../Scripts/LogSheetReceipt.js"></script>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <script src="../scripts/jquery-1.11.0.min.js"></script>
+    <script src="../scripts/jquery-ui.js"></script>
     <script language="javascript" type="text/javascript">
         function validate() {
             var ab;
@@ -25,7 +20,7 @@
         }
 
         function chkdate() {
-            debugger
+            //debugger
             var currentdate = Date.parse(new Date())
             var prevdate = currentdate - 1
             if ((document.getElementById("dtjobDate_TextBox").value != currentdate) && (document.getElementById("dtjobDate_TextBox").value != prevdate))
@@ -203,8 +198,8 @@
                     resp = xmlHttp.responseText;
                     var ele1 = resp
                     if (ele1 != "empty") {
-                        alert("Job card for this Bus was created in last 3 days");
-                       // document.getElementById("txtBusNo").focus();
+                        alert("Job card for this Bus was created in last 7 days");
+                        // document.getElementById("txtBusNo").focus();
                     }
 
                 }
@@ -238,42 +233,19 @@
 
 
     </script>
-    <style>
-        .chkliststyle input
-        {
-            float: left;
-            width: 20%;
-        }
-        .chkliststyle label
-        {
-            float: left;
-            width: 70%;
-            text-align: left;
-            padding-left: 3px;
-            padding-right: 5px;
-        }
-        .style1
-        {
-            width: 238px;
-        }
-        .style2
-        {
-            width: 258px;
-        }
-        .style3
-        {
-            height: 131px;
-        }
-    </style>
-</head>
-<body onload="MM_preloadImages('../images/btn_h.gif'); Chkbusdetails(1);">
-    <form id="form1" runat="server">
-    <div>
-        <uc:header ID="Header1" runat="server" />
+
+    <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Job Order Card Master</h1>
+    </div>
+    <div class="form-horizontal">
+
         <asp:HiddenField ID="hdnstate" runat="server" />
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
-            <div class="contantbox">
+
+            <div class="contantbox" style="overflow: auto">
                 <div class="orgtop">
                 </div>
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -282,14 +254,9 @@
                     <input id="hdnID" runat="server" type="hidden" name="hdnID" />
                     <div>
                         <table width="100%" border="1" align="left" cellpadding="5" cellspacing="5">
+
                             <tr>
-                                <td colspan="4" class="innerheading">
-                                    <span id="Label3">Job Order Card Master</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" style="width: 100px">
-                                    Defect Place
+                                <td align="right" style="width: 100px">Defect Place
                                 </td>
                                 <td align="left">
                                     <asp:RadioButton ID="rd1" runat="server" Text="Depot" GroupName="place" AutoPostBack="True" />
@@ -299,8 +266,7 @@
                                     <strong>Supervisor :
                                         <asp:Label ID="lblsup" runat="server" Text=""></asp:Label></strong>--%>
                                 </td>
-                                <td>
-                                    Shift Engineer
+                                <td>Shift Engineer
                                 </td>
                                 <td>
                                     <asp:Label ID="lblsupervisor" ForeColor="Red" runat="server" Text=""></asp:Label>
@@ -312,13 +278,12 @@
                                     Job No
                                 </td>
                                 <td>
-                                    <input type="text" id="txtjob" style="width: 30px" readonly="readonly" runat="server"
+                                    <input type="text" id="txtjob" style="width: 60px" readonly="readonly" runat="server"
                                         class="textfield" runat="server" />
                                     <input type="text" id="txtjobno" style="width: 40px" readonly="readonly" runat="server"
                                         class="textfield" runat="server" />
                                 </td>
-                                <td align="right">
-                                    Bus No
+                                <td align="right">Bus No
                                 </td>
                                 <td>
                                     <%--<asp:TextBox ID="txtBusNo" runat="server" Width="140px" onblur="validate();"></asp:TextBox>--%>
@@ -326,14 +291,12 @@
                                         onblur="Chkbusdetails(0);chkbusdefect();" maxlength="4" runat="server" />
                                     <asp:Label ID="lbl" runat="server"></asp:Label>
                                 </td>
-                                <td align="right" style="display: none">
-                                    Job Card No &nbsp;<input type="text" id="txtjocno" style="display: none" class="textfield"
-                                        runat="server" />
+                                <td align="right" style="display: none">Job Card No &nbsp;<input type="text" id="txtjocno" style="display: none" class="textfield"
+                                    runat="server" />
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right">
-                                    Supervisor Name
+                                <td align="right">Supervisor Name
                                 </td>
                                 <td align="left">
                                     <%-- <BDP:BDPLite ID="dtjobDate" runat="server" TextBoxStyle-Width="100px">
@@ -342,8 +305,7 @@
                                     <asp:DropDownList ID="ddlsupervisor" runat="server" Width="150px">
                                     </asp:DropDownList>
                                 </td>
-                                <td align="right">
-                                    Shift
+                                <td align="right">Shift
                                 </td>
                                 <td align="left">
                                     <%--<asp:TextBox ID="txtshift" runat="server" Width="140px" TabIndex="13"></asp:TextBox>--%>
@@ -356,15 +318,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right">
-                                    Defect Type
+                                <td align="right">Defect Type
                                 </td>
                                 <td align="left">
                                     <asp:DropDownList ID="ddldeffect" runat="server" Width="155px" ForeColor="Black">
                                     </asp:DropDownList>
                                 </td>
-                                <td align="right">
-                                    Subdefect
+                                <td align="right">Subdefect
                                 </td>
                                 <td>
                                     <asp:TextBox ID="ddlsubdefect" runat="server" Width="250px" EnableTheming="True"></asp:TextBox>
@@ -373,15 +333,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right">
-                                    Driver Code
+                                <td align="right">Driver Code
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtdrvcode" runat="server" Width="190px"></asp:TextBox>
                                     <asp:TextBox ID="txtdrvname" Visible="false" runat="server" Width="190px"></asp:TextBox>
                                 </td>
-                                <td align="center">
-                                </td>
+                                <td align="center"></td>
                                 <td>
                                     <%--<asp:Label ID="lblinsp" runat="server" ForeColor="Black"></asp:Label>--%>
                                     <%--<input id="lblinsp" 
@@ -392,44 +350,42 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right">
-                                    Job Date
+                                <td align="right">Job Date
                                 </td>
                                 <td align="left">
-                                    <BDP:BDPLite ID="dtjobDate" runat="server" TextBoxStyle-Width="100px">
-                                    </BDP:BDPLite>
+
+                                    <asp:TextBox ID="dtjobDate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="dtjobDate"
+                                        PopupButtonID="dtjobDate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
+
                                     <%-- <asp:TextBox ID="dtjobDate" runat="server" Width="140px" ReadOnly="True"></asp:TextBox>--%>
                                 </td>
-                                <td align="right">
-                                    Job Time
+                                <td align="right">Job Time
                                 </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtjotime" runat="server" Width="140px" ReadOnly="True"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right">
-                                    Chassis :
+                                <td align="right">Chassis :
                                 </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtchassis" runat="server" Width="140px" ReadOnly="True"></asp:TextBox>
                                 </td>
-                                <td align="right">
-                                    Model :
+                                <td align="right">Model :
                                 </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtmodel" runat="server" Width="140px" ReadOnly="True"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right">
-                                    Engine :
+                                <td align="right">Engine :
                                 </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtengin" runat="server" Width="140px" ReadOnly="True"></asp:TextBox>
                                 </td>
-                                <td align="right">
-                                    KMS. :
+                                <td align="right">KMS. :
                                 </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtkms" runat="server" Width="140px" ReadOnly="True"></asp:TextBox>
@@ -439,42 +395,36 @@
                                 <td colspan="4" class="style3">
                                     <table>
                                         <tr id="first" visible="false">
-                                            <td align="right">
-                                                Route No:
+                                            <td align="right">Route No:
                                             </td>
                                             <td align="left" class="style1">
                                                 <asp:TextBox ID="txtrt" runat="server" Width="140px" Visible="true" EnableViewState="False"></asp:TextBox>
                                             </td>
-                                            <td align="right">
-                                                Place :
+                                            <td align="right">Place :
                                             </td>
                                             <td align="left" class="style2">
                                                 <asp:TextBox ID="txtplc" runat="server" Width="236px" Visible="true" EnableViewState="False"></asp:TextBox>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="right">
-                                                Defect Time:
+                                            <td align="right">Defect Time:
                                             </td>
                                             <td align="left" class="style1">
                                                 <asp:TextBox ID="txtdt" runat="server" Width="140px" Visible="true" EnableViewState="False"></asp:TextBox>
                                             </td>
-                                            <td align="right">
-                                                Workshop Time :
+                                            <td align="right">Workshop Time :
                                             </td>
                                             <td align="left" class="style2">
                                                 <asp:TextBox ID="txtwt" runat="server" Width="140px" Visible="true"></asp:TextBox>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="right">
-                                                Reason :
+                                            <td align="right">Reason :
                                             </td>
                                             <td align="left">
                                                 <textarea cols="20" rows="3" runat="server" id="txtarreason" name="S1" visible="true"></textarea>
                                             </td>
-                                            <td align="right">
-                                                Supervisor Name :
+                                            <td align="right">Supervisor Name :
                                             </td>
                                             <td align="left" class="style2">
                                                 <asp:TextBox ID="txtname" runat="server" Width="140px" Visible="true" EnableViewState="False"></asp:TextBox>
@@ -484,12 +434,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
-                                    Defect Details
+                                <td colspan="2">Defect Details
                                     <textarea cols="20" rows="3" runat="server" id="txtar"></textarea>
                                 </td>
-                                <td colspan="2">
-                                 Remark
+                                <td colspan="2">Remark
                                     <textarea cols="20" rows="3" runat="server" id="txtRemark"></textarea>
                                 </td>
                             </tr>
@@ -522,8 +470,7 @@
                                                 Font-Size="10pt" Font-Strikeout="False" Font-Underline="False" Wrap="False" />
                                             <Columns>
                                                 <asp:BoundColumn DataField="sr" HeaderText="Sr No"></asp:BoundColumn>
-                                                <asp:BoundColumn DataField="subdeffect_id" HeaderText="subdeffect_id" Visible="false">
-                                                </asp:BoundColumn>
+                                                <asp:BoundColumn DataField="subdeffect_id" HeaderText="subdeffect_id" Visible="false"></asp:BoundColumn>
                                                 <asp:BoundColumn DataField="deffect_desc" HeaderText="Defect Type"></asp:BoundColumn>
                                                 <asp:BoundColumn DataField="deffect_decr" HeaderText="Sub Defect Type"></asp:BoundColumn>
                                                 <asp:BoundColumn DataField="deffect_id" HeaderText="defect_id" Visible="false"></asp:BoundColumn>
@@ -539,8 +486,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" rowspan="0" style="display: none">
-                                    Mechanic
+                                <td align="right" rowspan="0" style="display: none">Mechanic
                                 </td>
                                 <td align="left" style="display: none">
                                     <asp:DropDownList ID="ddlmech" runat="server" Width="150px">
@@ -555,22 +501,16 @@
                                     <table id="Table1" width="100%" border="1" align="right" cellpadding="5" cellspacing="5"
                                         style="text-decoration: none">
                                         <tr>
-                                            <td align="right" style="border-bottom-style: none; border-right-style: none; border-top-style: none;
-                                                border-left-style: none; width: 700px;">
-                                                Inspection Note
+                                            <td align="right" style="border-bottom-style: none; border-right-style: none; border-top-style: none; border-left-style: none; width: 700px;">Inspection Note
                                             </td>
-                                            <td align="left" style="border-bottom-style: none; border-right-style: none; border-top-style: none;
-                                                border-left-style: none;">
+                                            <td align="left" style="border-bottom-style: none; border-right-style: none; border-top-style: none; border-left-style: none;">
                                                 <asp:TextBox ID="txtinspectionnote" runat="server" Width="350px" Height="70px"></asp:TextBox>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="right" style="border-bottom-style: none; border-right-style: none; border-top-style: none;
-                                                border-left-style: none;">
-                                                Note
+                                            <td align="right" style="border-bottom-style: none; border-right-style: none; border-top-style: none; border-left-style: none;">Note
                                             </td>
-                                            <td align="left" style="border-bottom-style: none; border-right-style: none; border-top-style: none;
-                                                border-left-style: none;">
+                                            <td align="left" style="border-bottom-style: none; border-right-style: none; border-top-style: none; border-left-style: none;">
                                                 <asp:TextBox ID="txtnote" runat="server" Width="350px" Height="70px"></asp:TextBox>
                                             </td>
                                         </tr>
@@ -598,66 +538,64 @@
             </div>
         </div>
     </div>
-    </form>
-    <script>
-    var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
-//-->
 
-    
-        $(document).ready(function() {
-                SearchText();
-                loadArrayDd();
+    <script>
+
+
+
+        $(document).ready(function () {
+            SearchText();
+            loadArrayDd();
         });
         function SearchText() {
             //var dts = '{ "SubId": "2", "SearchText": ' + '"' + document.getElementById('ddlsubdefect0').value + '"' + '}';
             //alert(document.getElementById('ddlsubdefect0').value);
             //var details = JSON.stringify(dts);
-           
-            
+
+
             $("#ddlsubdefect").autocomplete
            ({
 
-               source: function(request, response) {
+               source: function (request, response) {
                    $.ajax
                     ({
-                    
+
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
                         url: "Job_Order_Card.aspx/GetAutoCompleteData",
                         //data: JSON.stringify({ "SubId": "2", "SearchText": document.getElementById('ddlsubdefect0').value }),
                         //data: details,
-                        data: JSON.stringify({ "SubId": document.getElementById ('ddldeffect').options[document.getElementById ('ddldeffect').selectedIndex].value, "SearchText": document.getElementById('ddlsubdefect').value }),
+                        data: JSON.stringify({ "SubId": document.getElementById('ddldeffect').options[document.getElementById('ddldeffect').selectedIndex].value, "SearchText": document.getElementById('ddlsubdefect').value }),
                         //dataType: "json",
-                        success: function(data) {
+                        success: function (data) {
                             response(data.d);
                         },
-                        error: function(result) {
+                        error: function (result) {
                             alert("Error");
                         }
                     });
 
                }
            });
-         
+
             $("#txtBusNo").autocomplete
            ({
-            source: [<%= strBusno  %>]
-            });
-            
-            
-      
-            
-            $(document).ready(function(){
-    $("#ddldeffect").change(function(){
-       $("#ddlsubdefect").val("") ;
-    });
+               source: [<%= strBusno  %>]
+           });
 
-})
-       }
-       function loadArrayDd() {
-         
-                }
-        
+
+
+
+            $(document).ready(function () {
+                $("#ddldeffect").change(function () {
+                    $("#ddlsubdefect").val("");
+                });
+
+            })
+        }
+        function loadArrayDd() {
+
+        }
+
     </script>
-</body>
-</html>
+</asp:Content>

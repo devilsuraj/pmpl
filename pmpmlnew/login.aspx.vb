@@ -56,24 +56,35 @@ Partial Class Login
                     Session("Dept_type") = "SP"
                 ElseIf DropDownList1.SelectedValue = "2" Then
                     Session("Dept_type") = "HW"
-              
+
                 Else : DropDownList1.SelectedValue = "4"
                     Session("Dept_type") = "FUEL"
                 End If
                 Session("Deptid") = DropDownList1.SelectedValue
-                dr.Close()
-                Con.Close()
-                Con.Dispose()
+
 
                 If Session("Dept_code") = "4" Then
 
+                    Response.Redirect("default.aspx")
+                ElseIf Session("Dept_code") = "5" Then
+                    Session("UserName") = dr("USERNAME")
+                    Session("UserId") = dr("USERID").ToString
+                    Session("LocID") = dr("Loc_ID")
+                    Session("RoleId") = dr("RoleId")
+                    Session("Dept_code") = dr("dept_code")
+                    Session("engineer") = ddlengineer.SelectedItem.ToString
+                    dr.Close()
+                    Con.Close()
+                    Con.Dispose()
                     Response.Redirect("default.aspx")
                 ElseIf Session("Dept_code") <> "4" And Session("RoleId") = 1 Then
                     Response.Redirect("default.aspx")
                 Else
                     Response.Redirect("default.aspx")
                 End If
-
+                dr.Close()
+                Con.Close()
+                Con.Dispose()
             End If
         Else
             lblinfo.Text = "Invalid User Name or Password, try again."

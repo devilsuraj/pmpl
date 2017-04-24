@@ -1,16 +1,12 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Workshop_Docking.aspx.vb"
-    Inherits="KDMT.Workshop_Workshop_Docking" meta:resourcekey="PageResource1" %>
-
+<%@ Page Title="" Language="VB" enableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" 
+    CodeFile="Workshop_Docking.aspx.vb"
+    Inherits="kdmt.Workshop_Workshop_Docking" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Docking </title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <script language="javascript" src="../Scripts/LogSheetReceipt.js">
-
+        </script>
     <script type="text/javascript" language="JavaScript" src="../Scripts/FusionCharts.js"></script>
     <script type="text/javascript" language="JavaScript">
         function myJS(myVar, mybus, inspstatus, insp, insptype, jobno,newjob,newjobno) {
@@ -91,26 +87,27 @@
             height: 31px;
         }
     </style>
-</head>
-<body>
+   <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>       Docking Details</h1>
+    </div>
+  <div class="form-horizontal" style="overflow:auto">
+    
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </asp:ToolkitScriptManager>
-    <form id="form1" runat="server">
-    <div>
-        <uc:header ID="Header1" runat="server" />
+ 
+      
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+         
             <div class="contantbox">
                 <div class="orgtop">
                     <div class="orgmiddal">
                         <input id="hdnID" runat="server" type="hidden" name="hdnID" />
                         <div>
                             <table align="center" width="100%" border="1" cellpadding="5" cellspacing="5">
-                                <tr>
-                                    <td colspan="4" class="style4">
-                                        Docking Details
-                                    </td>
-                                </tr>
+                             
                                 <tr>
                                     <td align="right">
                                         Bus No.
@@ -155,7 +152,7 @@
                 </div>
             </div>
         </div>
-    </form>
+   
     <script>
     var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
 //    $("#txtBusNo").autocompleteArray(
@@ -202,5 +199,4 @@
 
 
     </script>
-</body>
-</html>
+</asp:Content>

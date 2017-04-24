@@ -15,10 +15,11 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             'btnsubmit.Attributes.Add("Onclick", "return chkBrakedown()")
+            Session("MenuId") = 2
             Try
 
                 If Not IsPostBack Then
-                    BDPLite1.SelectedDate = Format(Now.Date, "dd/MMM/yyyy")
+                    BDPLite1.Text = Format(Now.Date, "dd/MMM/yyyy")
                     txtjotime.Text = Now.Hour & ":" & Now.Minute & ":" & Now.Second
                     txtbdclosedtime.Text = Now.Hour & ":" & Now.Minute & ":" & Now.Second
                     txtjob.Text = ExecuteQuery("(SELECT RIGHT('0' + RTRIM(year(getdate())), 2)+ RIGHT('0' + RTRIM(month(getdate())), 2))")
@@ -114,9 +115,9 @@ Namespace KDMT
                     cmd.CommandText = "[updateclosingjob]"
                     cmd.Parameters.AddWithValue("@jobid", ExecuteQuery("select JOC_id  from dbo.JobOrderCard_Master where locid = 0 and busno = '" + txtBusNo.Value + "' "))
                     cmd.Parameters.AddWithValue("@busno", txtBusNo.Value)
-                    cmd.Parameters.AddWithValue("@jobclosedate", BDPLite1.SelectedDate)
+                    cmd.Parameters.AddWithValue("@jobclosedate", BDPLite1.Text)
                     cmd.Parameters.AddWithValue("@closejob_remark", txtremark.Text)
-                    cmd.Parameters.AddWithValue("@jobclosetime", BDPLite1.SelectedDate + " " + txtjotime.Text)
+                    cmd.Parameters.AddWithValue("@jobclosetime", BDPLite1.Text + " " + txtjotime.Text)
                     cmd.Parameters.AddWithValue("@brakedownclosetime", txtbdclosedtime.Text)
                     cmd.Parameters.AddWithValue("@userid", Session("UserId"))
                     con.Open()
@@ -152,9 +153,9 @@ Namespace KDMT
                     cmd.CommandText = "[updateclosingjob]"
                     cmd.Parameters.AddWithValue("@jobid", grddeffectlist.Items(0).Cells(1).Text)
                     cmd.Parameters.AddWithValue("@busno", txtBusNo.Value)
-                    cmd.Parameters.AddWithValue("@jobclosedate", BDPLite1.SelectedDate)
+                    cmd.Parameters.AddWithValue("@jobclosedate", BDPLite1.Text)
                     cmd.Parameters.AddWithValue("@closejob_remark", txtremark.Text)
-                    cmd.Parameters.AddWithValue("@jobclosetime", BDPLite1.SelectedDate + " " + txtjotime.Text)
+                    cmd.Parameters.AddWithValue("@jobclosetime", BDPLite1.Text + " " + txtjotime.Text)
                     cmd.Parameters.AddWithValue("@brakedownclosetime", txtbdclosedtime.Text)
                     cmd.Parameters.AddWithValue("@userid", Session("UserId"))
                     con.Open()

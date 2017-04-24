@@ -19,7 +19,7 @@ Namespace KDMT
         Dim txtMech As TextBox
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
+            Session("MenuId") = 2
             If Not IsPostBack Then
                 txtjobno.Focus()
                 BindGrid(grddeffectlist, con, "view_jobsubdetails '" + txtjocno.Value + "','" + txtjob.Text + "','" + txtjobno.Text + "'")

@@ -25,6 +25,7 @@ Namespace KDMT
 
         End Sub
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 2
             If Not IsPostBack Then
                 txtBusNo.Focus()
                 'lblsup.Text = Session("UserName")
@@ -35,7 +36,7 @@ Namespace KDMT
                 grddeffectlist.DataSource = ""
                 grddeffectlist.DataBind()
 
-                dtjobDate.SelectedDate = Now.Date()
+                dtjobDate.Text = Now.Date()
                 strBusno = getAutoCompleteList("select vech_no from vech_Master where is_delete<>'1' order by vech_no", "vech_no")
                 strSupervisor = getAutoCompleteList("select distinct supervisorname from dbo.JobOrderCard_Master", "supervisorname")
                 edit_combo(ddlsupervisor, "Mech_id", "Name", "tbl_Mechanic_master", "sub_id=124")
@@ -210,7 +211,7 @@ Namespace KDMT
                 txtchassis.Text = ""
                 txtkms.Text = ""
                 txtengin.Text = ""
-                '                dtjobDate.SelectedDate = Now.Date
+                '                dtjobDate.Text = Now.Date
                 ' dtjobDate.Text = Now.Date
                 txtjotime.Text = Now.Hour & ":" & Now.Minute & ":" & Now.Second
                 grddeffectlist.DataSource = ""
@@ -235,7 +236,7 @@ Namespace KDMT
 
 
 
-            ElseIf (dtjobDate.SelectedDate <> Now.Date()) And (dtjobDate.SelectedDate <> DateAdd(DateInterval.Day, -1, Now.Date)) Then
+            ElseIf (dtjobDate.Text <> Now.Date()) And (dtjobDate.Text <> DateAdd(DateInterval.Day, -1, Now.Date)) Then
                 Response.Write("<script>alert('Please Select Proper Date');</script>")
 
                 Exit Sub
@@ -288,7 +289,7 @@ Namespace KDMT
                                         cmd.Parameters.AddWithValue("@chassis", txtchassis.Text)
                                         cmd.Parameters.AddWithValue("@kms", txtkms.Text)
                                         cmd.Parameters.AddWithValue("@engine", txtengin.Text)
-                                        cmd.Parameters.AddWithValue("@jobdate", dtjobDate.SelectedDate)
+                                        cmd.Parameters.AddWithValue("@jobdate", dtjobDate.Text)
                                         cmd.Parameters.AddWithValue("@jobtime", txtjotime.Text)
                                         cmd.Parameters.AddWithValue("@Mechanicname", IIf(ddlmech.SelectedItem.Text = "Select", "", ddlmech.SelectedItem.Text))
                                         cmd.Parameters.AddWithValue("@inspnote", txtinspectionnote.Text)
@@ -332,7 +333,7 @@ Namespace KDMT
                                         'txtchassis.Text = ""
                                         'txtkms.Text = ""
                                         'txtengin.Text = ""
-                                        ''                dtjobDate.SelectedDate = Now.Date
+                                        ''                dtjobDate.Text = Now.Date
                                         'dtjobDate.Text = Now.Date
                                         'txtjotime.Text = Now.Hour & ":" & Now.Minute & ":" & Now.Second
                                         'grddeffectlist.DataSource = ""
@@ -382,7 +383,7 @@ Namespace KDMT
                                             cmd.Parameters.AddWithValue("@chassis", txtchassis.Text)
                                             cmd.Parameters.AddWithValue("@kms", txtkms.Text)
                                             cmd.Parameters.AddWithValue("@engine", txtengin.Text)
-                                            cmd.Parameters.AddWithValue("@jobdate", dtjobDate.SelectedDate)
+                                            cmd.Parameters.AddWithValue("@jobdate", dtjobDate.Text)
                                             cmd.Parameters.AddWithValue("@jobtime", txtjotime.Text)
                                             cmd.Parameters.AddWithValue("@Mechanicname", IIf(ddlmech.SelectedItem.Text = "Select", "", ddlmech.SelectedItem.Text))
                                             cmd.Parameters.AddWithValue("@inspnote", txtinspectionnote.Text)
@@ -468,7 +469,7 @@ Namespace KDMT
                                             cmd.Parameters.AddWithValue("@chassis", txtchassis.Text)
                                             cmd.Parameters.AddWithValue("@kms", txtkms.Text)
                                             cmd.Parameters.AddWithValue("@engine", txtengin.Text)
-                                            cmd.Parameters.AddWithValue("@jobdate", dtjobDate.SelectedDate)
+                                            cmd.Parameters.AddWithValue("@jobdate", dtjobDate.Text)
                                             cmd.Parameters.AddWithValue("@jobtime", txtjotime.Text)
                                             cmd.Parameters.AddWithValue("@Mechanicname", IIf(ddlmech.SelectedItem.Text = "Select", "", ddlmech.SelectedItem.Text))
                                             cmd.Parameters.AddWithValue("@inspnote", txtinspectionnote.Text)

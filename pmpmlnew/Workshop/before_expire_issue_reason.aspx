@@ -1,31 +1,27 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="before_expire_issue_reason.aspx.vb"
+<%@ Page Title="" Language="VB" enableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" 
+    CodeFile="before_expire_issue_reason.aspx.vb"
     Inherits="kdmt.before_expire_issue_reason" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Spare Issue Reason (Before Expiry )</title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
+
+   <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>
+Spare Issue Reason (Before Expiry )</h1>
+    </div>
+  <div class="form-horizontal" style="overflow:auto">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <uc:header ID="Header1" runat="server" />
+   
         <asp:HiddenField ID="hdnstate" runat="server" />
         <div style="width: 1500px">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+      
             <div>
                 <table border="0" align="left" cellpadding="5" cellspacing="5">
-                    <tr>
-                        <td colspan="4" class="innerheading">
-                            <span id="Label3">Spare Issue Reason (Before Expiry )</span>
-                        </td>
-                    </tr>
+                
                     <tr>
                         <td colspan="4" align="center">
                             <asp:DataGrid ID="grddetails" Style="align: center; valign: middle;" runat="server"
@@ -77,5 +73,4 @@
             </div>
         </div>
     </div>
-    </form>
-</body>
+</asp:Content>

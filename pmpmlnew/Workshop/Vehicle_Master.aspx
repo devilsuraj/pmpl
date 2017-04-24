@@ -1,13 +1,8 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Vehicle_Master.aspx.vb"
-    Inherits="KDMT.Vehicle_Master" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<%@ Page Title="" Language="VB" enableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" 
+    CodeFile="Vehicle_Master.aspx.vb"
+    Inherits="kdmt.Vehicle_Master" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Vehicle Master</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
@@ -221,13 +216,17 @@ function handleresponse() {
 }
     </script>
 
-</head>
-<body onload="MM_preloadImages('../images/btn_h.gif');return getVehicle();">
-    <form id="form1" runat="server">
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+   <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Vehicle Master</h1>
+    </div>
+  <div class="form-horizontal" style="overflow:auto">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+        
             <div class="contantbox">
                 <div class="orgtop">
                 </div>
@@ -235,11 +234,7 @@ function handleresponse() {
                     <input id="hdnID" runat="server" type="hidden" name="hdnID" />
                     <div>
                         <table width="100%" border="1" align="left" cellpadding="5" cellspacing="5">
-                            <tr>
-                                <td colspan="4" class="innerheading">
-                                    <span id="Label3">Vehicle Master</span>
-                                </td>
-                            </tr>
+                     
                             <tr>
                                 <td align="right">
                                     Bus No.
@@ -289,16 +284,20 @@ function handleresponse() {
                                     RTO Registration Date
                                 </td>
                                 <td>
-                                    <BDP:BDPLite ID="dtRTODate" runat="server" TextBoxStyle-Width="100px">
-                                    </BDP:BDPLite>
+                                              <asp:TextBox ID="dtRTODate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="dtRTODate"
+                                                    PopupButtonID="dtRTODate" Format="dd-MMM-yyyy">
+                                                </asp:CalendarExtender>
                                 </td>
                                 <td align="right">
                                     Fitness Renewal Date
                                 </td>
                                 <td>
-                                    <BDP:BDPLite ID="dtFitRenewalDate" TextBoxStyle-Width="100px" runat="server">
-                                        <TextBoxStyle Width="100px" />
-                                    </BDP:BDPLite>
+                                  
+                                              <asp:TextBox ID="dtFitRenewalDate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="dtFitRenewalDate"
+                                                    PopupButtonID="dtFitRenewalDate" Format="dd-MMM-yyyy">
+                                                </asp:CalendarExtender>
                                 </td>
                             </tr>
                             <tr>
@@ -306,16 +305,21 @@ function handleresponse() {
                                     Depo In Date
                                 </td>
                                 <td>
-                                    <BDP:BDPLite TextBoxStyle-Width="100px" ID="dtDepoDate" runat="server">
-                                    </BDP:BDPLite>
+                            
+                                              <asp:TextBox ID="dtDepoDate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="dtDepoDate"
+                                                    PopupButtonID="dtDepoDate" Format="dd-MMM-yyyy">
+                                                </asp:CalendarExtender>
                                 </td>
                                 <td align="right">
                                     Put In Service Date
                                 </td>
                                 <td>
-                                    <BDP:BDPLite TextBoxStyle-Width="100px" ID="dtPutDate" runat="server">
-                                        <TextBoxStyle Width="100px" />
-                                    </BDP:BDPLite>
+                               
+                                              <asp:TextBox ID="dtPutDate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="dtPutDate"
+                                                    PopupButtonID="dtPutDate" Format="dd-MMM-yyyy">
+                                                </asp:CalendarExtender>
                                 </td>
                             </tr>
                             <tr>
@@ -353,6 +357,4 @@ function handleresponse() {
             </div>
         </div>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

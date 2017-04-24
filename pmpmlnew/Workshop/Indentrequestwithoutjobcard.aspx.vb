@@ -11,14 +11,14 @@ Namespace kdmt
         Dim jobno As String = ""
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+            Session("MenuId") = 2
             If Not IsPostBack Then
                 Try
                     btnadd.Attributes.Add("Onclick", "ValidateSave();")
                     btnaddandsave.Attributes.Add("Onclick", "ValidateSave();")
 
-                    dtIndentDate.SelectedDate = Now.Date
-                    lblindent.Text = ExecuteQuery("getinentno '" & dtIndentDate.SelectedDate & "' ")
+                    dtIndentDate.Text = Now.Date
+                    lblindent.Text = ExecuteQuery("getinentno '" & dtIndentDate.Text & "' ")
 
                     dtIndentDate.Focus()
                 Catch ex As Exception
@@ -128,7 +128,7 @@ Namespace kdmt
         Private Sub save()
             Try
 
-                lblindent.Text = ExecuteQuery("getinentno '" & dtIndentDate.SelectedDate & "' ")
+                lblindent.Text = ExecuteQuery("getinentno '" & dtIndentDate.Text & "' ")
 
                 cmd = New SqlCommand
                 ds = New DataSet
@@ -141,7 +141,7 @@ Namespace kdmt
                 cmd.CommandType = CommandType.StoredProcedure
 
                 cmd.Parameters.AddWithValue("@Indent_No", lblindent.Text)
-                cmd.Parameters.AddWithValue("@Indent_Date", dtIndentDate.SelectedDate)
+                cmd.Parameters.AddWithValue("@Indent_Date", dtIndentDate.Text)
                 cmd.Parameters.AddWithValue("@Indent_Approve_By", txtapprovedby.Text)
                 cmd.Parameters.AddWithValue("@Indent_Remark", txtremark.Text)
                 cmd.Parameters.AddWithValue("@is_job", 0)
