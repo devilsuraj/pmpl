@@ -1,9 +1,5 @@
 <%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="WMR.aspx.vb"
      Inherits="KDMT.WMR" %>
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script language="javascript">
@@ -33,7 +29,9 @@
             for (i = 1; rowcnt > i; i++) {
                 var itemname = document.getElementById('tdBinNo_' + i).innerHTML
                 var itemnamenow = document.getElementById('txtBinNo').value
-                if (itemname == itemnamenow) {
+                var PartNo = document.getElementById('tdPartNo_' + i).innerHTML
+                var PartNoNow = document.getElementById('txtPartNo').value
+                if (itemname == itemnamenow && PartNo == PartNoNow) {
                     alert('This Item Already Entered Above.');
                     return false;
                 }
@@ -148,12 +146,12 @@
 
             var txtBinNo = document.getElementById('txtBinNo').value;
             var txtItemName = document.getElementById('txtItemName').value;
-            if (txtBinNo != '') {
+            //if (txtBinNo != '') {
 
                 xmlHttp.open("GET", "../store/Sub_Store_Iss.aspx?Action=chkitem&binno=" + txtBinNo + " &name=" + txtItemName, true);
                 xmlHttp.send(null);
                 return false;
-            }
+           // }s
 
             return true;
         }
@@ -168,11 +166,11 @@
             //                setTimeout(function () { document.getElementById('txtReqQty').focus() }, 10);
             //                return false;
             //            }
-            if ((document.getElementById("txtBinNo").value) == '') {
-                alert("Bin No should not be blank");
-                setTimeout(function () { document.getElementById('txtBinNo').focus() }, 10);
-                return false;
-            }
+//            if ((document.getElementById("txtBinNo").value) == '') {
+//                alert("Bin No should not be blank");
+//                setTimeout(function () { document.getElementById('txtBinNo').focus() }, 10);
+//                return false;
+//            }
             if ((document.getElementById("txtItemName").value) == '') {
                 alert("Item Name should not be blank");
                 setTimeout(function () { document.getElementById('txtBinNo').focus() }, 10);
@@ -184,11 +182,11 @@
                 setTimeout(function () { document.getElementById('txtReqQty').focus() }, 10);
                 return false;
             }
-            if (parseFloat(document.getElementById("txtbqty").value) < parseFloat(document.getElementById("txtReqQty").value)) {
-                alert("Issue Qty sholuld be less than or equal to available qty");
-                setTimeout(function () { document.getElementById('txtReqQty').focus() }, 10);
-                return false;
-            }
+//            if (parseFloat(document.getElementById("txtbqty").value) < parseFloat(document.getElementById("txtReqQty").value)) {
+//                alert("Issue Qty sholuld be less than or equal to available qty");
+//                setTimeout(function () { document.getElementById('txtReqQty').focus() }, 10);
+//                return false;
+//            }
 
             if (document.getElementById("txtReqQty").value.length > 0) {
                 if (IsNumeric(document.getElementById("txtReqQty").value)) {
@@ -221,7 +219,6 @@
 
                 }
             }
-
             document.getElementById("Hid_Rec").value = Recs;
 
         }
@@ -257,14 +254,22 @@
 
         function fillItemName() {
             objddl2 = document.getElementById('Select1');
-            if (document.getElementById("ddlitem").value != "" && objddl2.options.length > 0) {
-                document.getElementById("ddlitem").value = objddl2.options[0].text;
+            if (document.getElementById("txtItemName").value != "" && objddl2.options.length > 0) {
+                document.getElementById("txtItemName").value = objddl2.options[0].text;
                 document.getElementById("txtReqQty").focus();
             }
 
         }
-        function validate() {
+       
 
+
+        ///////////   for removing blaak spaces 
+        String.prototype.trim = function () {
+
+            return this.replace(/^\s+|\s+$/g, "");
+        }
+
+        function validate() {
 
             if (IsValidDate(document.getElementById("txtissuedate").value) == false) {
                 alert('Incorrect WMR Date Format');
@@ -296,6 +301,7 @@
                 document.getElementById('txtBinNo').focus()
                 return false;
             }
+          
             save();
             return true;
         }
@@ -331,19 +337,19 @@
                     if (ele1 == "NO-SUCH-ITEM") {
 
                         alert("No Such Item Present");
-                        document.Form1.ddlitem.focus();
+                        document.getElementById("txtItemName").focus();
 
                     }
 
                 }
             }
-            var cat = document.Form1.ddlitem.value;
+            var cat = document.getElementById("txtItemName").value;
             //alert(cat);
-            xmlHttp.open("GET", "Ajaxstore.aspx?Action=chkitemname&itemid=" + document.Form1.ddlitem.value, true);
+            xmlHttp.open("GET", "Ajaxstore.aspx?Action=chkitemname&itemid=" + document.getElementById("txtItemName").value, true);
             xmlHttp.send(null);
         }
 
-        function ajaxFunction() {
+        function ajaxFunction12() {
             var xmlHttp;
             try {
                 // Firefox, Opera 8.0+, Safari
@@ -381,7 +387,7 @@
                     while (document.getElementById("Select1").options.length > 0)
                         document.getElementById("Select1").options.remove(document.getElementById("Select1").options.length - 1);
 
-                    if (document.Form1.ddlitem.value != "") {
+                    if (document.getElementById("txtItemName").value != "") {
 
                         for (var i = 0; i < ele.length; i++) {
 
@@ -396,7 +402,7 @@
                             //alert (ele[i] + "ravi")
                             newOpt.value = ele[i];
                             newOpt.innerText = ele[i];
-                            if (document.Form1.ddlitem.value == ele[i]) {
+                            if (document.getElementById("txtItemName").value == ele[i]) {
                                 //alert("ravi")
                                 temp.style.display = "none";
                                 return false;
@@ -418,7 +424,7 @@
                     }
                 }
             }
-            xmlHttp.open("GET", "AjaxStore.aspx?Action=itemname1&itemid=" + document.Form1.ddlcat.value + "&item=" + document.Form1.ddlitem.value, true);
+            xmlHttp.open("GET", "AjaxStore.aspx?Action=itemname1&itemid=" + document.Form1.ddlcat.value + "&item=" + document.getElementById("txtItemName").value, true);
             //xmlHttp.open("GET","Ajaxwaytrip.aspx?Action=Fair&&start="+document.Form1.ddlfrom.value+"&end="+document.Form1.ddlto.value+"&value="+document.Form1.txtroute.value+"&age="+document.Form1.txtAge.value+"&Passtype="+'ST'+"&direction="+'N'+"&month="+document.Form1.hidmonth.value,true);
             //xmlHttp.open("GET","../store/AjaxStore.aspx?Action=item&itemname="+document.Form1.txtitem.value,true);
             xmlHttp.send(null);
@@ -426,19 +432,133 @@
         }
 
 
+        function ajaxFunction() {
+            var xmlHttp;
+            try {
+                // Firefox, Opera 8.0+, Safari
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e) {
+                // Internet Explorer
+                try {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e) {
+                    try {
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    catch (e) {
+                        alert("Your browser does not support AJAX!");
+                        return false;
+                    }
+                }
+            }
 
-        function Select() {
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4) {
+
+                    resp = xmlHttp.responseText;
+
+
+                    if (resp == 0) {
+                        document.getElementById("Select1").style.display = 'none';
+                        return false;
+                    }
+
+                    var ele = resp.split("!");
+                    //			                          
+
+                    while (document.getElementById("Select1").options.length > 0)
+                        document.getElementById("Select1").options.remove(document.getElementById("Select1").options.length - 1);
+                    if (document.getElementById('txtItemName').value != "" || document.getElementById('txtBinNo').value != "" || document.getElementById('txtPartNo').value != "") {
+
+                        for (var i = 0; i < ele.length; i++) {
+
+                            var temp = document.getElementById("Select1")
+                            temp.style.display = '';
+                            temp.size = ele.length;
+                            newOpt = document.createElement("option");
+                            document.getElementById("Select1").options.add(newOpt);
+
+                            newOpt.value = ele[i];
+                            newOpt.innerText = ele[i];
+                            if (document.getElementById("txtItemName").value == ele[i]) {
+                                //temp.style.display="none";				               
+                                // return false;
+                            }
+                            if (ele[i] == "0") {
+                                //temp.style.display="none";				               
+                                // return false;
+                            }
+
+                        }
+
+                    }
+                    else {
+                        var temp = document.getElementById("Select1")
+                        temp.size = 0
+                        temp.style.display = "none";
+
+                    }
+                }
+            }
+            var lfno = document.getElementById('txtBinNo').value;
+            var partno = document.getElementById('txtPartNo').value;
+
+            if (lfno == "" && partno == "") {
+                if (document.getElementById('txtItemName').value.length >= 3) {
+                    url = "../store/AjaxStore.aspx?Action=itemnamedeptwise&itemid=''&item=" + document.getElementById('txtItemName').value + "&lfno=" + lfno + "&partno=" + partno + '&t=' + new Date();
+                    xmlHttp.open("GET", url, true);
+                    xmlHttp.send(null);
+                }
+                else {
+                    
+                  //  document.getElementById("Select1").style.display = 'none'
+                }
+            }
+            else {
+                url = "../store/AjaxStore.aspx?Action=itemnamedeptwise&itemid=''&item=" + document.getElementById('txtItemName').value + "&lfno=" + lfno + "&partno=" + partno + '&t=' + new Date();
+                xmlHttp.open("GET", url, true);
+                xmlHttp.send(null);
+            }
+        }
+
+        function check1() {
+            var str = document.getElementById('txtItemName').value;
+            if (str.trim() != '') {
+                Fromcombo2();
+            }
+            return false;
+        }        
+
+
+        function emptytext() {
+            if (document.getElementById('txtPartNo').value != '' && document.getElementById('txtItemName').value != '') {
+                document.getElementById('txtPartNo').value = '';
+                document.getElementById('txtItemName').value = '';
+            }
+        }
+
+        function emptytextpart() {
+            if (document.getElementById('txtBinNo').value != '' && document.getElementById('txtItemName').value != '') {
+                document.getElementById('txtBinNo').value = '';
+                document.getElementById('txtItemName').value = '';
+            }
+        }
+
+
+        function Select1() {
 
             var resultStr = "";
             objddl2 = document.getElementById('Select1');
             for (var i = 0; i < objddl2.options.length; i++) {
                 if (objddl2.options[i].selected) {
                     resultStr += (objddl2.options[i].text);
-                    var objddl1 = document.getElementById('ddlitem');
+                    var objddl1 = document.getElementById('txtItemName');
                     objddl1.value = resultStr;
                     var x = document.getElementById('Select1');
                     x.style.display = "none";
-                    document.getElementById('ddlitem').focus();
+                    document.getElementById('txtItemName').focus();
                     return false;
                     //alert(resultStr)
                 }
@@ -446,6 +566,21 @@
 
         }
 
+
+        function Select() {
+            var resultStr = "";
+            objddl2 = document.getElementById('Select1');
+            for (var i = 0; i < objddl2.options.length; i++) {
+                if (objddl2.options[i].selected) {
+                    resultStr += (objddl2.options[i].text);
+                    var objddl1 = document.getElementById('txtItemName');
+                    objddl1.value = resultStr;
+                    document.getElementById("Select1").style.display = 'none';
+                    document.getElementById('txtItemName').focus();
+                    return false;
+                }
+            }
+        }
         //////////////   end  filteration   ///////////////////////////
 
         // check for numeric fields only
@@ -509,16 +644,16 @@
                     resp = ""
                     resp = xmlHttp.responseText;
                     var ele1 = resp.split("!");
-                    while (document.getElementById("ddlitem").options.length > 0)
-                        document.getElementById("ddlitem").options.remove(document.getElementById("ddlitem").options.length - 1);
-                    document.getElementById("ddlitem").value == "";
-                    var temp = document.getElementById("ddlitem")
+                    while (document.getElementById("txtItemName").options.length > 0)
+                        document.getElementById("txtItemName").options.remove(document.getElementById("txtItemName").options.length - 1);
+                    document.getElementById("txtItemName").value == "";
+                    var temp = document.getElementById("txtItemName")
                     //if(document.Form1.txtroute.value !="")
                     // {
                     for (var i = 0; i < ele1.length - 1; i++) {
-                        var temp = document.getElementById("ddlitem")
+                        var temp = document.getElementById("txtItemName")
                         newOpt = document.createElement("OPTION");
-                        document.getElementById("ddlitem").options.add(newOpt);
+                        document.getElementById("txtItemName").options.add(newOpt);
                         newOpt.value = ele1[i];
                         newOpt.innerText = ele1[i];
                     }
@@ -534,7 +669,7 @@
 
 
 
-        function Fromcombo2() {
+        function Fromcombo22() {
             var xmlHttp;
             try {
                 // Firefox, Opera 8.0+, Safari
@@ -565,9 +700,52 @@
 
                 }
             }
-            var cat = document.Form1.ddlitem.value;
+            var cat = document.getElementById("txtItemName").value;
             //alert(cat);
-            xmlHttp.open("GET", "Ajaxstore.aspx?Action=itemqty&itemid=" + document.Form1.ddlitem.value, true);
+            xmlHttp.open("GET", "Ajaxstore.aspx?Action=itemqty&itemid=" + document.getElementById("txtItemName").value, true);
+            xmlHttp.send(null);
+        }
+
+        function Fromcombo2() {
+
+            var xmlHttp;
+            try {
+                // Firefox, Opera 8.0+, Safari
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e) {
+                // Internet Explorer
+                try {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e) {
+                    try {
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    catch (e) {
+                        alert("Your browser does not support AJAX!");
+                        return false;
+                    }
+                }
+            }
+
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4) {
+                    resp = ""
+                    resp = xmlHttp.responseText;
+                    var ele1 = resp.split('|');
+
+                    document.getElementById('txtbqty').value = ele1[0];
+                    document.getElementById('txtPartNo').value = ele1[3];
+                    document.getElementById('txtBinNo').value = ele1[2];
+
+
+                }
+            }
+            var itemname = document.getElementById('txtItemName').value;
+            var lfno = document.getElementById('txtBinNo').value;
+            var partno = document.getElementById('txtPartNo').value;
+            xmlHttp.open("GET", "AjaxStore.aspx?Action=itemqty&itemid=" + itemname + "&lfno=" + lfno + "&partno=" + partno, true);
             xmlHttp.send(null);
         }
 
@@ -618,7 +796,9 @@
                 xmlHttp.send(null);
             }
         }
-        </script>
+
+
+    </script>
     <style> 
    
         table{border-collapse:collapse!important; }
@@ -697,7 +877,7 @@
                                             Date :
                                         </td>
                                         <td align="left">
-                                            <asp:TextBox ID="txtissuedate" Width="80px" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtissuedate" Width="120px" runat="server"></asp:TextBox>
                                             <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtissuedate"
                                                 PopupButtonID="imgPopBtnissue" Format="dd-MMM-yyyy">
                                             </asp:CalendarExtender>
@@ -727,8 +907,8 @@
                                             Job No :
                                         </td>
                                         <td align="left" class="style1">
-                                            <asp:TextBox ID="txtjobyymm" runat="server" Width="50px"></asp:TextBox>
-                                            <asp:TextBox ID="txtjobno" runat="server" Width="20px"></asp:TextBox>
+                                            <asp:TextBox ID="txtjobyymm" runat="server" MaxLength="4" Width="80px"></asp:TextBox>
+                                            <asp:TextBox ID="txtjobno" runat="server" MaxLength="2" Width="50px"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -897,7 +1077,7 @@
             </div>
         </div>
     </div>
-    </form>
+
     <script type="text/jscript" language="javascript">
 
         //-->

@@ -557,7 +557,9 @@
                         display: inline-block;
                         max-width:100%;
             }
-
+        #ddlwmr {
+        width:150px;
+        }
  
 
 </style>
@@ -577,7 +579,7 @@
                     Date :
                 </td>
                 <td align="left">
-                    <asp:TextBox ID="txtissuedate"  runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtissuedate" Width="120"  runat="server"></asp:TextBox>
                     <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtissuedate"
                         PopupButtonID="imgPopBtnissue" Format="dd-MMM-yyyy">
                     </asp:CalendarExtender>
@@ -590,7 +592,7 @@
                     WMR No :
                 </td>
                 <td align="left">
-                    <asp:DropDownList ID="ddlwmr" runat="server">
+                    <asp:DropDownList ID="ddlwmr" runat="server" >
                     </asp:DropDownList>
                     <input type="button" class="btn btn-cont" id="btnshow" onclick="getPartItem(this,5)" value='Show' />
                 </td>
@@ -646,8 +648,8 @@
                     Job No :
                 </td>
                 <td align="left" class="style1">
-                    <asp:TextBox ID="txtjobyymm" runat="server" Width="50px"></asp:TextBox>
-                    <asp:TextBox ID="txtjobno" runat="server" Width="20px"></asp:TextBox>
+                    <asp:TextBox ID="txtjobyymm" runat="server" Width="90px" MaxLength="4"></asp:TextBox>
+                    <asp:TextBox ID="txtjobno" runat="server" Width="50px" MaxLength="2"></asp:TextBox>
                 </td>
             </tr>
             <tr>

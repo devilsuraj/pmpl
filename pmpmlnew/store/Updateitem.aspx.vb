@@ -8,9 +8,8 @@ Namespace KDMT
         Dim DA As SqlClient.SqlDataAdapter
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+            Session("MenuId") = 10
             If Page.IsPostBack = False Then
-                Session("MenuId") = 10
                 btnSubmit.Attributes.Add("onclick", "return validate ()")
                 'Call edit_combo(ddlitmcat, "cat_id", "item_cat_name", "item_cat_master", "0=0")
                 Call edit_combo(ddlCategory, "item_id", "item_name", "Item_Master", "loc_id = '" & Session("LocID") & "'")

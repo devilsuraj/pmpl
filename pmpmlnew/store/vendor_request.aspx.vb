@@ -10,7 +10,7 @@ Namespace KDMT
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Page.IsPostBack = False Then
                 Try
-
+                    Session("MenuId") = 10
                     btnSubmit.Attributes.Add("onclick", "return validate();")
                     If Session("LocID").ToString <> "" Then
                         txtref.Focus()

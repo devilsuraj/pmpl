@@ -11,6 +11,7 @@ Namespace KDMT
         Dim total As Double
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 10
             If Page.IsPostBack = False Then
                 'Me.BDPLite1.SelectedDate = Now.Date
                 btnSubmit.Attributes.Add("Onclick", "return Validate ()")

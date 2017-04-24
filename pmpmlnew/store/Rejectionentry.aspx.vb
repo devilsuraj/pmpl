@@ -14,6 +14,7 @@ Namespace KDMT
         Dim sqlrdr As SqlDataReader
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             'btnSubmit.Attributes.Add("onclick", "return validatedata();")
+            Session("MenuId") = 10
             btnSubmit.Attributes.Add("onclick", "return ValidateSave();")
             If Not IsPostBack Then
                 Dim SQL As String

@@ -14,6 +14,7 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Page.IsPostBack = False Then
+                Session("MenuId") = 10
                 strVendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
                 ' btnSubmit.Attributes.Add("Onclick", "return validate ()")
                 'trgrid.Visible = False

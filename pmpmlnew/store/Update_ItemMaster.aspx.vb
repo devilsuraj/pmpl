@@ -11,10 +11,9 @@ Namespace KDMT
         Dim ds As New DataSet
         Dim DA As SqlClient.SqlDataAdapter
         Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-            Session("MenuId") = 10
             If Page.IsPostBack = False Then
                 fillgrid()
-
+                Session("MenuId") = 10
                 If rdbupdate.Checked = True Then
                     grdview.Visible = False
                     grditem.Visible = True

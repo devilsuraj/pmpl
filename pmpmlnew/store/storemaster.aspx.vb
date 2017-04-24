@@ -14,7 +14,7 @@ Namespace KDMT
                 Try
                     Dim SQL As String
 
-
+                    Session("MenuId") = 10
                     strVendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
                     btnSubmit.Attributes.Add("onclick", "return validate();")
                     save_vendor.Attributes.Add("onclick", "return validatevendor();")

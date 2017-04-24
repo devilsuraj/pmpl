@@ -12,8 +12,8 @@ Namespace KDMT
         Public strvendor As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             strvendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
-            Session("MenuId") = 10
             If Not IsPostBack Then
+                Session("MenuId") = 10
                 Try
                     Fill_Combo("bank_id", "bank_name", "bank_master", ddlbank, con, "", "select")
                     'BindGrid(dgresult, con, "view_ibc_detail")

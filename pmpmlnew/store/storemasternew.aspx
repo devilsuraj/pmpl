@@ -1,8 +1,7 @@
-<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="storemasternew.aspx.vb"
+<%@ Page Title="" Language="VB" enableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="storemasternew.aspx.vb"
     Inherits="kdmt.storemaster" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script language="javascript" src="../Scripts/LogSheetReceipt.js"></script>
@@ -193,8 +192,8 @@
                 return false;
             }     
 
-            ValidateSave()
-            return true;
+            return ValidateSave();
+             
         }
 
         function isValidDate(dateString)
@@ -748,7 +747,7 @@
             var balqty = document.getElementById('tdbalQty_' + id);
 
             if(parseInt(ReceiveQty.value) > (parseInt(RequiredQty.innerHTML) -parseInt(Receivedqty.innerHTML))    ){
-                alert("Received Qty should be less then or equale to Pending Qty"); 
+                alert("Received Qty should be less then or equal to Pending Qty"); 
                 ReceivedQty.focus();
                 return false;
             }
@@ -767,10 +766,14 @@
             rowcnt = rowcnt - 1;    
         }
 
-        function ValidateSave(){ 
+        function ValidateSave() {
+          
+         //   alert(parseFloat(balQty.innerHTML));
+          //  alert(receiveQty);
+
             var detvalues = '';
             var i = 0;    
-
+           // alert("called");
             var hdnrwcnt = document.getElementById('hdnrwcnt');
             var hdnPOtype = document.getElementById('hdnPOtype');
             var hdnPoNo = document.getElementById('hdnPoNo');
@@ -788,9 +791,10 @@
             //        }        
         
             var txtpotype = document.getElementById('txtPOtype').value;
-            var PO = txtpotype.split(" | ")  
+            var PO = txtpotype.split(" | ");
             hdnPOtype.value = PO[0];
-            hdnPoNo.value = PO[1]
+            hdnPoNo.value = PO[1];
+          //  alert(hdnrwcnt.value);
             //        var txtvendor = document.getElementById('txtvendor').value;        
             //        var dtpoDate = document.getElementById('bdpPoDate').value;                 
             ////        var txtinwardno = document.getElementById('txtInwardNo').value;                        
@@ -804,16 +808,29 @@
             //        var txtgate = document.getElementById('txtgate').value;  
                           
         
-            for (i=0;i<hdnrwcnt ;i++){  
+            for (i = 0; i < hdnrwcnt.value ; i++) {
+             //   alert("called validate save");
+                var balQty = document.getElementById('tdbalQty_' + i);
                 var receiveQty = document.getElementById('txtreceiveQty_' + i);
-                if(receiveQty != null){
+             //   alert("called " + receiveQty);
+            //    alert("balance value : "+parseFloat(+balQty.innerHTML));
+               // alert(receiveQty);
+                if (receiveQty != null) {
+               
                     if (receiveQty.value == ''){
                         alert('Received Qty. should not be empty')
                         receiveQty.focus();  
                         return false;
                     }
-                }    
+                    if (receiveQty.value > parseFloat(balQty.innerHTML)) {
+                        alert('Received Qty. should should be less than or equal to Balance Qty')
+                        //receiveQty.focus();
+                        return false;
+                    }
+                }
+              
             }
+        
         
             if( document.getElementById('txtvendor').value == ''){
                 alert('Please select vendor');
@@ -891,7 +908,8 @@
     
     
     </script>
-
+         <script src="../scripts/jquery-1.11.0.min.js"></script>
+            <script src="../scripts/jquery-ui.js"></script>
 
     <style>
         table {
@@ -953,9 +971,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" runat="Server">
     <div class="breadcrumbs">
-        <h1>Receipt Control Register (  <asp:Label ID="lblmessage" Visible="false" ForeColor="red" Text="Click here for adding vendor" runat="server"></asp:Label>)</h1>
-    </div>
-    `<asp:HiddenField ID="Hid_Rec" runat="server" />
+        <h1>Receipt Control Register (     <asp:Label ID="lblType" runat="server" Text="" ForeColor="REd"></asp:Label>
+                                                        <asp:RadioButtonList ID="radparttype" Visible="false" Enabled="false" AutoPostBack="true"
+                                                            RepeatDirection="Horizontal" runat="server">
+                                                            <asp:ListItem Text="SP" Value="sp"> </asp:ListItem>
+                                                            <asp:ListItem Text="HW" Value="hw"> </asp:ListItem>
+                                                        </asp:RadioButtonList><asp:Label ID="lblmessage" Visible="false" ForeColor="red" Text="Click here for adding vendor" runat="server"></asp:Label>)</h1>
+     
+                                                    <asp:CheckBox ID="check" AutoPostBack="true" Visible="false" runat="server" />
+                                         
+         </div>
+
+    <asp:HiddenField ID="Hid_Rec" runat="server" />
     <div align="center">
         
         <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
@@ -978,12 +1005,7 @@
                                 <td>
                                     <div style="text-align: center">
                                         <table>
-                                            <tr align="left">
-                                            
-                                                <td align="left">
-                                                    <asp:CheckBox ID="check" AutoPostBack="true" Visible="false" runat="server" />
-                                                </td>
-                                            </tr>
+                                          
                                         </table>
                                         <table id="trvendor" runat="server" visible="false">
                                             <tr>
@@ -1026,12 +1048,7 @@
                                                 <tr>
                                                     <td></td>
                                                     <td>
-                                                        <asp:Label ID="lblType" runat="server" Text="" ForeColor="REd"></asp:Label>
-                                                        <asp:RadioButtonList ID="radparttype" Visible="false" Enabled="false" AutoPostBack="true"
-                                                            RepeatDirection="Horizontal" runat="server">
-                                                            <asp:ListItem Text="SP" Value="sp"> </asp:ListItem>
-                                                            <asp:ListItem Text="HW" Value="hw"> </asp:ListItem>
-                                                        </asp:RadioButtonList>
+                                                     
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1062,7 +1079,7 @@
                                                     <td align="right">PO. Date
                                                     </td>
                                                     <td align="left">
-                                                        <asp:TextBox ID="bdpPoDate" ReadOnly="true" runat="server" Size="10" Width="80"></asp:TextBox>
+                                                        <asp:TextBox ID="bdpPoDate" ReadOnly="true" runat="server" Size="10" Width="120"></asp:TextBox>
                                                         <%--  <img id="Cal_Start" visible ="false" onclick="return popUpCalendar(this, bdpPoDate)" src="../images/cal.gif"
                                                             valign="Middle" />--%>
                                                         <%--<BDP:BDPLite ID="bdpPoDate" runat="server" TextBoxStyle-CssClass="textfield">
@@ -1219,19 +1236,18 @@
             </div>
         </div>
     </div>
-    </form>
-
-    <script type="text/javascript">
-
-    var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
   
 
-    $("#txtvendor").autocomplete(
-          
-		{
-		   source:  [<% =strVendor  %>]
-		}
-	);
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#txtvendor").autocomplete(
+
+                {
+                    source: [<% =strVendor  %>]
+                }
+            );
+        });
 	
 /*
 

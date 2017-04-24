@@ -15,6 +15,7 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             Get_Glasspo()
+            Session("MenuId") = 10
             If Not IsPostBack Then
 
                 Dim SQL As String

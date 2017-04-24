@@ -9,6 +9,7 @@ Namespace KDMT
         Dim DA As SqlClient.SqlDataAdapter
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Not IsPostBack Then
+                Session("MenuId") = 10
                 BDPLite1.SelectedDate = Now.Date
                 Call Fill_Combo("cont_id", "cont_name", "contractor_master", ddlcont, con, "", "Select")
                 'Call Fill_Combo("item_id", "item_name", "Item_Master", ddlvendor, con, "", "select")

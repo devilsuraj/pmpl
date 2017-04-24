@@ -10,7 +10,7 @@ Namespace KDMT
 
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+            Session("MenuId") = 10
             BDPLite1.SelectedDate = Now.Date
 
             If Not IsPostBack Then

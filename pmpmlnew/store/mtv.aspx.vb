@@ -12,7 +12,7 @@ Namespace Kdmt
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Not IsPostBack Then
-
+                Session("MenuId") = 10
                 'Label1.Text = Format(Now.Date, "dd/MMM/yyyy") & "  " & Now.Hour & ":" & Now.Minute & ":" & Now.Second
                 If Page.IsPostBack = False Then
                     Try
@@ -147,7 +147,7 @@ Namespace Kdmt
         Protected Sub ddlDepot_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlDepot.SelectedIndexChanged
             Dim Con As New SqlClient.SqlConnection(System.Configuration.ConfigurationSettings.AppSettings("Con"))
             Dim dr As SqlDataReader
-            Dim sql As String = " SELECT DISTINCT (IRM.Ind_No ), IRM.Ind_No FROM Indent_Request_Master IRM INNER JOIN Indent_Request_Details IRD ON IRM.Ind_ID  = IRD.Inddet_masterid  WHERE IRM.ind_isdel  = 0 AND IRD.Inddet_penqty <> 0 AND IRM.Ind_LocId = " & ddlDepot.SelectedValue.ToString()
+            Dim sql As String = "Show_indent_no " & ddlDepot.SelectedValue & ",'indentissue'"
             cmd = New SqlCommand(sql, Con)
             Con.Open()
             dr = cmd.ExecuteReader()

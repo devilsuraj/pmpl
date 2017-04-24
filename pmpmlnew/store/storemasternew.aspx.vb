@@ -10,10 +10,10 @@ Namespace KDMT
         Public strVendor As String = ""
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-            Session("MenuId") = 10
             strVendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
             If Page.IsPostBack = False Then
                 Try
+                    Session("MenuId") = 10
                     Dim SQL As String
                     txtPOtype.Focus()
 
@@ -25,11 +25,11 @@ Namespace KDMT
                     check.Checked = False
                     If Not Session("LocID").ToString Is Nothing Then
                         ' edit_combo(ddlvendor, "Vendor_id", "Vendor_name", "stock_vendor", "loc_id = '" & Session("LocID") & "'")
-                        BDPLite1.Text = Now.Date
-                        BDPLite2.Text = Now.Date
+                        BDPLite1.Text = Now.Date.ToString("dd-MMM-yyyy")
+                        BDPLite2.Text = Now.Date.ToString("dd-MMM-yyyy")
                         'bdpPoDate.Text = Now.Date.ToString("dd-MM-yyyy")
-                        bdpbilldate.Text = Now.Date
-                        bdpRecDate.Text = Now.Date
+                        bdpbilldate.Text = Now.Date.ToString("dd-MMM-yyyy")
+                        bdpRecDate.Text = Now.Date.ToString("dd-MMM-yyyy")
                         'txtvendor.Focus()
                         SQL = "select item_name,item_name from item_master where loc_id = '" & Session("LocID") & "' "
                         strSubRackNo = getAutoCompleteList(SQL, "item_name")

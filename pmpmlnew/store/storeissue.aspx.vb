@@ -8,8 +8,8 @@ Namespace KDMT
         Dim DA As SqlClient.SqlDataAdapter
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Page.IsPostBack = False Then
+                Session("MenuId") = 10
                 Try
-                    Session("MenuId") = 10
                     lbldepttype.Text = (Session("Dept_type").ToString)
                     btnSubmit.Attributes.Add("onclick", "return validate();")
                     If Session("LocID").ToString <> "" Then

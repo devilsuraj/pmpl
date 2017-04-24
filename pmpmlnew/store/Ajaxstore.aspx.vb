@@ -20,7 +20,7 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             Response.CacheControl = "no-cache"
-
+            Session("MenuId") = 10
             'If Not IsPostBack Then
             If Request("action") = "glassbalandLandB" Then
                 Dim type As String = Request.QueryString("type")
@@ -122,10 +122,10 @@ Namespace KDMT
 
                 If itemid = "1" Then
                     sql1 = "select  item_detail.item_name,rack_no,subrack_no from item_detail inner join item_master on item_master.item_id=item_detail.item_id  " &
-                                "where item_detail.item_name  like '%" & Trim(item) & "%' and is_delete <> 1 and item_detail.loc_id = '" & locid & "' and item_master.item_id = '1'" & lfno '& strbinno
+                                "where item_detail.item_name  like '%" & Trim(item) & "%' and is_delete <> 1 and item_master.item_id = '1'" & lfno '& strbinno
                 Else
                     sql1 = "select  item_detail.item_name,rack_no,subrack_no from item_detail inner join item_master on item_master.item_id=item_detail.item_id  " &
-                               "where item_detail.item_name  like '%" & Trim(item) & "%' and is_delete <> 1 and item_detail.loc_id = '" & locid & "' and item_master.item_id in(2,3,4)" & lfno '& strbinno
+                               "where item_detail.item_name  like '%" & Trim(item) & "%' and is_delete <> 1 and item_master.item_id in(2,3,4)" & lfno '& strbinno
                 End If
                 Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
                 con.Open()
@@ -261,7 +261,7 @@ Namespace KDMT
             If Request("action") = "itemname" Then
                 Dim itemid As String = Request.QueryString("itemid")
                 Dim locid As String = Session("locid")
-                sql1 = "select  item_detail.item_name from item_detail inner join item_master on item_master.item_id=item_detail.item_id  where item_master.item_name = '" & itemid & "' and loc_id = '" & locid & "'"
+                sql1 = "select  item_detail.item_name from item_detail inner join item_master on item_master.item_id=item_detail.item_id  where item_master.item_name = '" & itemid & "' "
                 Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
                 con.Open()
 
@@ -288,7 +288,7 @@ Namespace KDMT
 
 
                 sql1 = "select  item_detail.item_name,rack_no,part_no from item_detail inner join item_master on item_master.item_id=item_detail.item_id  " &
-                            "where item_detail.item_name  like '%" & Trim(item) & "%' and item_detail.loc_id = '" & locid & "'" & lfno & strPartNo
+                            "where item_detail.item_name  like '%" & Trim(item) & "%' " & lfno & strPartNo
 
                 Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
                 con.Open()
@@ -310,7 +310,7 @@ Namespace KDMT
                 Dim locid As String = Session("locid")
 
                 Dim drnew As SqlDataReader
-                Dim sql As String = "select * from item_detail where item_name= '" & itemid & "' and loc_id = '" & locid & "'"
+                Dim sql As String = "select * from item_detail where item_name= '" & itemid & "' "
                 Dim cmd As New SqlClient.SqlCommand(sql, con)
                 con.Open()
                 drnew = cmd.ExecuteReader
@@ -343,10 +343,10 @@ Namespace KDMT
 
                 If itemid = "1" Then
                     sql1 = "select  item_detail.item_name,rack_no,part_no,item_detail.subrack_no from item_detail inner join item_master on item_master.item_id=item_detail.item_id  " &
-                                "where item_detail.item_name  like '%" & Trim(item) & "%' and is_delete <> 1 and item_detail.loc_id = '" & locid & "' and item_master.item_id = '1'" & lfno & strPartNo
+                                "where item_detail.item_name  like '%" & Trim(item) & "%' and is_delete <> 1  and item_master.item_id = '1'" & lfno & strPartNo
                 Else
                     sql1 = "select  item_detail.item_name,rack_no,part_no,item_detail.subrack_no from item_detail inner join item_master on item_master.item_id=item_detail.item_id  " &
-                               "where item_detail.item_name  like '%" & Trim(item) & "%' and is_delete <> 1 and item_detail.loc_id = '" & locid & "' and item_master.item_id in(2,3,4)" & lfno & strPartNo
+                               "where item_detail.item_name  like '%" & Trim(item) & "%' and is_delete <> 1  and item_master.item_id in(2,3,4)" & lfno & strPartNo
                 End If
                 Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
                 con.Open()

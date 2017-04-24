@@ -9,9 +9,10 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Page.IsPostBack = False Then
+                Session("MenuId") = 10
                 btnSubmit.Attributes.Add("onclick", "return validate ()")
                 BDPLite1.SelectedDate = "04/01/2012"
-                txtlfno.focus()
+                txtlfno.Focus()
 
             End If
         End Sub

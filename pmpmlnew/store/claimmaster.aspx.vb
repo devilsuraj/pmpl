@@ -10,8 +10,8 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             txt_ClimNo.Text = ExecuteQuery("max_Claimno")
-            Session("MenuId") = 10
             btnsubmit.Attributes.Add("Onclick", "return validate()")
+            Session("MenuId") = 10
             If Not IsPostBack Then
                 strVendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
                 bdpclaimdate.Text = Now.Date()

@@ -1,13 +1,14 @@
 <%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="sub_store_rec_new.aspx.vb"
-     Inherits="kdmt.sub_store_rec_new" %>
+    Inherits="kdmt.sub_store_rec_new" %>
+
 <%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
     TagPrefix="BDP" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script language="javascript" src="../Scripts/LogSheetReceipt.js">
     </script>
-    <%--<link href="../styles/KDMT.css" type="text/css" rel="stylesheet" />--%>
+
     <script language="javascript">
 
 
@@ -436,53 +437,60 @@
             xmlHttp.send(null);
         }
 
-    
+
     </script>
     <style type="text/css">
-        .style1
-        {
+        .style1 {
             width: 64px;
         }
-        .style2
-        {
+
+        .style2 {
             height: 70px;
             width: 64px;
         }
     </style>
-    <style> 
-   
-        table{border-collapse:collapse!important; }
+    <style>
+        table {
+            border-collapse: collapse !important;
+        }
+
             table td, table th {
                 background-color: #fff !important;
                 text-align: left;
                 padding: 10px;
                 margin-top: 3px;
-             font-family: "Open Sans",sans-serif;
-             font-weight:400;
-             font-size:14px;
+                font-family: "Open Sans",sans-serif;
+                font-weight: 400;
+                font-size: 14px;
             }
-               
 
-    table td input[type=number], input[type=text],input[type=date],input[type=time], input[type=password],input[type=email], select, textarea {
-                width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    background-color: #fff;
-    border: 1px solid #c2cad8;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            } 
 
-    table td textarea{margin:0;font:inherit;color:inherit;overflow:auto;height:auto;}
+                table td input[type=number], input[type=text], input[type=date], input[type=time], input[type=password], input[type=email], select, textarea {
+                    width: 100%;
+                    height: 34px;
+                    padding: 6px 12px;
+                    background-color: #fff;
+                    border: 1px solid #c2cad8;
+                    border-radius: 4px;
+                    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                }
 
-     table td input[type=submit] {
+                table td textarea {
+                    margin: 0;
+                    font: inherit;
+                    color: inherit;
+                    overflow: auto;
+                    height: auto;
+                }
+
+                table td input[type=submit] {
                     color: #FFF;
-    background-color: #3598dc;
-    border-color: #3598dc;
+                    background-color: #3598dc;
+                    border-color: #3598dc;
                 }
 
                 table td input[type=submit] {
@@ -490,38 +498,34 @@
                     background-color: #c2cad8;
                     border-color: #bcc5d4;
                 }
-     
 
-            table td lable{
+
+                table td lable {
                     font-weight: 400;
-                        display: inline-block;
-                        max-width:100%;
-            }
-
- 
-
-</style>
+                    display: inline-block;
+                    max-width: 100%;
+                }
+    </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" Runat="Server">
-     <div class="breadcrumbs">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" runat="Server">
+    <div class="breadcrumbs">
         <h1>Sub Depot Receive</h1>
     </div>
     <input id="hdnID" runat="server" type="hidden" name="hdnID" />
     <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
     <input id="hdnsrno" runat="server" type="hidden" name="hdnsrno" />
-   
+
     <div id="middal">
         <div class="contantbox">
             <div class="orgmiddal">
                 <table width="80%">
                     <%--            <usercontrol:Store ID="ucStore" runat="server" />--%>
-                  
+
                     <tr>
                         <td>
                             <table>
                                 <tr>
-                                    <td align="right">
-                                        Indent No :
+                                    <td align="right">Indent No :
                                     </td>
                                     <td align="left">
                                         <asp:DropDownList ID="ddlRef" runat="server" Width="216px">
@@ -534,17 +538,15 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right">
-                                        Receive No
+                                    <td align="right">Receive No
                                     </td>
                                     <td align="left">
                                         <asp:TextBox ID="txtrecno" runat="server"></asp:TextBox>
                                     </td>
-                                    <td align="right">
-                                        &nbsp;Receive Date
+                                    <td align="right">&nbsp;Receive Date
                                     </td>
                                     <td align="left" style="width: 200px">
-                                        <asp:TextBox ID="txtrecdate" Width="80px" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtrecdate" Width="120px" runat="server"></asp:TextBox>
                                         <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtrecdate"
                                             PopupButtonID="imgPopBtnrec" Format="dd-MMM-yyyy">
                                         </asp:CalendarExtender>
@@ -555,33 +557,29 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right" style="height: 25px">
-                                        Security Date
+                                    <td align="right" style="height: 25px">Security Date
                                     </td>
                                     <td align="left" style="height: 25px">
-                                        <asp:TextBox ID="txtsecuritydate" Width="80px" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtsecuritydate" Width="120px" runat="server"></asp:TextBox>
                                         <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtsecuritydate"
                                             PopupButtonID="imgPopBtnsec" Format="dd-MMM-yyyy">
                                         </asp:CalendarExtender>
                                         <asp:ImageButton ID="imgPopBtnsec" ImageAlign="AbsBottom" ImageUrl="~/images/imgCalendar.png"
                                             runat="server" />
                                     </td>
-                                    <td align="right">
-                                        Worker Name
+                                    <td align="right">Worker Name
                                     </td>
                                     <td align="left">
                                         <asp:TextBox ID="txtWrkName" runat="server"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right">
-                                        Gate Pass No :
+                                    <td align="right">Gate Pass No :
                                     </td>
                                     <td align="left">
                                         <asp:TextBox ID="txtgate" runat="server" class="textfield"></asp:TextBox>
                                     </td>
-                                    <td align="right">
-                                        Inward No
+                                    <td align="right">Inward No
                                     </td>
                                     <td align="left">
                                         <asp:TextBox ID="txtinwardno" runat="server"></asp:TextBox>
@@ -608,17 +606,15 @@
                                     <Columns>
                                         <asp:BoundColumn DataField="sr" HeaderText="Sr No"></asp:BoundColumn>
                                         <%--   <asp:BoundColumn DataField="Indent_Bus_No" HeaderText="Bus No"></asp:BoundColumn>--%>
-                                        <asp:BoundColumn DataField="Subrack_no" ItemStyle-HorizontalAlign="Left" HeaderText="Bin No">
-                                        </asp:BoundColumn>
+                                        <asp:BoundColumn DataField="Subrack_no" ItemStyle-HorizontalAlign="Left" HeaderText="Bin No"></asp:BoundColumn>
                                         <asp:BoundColumn DataField="part_no" ItemStyle-HorizontalAlign="Left" ItemStyle-Wrap="false"
                                             HeaderText="Part No"></asp:BoundColumn>
-                                        <asp:BoundColumn DataField="item_name" ItemStyle-HorizontalAlign="Left" HeaderText="Item Name">
-                                        </asp:BoundColumn>
+                                        <asp:BoundColumn DataField="item_name" ItemStyle-HorizontalAlign="Left" HeaderText="Item Name"></asp:BoundColumn>
                                         <asp:BoundColumn DataField="avbqty" HeaderText="Avb Qty"></asp:BoundColumn>
                                         <asp:BoundColumn DataField="Inddet_reqqty" HeaderText="Req Qty"></asp:BoundColumn>
                                         <asp:TemplateColumn HeaderText="Rec Qty">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtissueqty" Width="40px" Text="0" MaxLength="6" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtissueqty" Width="50px" Text="0" MaxLength="6" runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateColumn>
                                         <asp:BoundColumn DataField="Inddet_itemcode" Visible="false"></asp:BoundColumn>
@@ -683,8 +679,8 @@
            });
 
         }
-       
-       
-        
+
+
+
     </script>
 </asp:Content>

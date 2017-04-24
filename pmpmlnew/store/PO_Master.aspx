@@ -2,7 +2,7 @@
     CodeFile="PO_Master.aspx.vb" Inherits="KDMT.PO_Master" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-      <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+
    <script src="../scripts/jquery-1.11.0.min.js"></script>
             <script src="../scripts/jquery-ui.js"></script>
 </asp:Content>

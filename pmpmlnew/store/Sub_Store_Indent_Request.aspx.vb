@@ -4,7 +4,7 @@ Imports System.Globalization
 Imports System.Threading
 Imports System.Web.Services
 Imports System.Collections.Generic
-Namespace kdmt
+Namespace KDMT
     Partial Class Sub_Store_Indent_Request
         Inherits System.Web.UI.Page
         Shared Con As New SqlClient.SqlConnection(System.Configuration.ConfigurationSettings.AppSettings("Con"))
@@ -17,7 +17,7 @@ Namespace kdmt
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
-
+                Session("MenuId") = 10
                 Dim intType As Integer = Request.QueryString("Type")
                 Dim strPartItem As String = Request.QueryString("PartItem")
                 Dim mrvdate As String = Request.QueryString("indentdate")
@@ -55,14 +55,14 @@ Namespace kdmt
         End Sub
 
         Protected Sub grddetails_ItemDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.DataGridItemEventArgs) Handles grddetails.ItemDataBound
-            If e.Item.Cells(3).Text = jobno.ToString Then
-                e.Item.Cells(3).Text = ""
-                e.Item.Cells(4).Text = ""
+            'If e.Item.Cells(3).Text = jobno.ToString Then
+            '    e.Item.Cells(3).Text = ""
+            '    e.Item.Cells(4).Text = ""
 
-            Else
-                jobno = e.Item.Cells(3).Text
+            'Else
+            '    jobno = e.Item.Cells(3).Text
 
-            End If
+            'End If
         End Sub
         Protected Sub btnsubmit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnsubmit.Click
             save()
@@ -75,83 +75,83 @@ Namespace kdmt
 
         Private Sub addrecords()
             Try
-                If txtBusNo.Text = "" Then
-                    lblerror.Text = "Please Enter Bus No"
+                'If txtBusNo.Text = "" Then
+                '    lblerror.Text = "Please Enter Bus No"
+                'Else
+                lblerror.Text = ""
+
+                dt.Columns.Add("sr")
+
+                dt.Columns.Add("jobno")
+                dt.Columns.Add("busno")
+                dt.Columns.Add("binno")
+                dt.Columns.Add("partno")
+                dt.Columns.Add("itemname")
+                dt.Columns.Add("avbqty")
+                dt.Columns.Add("reqqty")
+                dt1.Columns.Add("sr")
+
+                dt1.Columns.Add("jobno")
+                dt1.Columns.Add("busno")
+                dt1.Columns.Add("binno")
+                dt1.Columns.Add("partno")
+                dt1.Columns.Add("itemname")
+                dt1.Columns.Add("avbqty")
+                dt1.Columns.Add("reqqty")
+                Dim dr As DataRow
+                dr = dt.NewRow
+                Dim dr1 As DataRow
+                dr1 = dt1.NewRow
+                Dim i As Integer = 0
+                Dim b As Integer = 1
+                Dim str As String = String.Empty
+                Dim j As Integer = 0
+                Dim b1 As Integer = 1
+                Dim presenent As String = ""
+
+
+                If grddetails.Items.Count > 0 Then
+                    dt1.Rows.Clear()
+                    b1 = 1
+
+                    For j = 0 To grddetails.Items.Count - 1
+                        dt1.Rows.Add(b1, grddetails.Items(j).Cells(1).Text, grddetails.Items(j).Cells(2).Text, grddetails.Items(j).Cells(3).Text, grddetails.Items(j).Cells(4).Text, grddetails.Items(j).Cells(5).Text, grddetails.Items(j).Cells(6).Text, grddetails.Items(j).Cells(7).Text)
+                        b1 = b1 + 1
+                    Next
+
+                    Dim myarray As Array = Split(Hid_Rec.Value, "|")
+                    Dim k As Integer
+
+                    b = b1
+                    For i = 0 To myarray.Length - 2
+                        Dim mainarray As Array = Split(myarray(i), "^")
+                        dt1.Rows.Add(b, (txtBusNo.Text), txtBusNo.Text, mainarray(0), mainarray(1), mainarray(2), mainarray(3), mainarray(4))
+                        b = b + 1
+                    Next
                 Else
-                    lblerror.Text = ""
+                    Dim myarray As Array = Split(Hid_Rec.Value, "|")
+                    Dim k As Integer
 
-                    dt.Columns.Add("sr")
-
-                    dt.Columns.Add("jobno")
-                    dt.Columns.Add("busno")
-                    dt.Columns.Add("binno")
-                    dt.Columns.Add("partno")
-                    dt.Columns.Add("itemname")
-                    dt.Columns.Add("avbqty")
-                    dt.Columns.Add("reqqty")
-                    dt1.Columns.Add("sr")
-
-                    dt1.Columns.Add("jobno")
-                    dt1.Columns.Add("busno")
-                    dt1.Columns.Add("binno")
-                    dt1.Columns.Add("partno")
-                    dt1.Columns.Add("itemname")
-                    dt1.Columns.Add("avbqty")
-                    dt1.Columns.Add("reqqty")
-                    Dim dr As DataRow
-                    dr = dt.NewRow
-                    Dim dr1 As DataRow
-                    dr1 = dt1.NewRow
-                    Dim i As Integer = 0
-                    Dim b As Integer = 1
-                    Dim str As String = String.Empty
-                    Dim j As Integer = 0
-                    Dim b1 As Integer = 1
-                    Dim presenent As String = ""
-
-
-                    If grddetails.Items.Count > 0 Then
-                        dt1.Rows.Clear()
-                        b1 = 1
-
-                        For j = 0 To grddetails.Items.Count - 1
-                            dt1.Rows.Add(b1, grddetails.Items(j).Cells(1).Text, grddetails.Items(j).Cells(2).Text, grddetails.Items(j).Cells(3).Text, grddetails.Items(j).Cells(4).Text, grddetails.Items(j).Cells(5).Text, grddetails.Items(j).Cells(6).Text, grddetails.Items(j).Cells(7).Text)
-                            b1 = b1 + 1
-                        Next
-
-                        Dim myarray As Array = Split(Hid_Rec.Value, "|")
-                        Dim k As Integer
-
-                        b = b1
-                        For i = 0 To myarray.Length - 2
-                            Dim mainarray As Array = Split(myarray(i), "^")
-                            dt1.Rows.Add(b, (txtBusNo.Text), txtBusNo.Text, mainarray(0), mainarray(1), mainarray(2), mainarray(3), mainarray(4))
-                            b = b + 1
-                        Next
-                    Else
-                        Dim myarray As Array = Split(Hid_Rec.Value, "|")
-                        Dim k As Integer
-
-                        b = b1
-                        For i = 0 To myarray.Length - 2
-                            Dim mainarray As Array = Split(myarray(i), "^")
-                            dt1.Rows.Add(b, (txtBusNo.Text), txtBusNo.Text, mainarray(0), mainarray(1), mainarray(2), mainarray(3), mainarray(4))
-                            b = b + 1
-                        Next
-
-                    End If
-
-                    grddetails.DataSource = dt1
-                    grddetails.DataBind()
-                    If dt1.Rows.Count > 0 Then
-                        trsave.Visible = True
-
-                    Else
-                        trsave.Visible = False
-                    End If
-                    Hid_Rec.Value = ""
+                    b = b1
+                    For i = 0 To myarray.Length - 2
+                        Dim mainarray As Array = Split(myarray(i), "^")
+                        dt1.Rows.Add(b, (txtBusNo.Text), txtBusNo.Text, mainarray(0), mainarray(1), mainarray(2), mainarray(3), mainarray(4))
+                        b = b + 1
+                    Next
 
                 End If
+
+                grddetails.DataSource = dt1
+                grddetails.DataBind()
+                If dt1.Rows.Count > 0 Then
+                    trsave.Visible = True
+
+                Else
+                    trsave.Visible = False
+                End If
+                Hid_Rec.Value = ""
+
+                ' End If
 
             Catch ex As Exception
 
@@ -224,7 +224,7 @@ Namespace kdmt
                 For j = 0 To grddetails.Items.Count - 1
 
                     Dim jobno As Array = Split(grddetails.Items(j).Cells(1).Text, "/")
-                    Dim code As String = ExecuteQuery("select item_code from item_detail where Rack_No = '" & grddetails.Items(j).Cells(3).Text.Replace("&nbsp;", "") & "' AND Part_No = '" & grddetails.Items(j).Cells(4).Text.Replace("&nbsp;", "") & "' AND item_name  = '" & grddetails.Items(j).Cells(5).Text & "'")
+                    Dim code As String = ExecuteQuery("select item_code from item_detail where Rack_No = '" & grddetails.Items(j).Cells(3).Text.Replace("&nbsp;", "") & "' AND Part_No = '" & grddetails.Items(j).Cells(4).Text.Replace("&nbsp;", "") & "' AND item_name  = '" & grddetails.Items(j).Cells(5).Text.Replace("&nbsp;", "") & "'")
                     'Dim code As String = ExecuteQuery("select item_code from item_detail where is_delete  <> 1 and rack_no = '" & grddetails.Items(j).Cells(3).Text.Replace("&nbsp;", "") & "' ")
 
                     cmd = New SqlCommand("ins_Indent_Request_Details", Con)
@@ -371,6 +371,27 @@ Namespace kdmt
             Return result
         End Function
 
+        <System.Web.Script.Services.ScriptMethod(),
+      System.Web.Services.WebMethod()>
+        Public Shared Function GetAutoCompleteLfNumber(ByVal BinNo As String) As List(Of String)
+
+            Dim cmd As SqlCommand = New SqlCommand
+            cmd.CommandText = "select rack_no from item_detail where  is_delete <> '1' AND rack_no  like @SearchText + '%'"
+            cmd.Parameters.AddWithValue("@SearchText", BinNo)
+            cmd.Connection = Con
+            If Con.State = ConnectionState.Closed Then
+                Con.Open()
+            End If
+            Dim customers As List(Of String) = New List(Of String)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader
+            While sdr.Read
+                customers.Add(sdr("rack_no").ToString)
+            End While
+            Con.Close()
+            Return customers
+        End Function
+
 
     End Class
+
 End Namespace

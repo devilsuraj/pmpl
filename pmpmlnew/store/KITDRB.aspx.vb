@@ -15,6 +15,7 @@ Namespace KDMT
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
                 btnSubmit.Attributes.Add("Onclick", "return validate ()")
+                Session("MenuId") = 10
                 If Not IsPostBack Then
                     fillgrid()
                     bdpdrbdate.SelectedDate = Now.Date()

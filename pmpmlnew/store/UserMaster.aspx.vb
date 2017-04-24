@@ -27,6 +27,7 @@ Namespace KDMT
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
             Try
+                Session("MenuId") = 10
                 If Session("UserName").ToString = "aeon" Then
                     'ExecuteQuery("sleect *  from user_master  where userid ")
                     ImageButton3.Attributes.Add("Onclick", "return validate()")

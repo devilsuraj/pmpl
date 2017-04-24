@@ -9,6 +9,7 @@ Namespace KDMT
         Dim ds As DataSet
         Dim DA As SqlClient.SqlDataAdapter
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 10
             If Page.IsPostBack = False Then
 
                 btnSubmit.Attributes.Add("onclick", "return validate();")

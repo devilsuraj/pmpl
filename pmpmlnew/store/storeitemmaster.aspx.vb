@@ -2,7 +2,7 @@ Imports System.Data.SqlClient
 Namespace KDMT
     Partial Class storeitemmaster
         Inherits System.Web.UI.Page
-        Dim con As New SqlClient.SqlConnection(ConfigurationSettings.AppSettings("con"))
+        Dim con As New SqlClient.SqlConnection(System.Configuration.ConfigurationSettings.AppSettings("con"))
         Dim cmd As SqlClient.SqlCommand
         Dim ds As DataSet
         Dim DA As SqlClient.SqlDataAdapter
@@ -11,18 +11,18 @@ Namespace KDMT
                 Session("MenuId") = 10
                 btnSubmit.Attributes.Add("Onclick", "return validate ()")
                 txtPartNo.Focus()
-                BDPLite1.Text = Now.Date().ToString("dd-MMM-yyyy")
+                BDPLite1.Text = Now.Date
 
                 Call edit_combo(ddlvendor, "item_id", "item_name", "Item_Master", "loc_id = '" & Session("LocID") & "'")
                 Call edit_combo(ddlItemType, "item_type_id", "item_type_Name", "item_type_master", "1=1")
                 ddlItemType.SelectedValue = 1
                 ddlvendor.SelectedValue = 1
+
             End If
 
         End Sub
 
         Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles btnSubmit.Click
-
             cmd = New SqlCommand
             ds = New DataSet
             DA = New SqlDataAdapter

@@ -10,8 +10,8 @@ Namespace KDMT
         Public strVendor As String = ""
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-            Session("MenuId") = 10
             Button1.Attributes.Add("onclick", "return validatedata();")
+            Session("MenuId") = 10
             If Not IsPostBack Then
                 Dim SQL As String
                 Dim SQL1 As String

@@ -174,7 +174,7 @@ Namespace kdmt
         End Sub
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+            Session("MenuId") = 10
             If Not IsPostBack Then
                 edit_combo(ddlindent, "IndentNo", "depoindent", "Indent_Request_Master", "is_issued<>1")
                 btnSubmit.Attributes.Add("Onclick", "return validate()")

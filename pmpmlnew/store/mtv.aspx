@@ -245,7 +245,7 @@
                                         <td align="left">
                                             <%-- <BDP:BDPLite ID="BDPLite1" runat="server">
                                             </BDP:BDPLite>--%>
-                                            <asp:TextBox ID="txtissuedate" Width="80px" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtissuedate" Width="120px" runat="server"></asp:TextBox>
                                             <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtissuedate"
                                                 PopupButtonID="imgPopBtnissue" Format="dd-MMM-yyyy">
                                             </asp:CalendarExtender>

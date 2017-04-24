@@ -11,6 +11,7 @@ Namespace KDMT
         Dim total As Double
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 10S
             If Page.IsPostBack = False Then
                 btnSubmit.Attributes.Add("Onclick", "return validate ()")
                 trgrid.Visible = False

@@ -12,7 +12,7 @@ Namespace KDMT
             strVendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
             If Page.IsPostBack = False Then
                 Try
-
+                    Session("MenuId") = 10
                     btnSubmit.Attributes.Add("onclick", "return validate();")
                     If Session("LocID").ToString <> "" Then
                         ddlrefno.Focus()

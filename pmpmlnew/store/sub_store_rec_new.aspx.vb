@@ -14,12 +14,12 @@ Namespace kdmt
             Try
 
                 If Page.IsPostBack = False Then
-
+                    Session("MenuId") = 10
 
                     btnSubmit.Attributes.Add("onclick", "return validate();")
                     Dim dr1 As SqlDataReader
                     'Dim sql1 As String = " SELECT DISTINCT (IRM.Indent_No), IRM.Indent_No FROM Indent_Request_Master IRM INNER JOIN Indent_Request_Details IRD ON IRM.Indent_ID = IRD.Indent_Master_ID WHERE IRM.Is_Delete = 0 AND IRD.Indent_Flag = 0 AND IRM.Ind_LocId = " & Session("LocID").ToString() & ""
-                    Dim sql1 As String = " SELECT DISTINCT (IRM.Ind_No ), IRM.Ind_No FROM Indent_Request_Master IRM INNER JOIN Indent_Request_Details IRD ON IRM.Ind_ID  = IRD.Inddet_masterid  WHERE IRM.ind_isdel  = 0 AND IRD.Inddet_penqty <> 0 and ind_isrec = '0' AND IRM.Ind_LocId = " & Session("LocID").ToString()
+                    Dim sql1 As String = "Show_indent_no " & Session("LocID").ToString() & ",'indentreceive'"
                     cmd = New SqlCommand(sql1, con)
                     con.Open()
                     dr1 = cmd.ExecuteReader()

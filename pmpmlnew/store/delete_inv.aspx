@@ -193,7 +193,7 @@ function chkall ()
                             </td>
                             <td align="left">
                            
-                                                                        <asp:TextBox ID="bdpfromdate" Width="100px" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="bdpfromdate" Width="100px" runat="server"></asp:TextBox>
                                             <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="bdpfromdate"
                                                 PopupButtonID="bdpfromdate" Format="dd-MMM-yyyy">
                                             </asp:CalendarExtender>
@@ -204,7 +204,7 @@ function chkall ()
                             </td>
                             <td align="left">
                             
-                                                                        <asp:TextBox ID="bdptodate" Width="100px" runat="server"></asp:TextBox>
+                                             <asp:TextBox ID="bdptodate" Width="100px" runat="server"></asp:TextBox>
                                             <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="bdptodate"
                                                 PopupButtonID="bdptodate" Format="dd-MMM-yyyy">
                                             </asp:CalendarExtender>
