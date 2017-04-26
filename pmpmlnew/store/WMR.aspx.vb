@@ -15,7 +15,7 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
-                Session("MenuId") = 2
+                Session("MenuId") = 10
                 If Request.QueryString("Opt") = "GetFill" Then
                     Dim intType As Integer = Request.QueryString("Type")
                     Dim strbinno As String = Request.QueryString("binno")

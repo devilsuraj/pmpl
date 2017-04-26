@@ -1,19 +1,15 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="sickBus.aspx.vb" Inherits="KDMT.sickBus" %>
 
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title>Closing Job Card</title>
+<%@ Page Title="" Language="VB" enableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" 
+    CodeFile="sickBus.aspx.vb"
+    Inherits="kdmt.sickBus" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <title>Sick Reason Update</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
     <script language="javascript" src="../Scripts/LogSheetReceipt.js"></script>
 
-    <script language="javascript" type="text/javascript">
+     <script language="javascript" type="text/javascript">
         function validate() {
             var ab;
             ab = document.getElementById("ddldeffect").value;
@@ -195,13 +191,16 @@
             width: 155px;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-         <uc:header ID="Header1" runat="server" />
+   <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Declare Sick</h1>
+    </div>
+  <div class="form-horizontal" style="overflow:auto">        
+     
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+         
             <div class="contantbox">
                 <div class="orgtop">
                 </div>
@@ -210,12 +209,8 @@
                 <div class="orgmiddal">
                     <input id="hdnID" runat="server" type="hidden" name="hdnID" />
                     <div>
-                        <table width="100%" border="1" align="left" cellpadding="5" cellspacing="5">
-                            <tr>
-                                <td colspan="4" class="innerheading">
-                                    <span id="Label3">Sick Bus</span>
-                                </td>
-                            </tr>
+                        <table width="100%"  align="left" cellpadding="5" cellspacing="5">
+                            
                             <tr>
                                 <td align="right" style="width: 100px">
                                     Bus No
@@ -228,7 +223,7 @@
                                     Job No
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtjob" Width="30px" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtjob" Width="60px" runat="server"></asp:TextBox>
                                     <asp:TextBox ID="txtjobno" Width="40px" onblur="Chkbusdetails();" MaxLength="4" runat="server"></asp:TextBox>
                                     <asp:Label ID="lblmsg" runat="server" ForeColor ="Red"></asp:Label>
                                 </td>
@@ -279,8 +274,12 @@
                                                 Sick Date:
                                             </td>
                                             <td id="tdclosed" runat ="server" align="left">
-                                                 <BDP:BasicDatePicker ID="BDPLite1" runat="server" Width="160px">
-                                            </BDP:BasicDatePicker>
+                                                 
+                                                
+                                              <asp:TextBox ID="BDPLite1" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="BDPLite1"
+                                                    PopupButtonID="BDPLite1" Format="dd-MMM-yyyy">
+                                                </asp:CalendarExtender>
                                             </td>
                                             <td align="right">
                                     Sick Shift:
@@ -331,9 +330,7 @@
             </div>
         </div>
     </div>
-    </form>
-
-    <script>
+      <script>
   
 //-->
 
@@ -395,6 +392,6 @@ $(document).ready(function() {
       });
       
     </script>
+</asp:Content>
 
-</body>
-</html>
+

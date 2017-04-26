@@ -10,8 +10,9 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             btnSubmit.Attributes.Add("Onclick", "return validate()")
+            Session("MenuId") = 3
             If Not IsPostBack Then
-                BDPrecdate.SelectedDate = Now.Date()
+                BDPrecdate.Text = Now.Date()
                 trgrid.Visible = False
                 trbtn.Visible = False
             End If
@@ -45,7 +46,7 @@ Namespace KDMT
                         cmd.Parameters.AddWithValue("@gatepassdetid", dgresult.Items(i).Cells(0).Text)
                         cmd.Parameters.AddWithValue("@recqty", txtqty.Text)
                         cmd.Parameters.AddWithValue("@recremark", txtRemark.Text)
-                        cmd.Parameters.AddWithValue("@recdate", BDPrecdate.SelectedDate)
+                        cmd.Parameters.AddWithValue("@recdate", BDPrecdate.Text)
                         cmd.Parameters.AddWithValue("@result", ddlResult.SelectedValue)
                         cmd.Parameters.AddWithValue("@RepairWorkId", dgresult.Items(i).Cells(1).Text)
                         cmd.Parameters.AddWithValue("@itemid", dgresult.Items(i).Cells(2).Text)

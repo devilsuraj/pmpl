@@ -1,11 +1,13 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="Sub_Store_Indent_Request.aspx.vb" Inherits="KDMT.Sub_Store_Indent_Request"
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false"
+    CodeFile="Sub_Store_Indent_Request.aspx.vb" Inherits="KDMT.Sub_Store_Indent_Request"
     EnableEventValidation="false" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-         <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
-   <script src="../scripts/jquery-1.11.0.min.js"></script>
-            <script src="../scripts/jquery-ui.js"></script>
-       <script language="javascript" type="text/javascript">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src="../scripts/jquery-1.11.0.min.js"></script>
+    <script src="../scripts/jquery-ui.js"></script>
+    <script language="javascript" type="text/javascript">
 
         var Optype = 0
         var Fuel
@@ -575,7 +577,7 @@
             cells6.innerHTML = '<a href="javascript:void(0)" OnClick= "deleteRow(\'trissue_' + rowcnt + '\')" ><IMG Type="Button" class="Button" src="../images/icon_delete.gif" Value="Delete" ></a>'
 
 
-           
+
             rowcntSave += 1;
             rowcnt = rowcnt + 1;
             txtBinNo.value = '';
@@ -682,11 +684,11 @@
                 document.getElementById("txtItemName").focus();
                 return false;
             }
-//            if (document.getElementById("txtBinNo").value == '') {
-//                alert("Please Enter Bin No");
-//                document.getElementById("txtBinNo").focus();
-//                return false;
-//            }
+            //            if (document.getElementById("txtBinNo").value == '') {
+            //                alert("Please Enter Bin No");
+            //                document.getElementById("txtBinNo").focus();
+            //                return false;
+            //            }
             //            if (document.getElementById("lblBinExist").value == 'NotExist') {
             //                alert("Please Enter Correct Bin No");
             //                document.getElementById("txtBinNo").focus();
@@ -730,100 +732,111 @@
         {
             height: 20px;
         }
-        td,tr,table {
-        border:none;
-
+        td, tr, table
+        {
+            border: none;
         }
-        td {
-        text-align:left; 
-        padding:5px;
-        margin-left:10px;
+        td
+        {
+            text-align: left;
+            padding: 5px;
+            margin-left: 10px;
         }
     </style>
-    <style> 
-   
-        table{border-collapse:collapse!important; }
-            table td, table th {
-                background-color: #fff !important;
-                text-align: left;
-                padding: 10px;
-                margin-top: 3px;
-             font-family: "Open Sans",sans-serif;
-             font-weight:400;
-             font-size:14px;
-            }
-               
-
-    table td input[type=number], input[type=text],input[type=date],input[type=time], input[type=password],input[type=email], select, textarea {
-                width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    background-color: #fff;
-    border: 1px solid #c2cad8;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            } 
-
-    table td textarea{margin:0;font:inherit;color:inherit;overflow:auto;height:auto;}
-
-     table td input[type=submit] {
-                    color: #FFF;
-    background-color: #3598dc;
-    border-color: #3598dc;
-                }
-
-                table td input[type=submit] {
-                    color: #666;
-                    background-color: #c2cad8;
-                    border-color: #bcc5d4;
-                }
-     
-
-            table td lable{
-                    font-weight: 400;
-                        display: inline-block;
-                        max-width:100%;
-            }
-
- 
-
-</style>
+    <style>
+        table
+        {
+            border-collapse: collapse !important;
+        }
+        table td, table th
+        {
+            background-color: #fff !important;
+            text-align: left;
+            padding: 10px;
+            margin-top: 3px;
+            font-family: "Open Sans" ,sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+        }
+        
+        
+        table td input[type=number], input[type=text], input[type=date], input[type=time], input[type=password], input[type=email], select, textarea
+        {
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            background-color: #fff;
+            border: 1px solid #c2cad8;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+        
+        table td textarea
+        {
+            margin: 0;
+            font: inherit;
+            color: inherit;
+            overflow: auto;
+            height: auto;
+        }
+        
+        table td input[type=submit]
+        {
+            color: #FFF;
+            background-color: #3598dc;
+            border-color: #3598dc;
+        }
+        
+        table td input[type=submit]
+        {
+            color: #666;
+            background-color: #c2cad8;
+            border-color: #bcc5d4;
+        }
+        
+        
+        table td lable
+        {
+            font-weight: 400;
+            display: inline-block;
+            max-width: 100%;
+        }
+    </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" Runat="Server">
-      <div class="breadcrumbs">
-        <h1>    Branch Indent Request</h1>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static"
+    runat="Server">
+    <div class="breadcrumbs">
+        <h1>
+            Branch Indent Request</h1>
     </div>
-        <input id="hdnID" runat="server" type="hidden" name="hdnID" />
-        <input id="Hid_Rec" runat="server" type="hidden" name="Hid_Rec" />
-        <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
-        <input id="hdnsrno" runat="server" type="hidden" name="hdnsrno" />
-        <div class="center form-horizontal">
-
+    <input id="hdnID" runat="server" type="hidden" name="hdnID" />
+    <input id="Hid_Rec" runat="server" type="hidden" name="Hid_Rec" />
+    <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
+    <input id="hdnsrno" runat="server" type="hidden" name="hdnsrno" />
+    <div class="center form-horizontal">
         <input id="Hidden1" runat="server" type="hidden" name="hdnID" />
         <input id="Hidden2" runat="server" type="hidden" name="Hid_Rec" />
         <input id="Hidden3" runat="server" type="hidden" name="hdnrwcnt" />
         <input id="Hidden4" runat="server" type="hidden" name="hdnsrno" />
-   
         <div id="middal">
             <div class="contantbox">
                 <div class="orgmiddal">
                     <div>
                         <table width="100%" border="1" cellpadding="5" cellspacing="5">
-                            
                             <tr>
                                 <td align="right">
                                     Indent Date
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txttodate" onblur="getindent()" Width="110px" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txttodate" onblur="getindent()" ReadOnly="true" Width="110px" runat="server"></asp:TextBox>
                                     <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txttodate"
                                         PopupButtonID="imgPopBtnFrom_Edit" Format="dd-MMM-yyyy">
                                     </asp:CalendarExtender>
-                                    <asp:ImageButton ID="imgPopBtnFrom_Edit" ImageAlign="AbsBottom" ImageUrl="~/images/imgCalendar.png"
+                                    <asp:ImageButton ID="imgPopBtnFrom_Edit" ImageAlign="AbsBottom"  Enabled ="false" ImageUrl="~/images/imgCalendar.png"
                                         runat="server" />
                                     <asp:ScriptManager ID="Scriptmanager1" runat="server">
                                     </asp:ScriptManager>
@@ -907,20 +920,21 @@
                                             </tr>
                                             <tr class='gridtxt'>
                                                 <td>
-                                                    <input type="text" id="lblsrno" style="width: 20px" readonly="readonly" size="10" />
+                                                    <input type="text" id="lblsrno"  style="width: 20px;display:none;" readonly="readonly" size="10" />
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="txtBinNo"  name="txtBinNo" size="20" onblur="emptytext();ajaxFunction();" />
+                                                    <input type="text" id="txtBinNo" name="txtBinNo" size="20" onblur="emptytext();ajaxFunction();" />
                                                     <label id="lblBinExist">
                                                     </label>
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="txtPartNo" name="txtPartNo" size="20"  onblur="emptytextpart();ajaxFunction();"/>
+                                                    <input type="text" id="txtPartNo" name="txtPartNo" size="20" onblur="emptytextpart();ajaxFunction();" />
                                                     <label id="lblPrtExist">
                                                     </label>
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="txtItemName" style="width: 250px" size="100" name="txtItemName" onpropertychange="ajaxFunction();" onblur="return check1();" />
+                                                    <input type="text" id="txtItemName" style="width: 250px" size="100" name="txtItemName"
+                                                        onpropertychange="ajaxFunction();" onblur="return check1();" />
                                                     <label id="lblItmExist">
                                                     </label>
                                                     <asp:ListBox ID="Select1" Style="display: none; align: left" onclick="Select();"
@@ -989,7 +1003,7 @@
             </div>
         </div>
     </div>
-      <script type="text/javascript">
+    <script type="text/javascript">
 
 
         $(document).ready(function () {
@@ -1199,4 +1213,3 @@
 
     </script>
 </asp:Content>
-

@@ -8,9 +8,10 @@ Namespace KDMT
         Dim DA As SqlClient.SqlDataAdapter
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Page.IsPostBack = False Then
+                Session("MenuId") = 5
                 btnsubmit.Attributes.Add("onclick", "return validate();ValidateSave();")
                 edit_combo(ddldepot, "cont_id", "cont_name", "contractor_master", "loc_id = '" & Session("LocID") & "'")
-                BDPissuedate.SelectedDate = Now.Date()
+                BDPissuedate.Text = Now.Date()
             End If
         End Sub
 
@@ -28,7 +29,7 @@ Namespace KDMT
                 cmd.CommandType = CommandType.StoredProcedure
 
 
-                cmd.Parameters.AddWithValue("@oilissuedate", BDPissuedate.SelectedDate)
+                cmd.Parameters.AddWithValue("@oilissuedate", BDPissuedate.Text)
                 cmd.Parameters.AddWithValue("@oilrefno", txtref.Text)
                 cmd.Parameters.AddWithValue("@workername", txtwname.Text)
                 cmd.Parameters.AddWithValue("@oiligatepass", txtgate.Text)

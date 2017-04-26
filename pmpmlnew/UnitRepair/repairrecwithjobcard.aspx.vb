@@ -19,11 +19,12 @@ Namespace KDMT
         Public stritem As String = ""
         Public strapp As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 3
             Label1.Text = Format(Now.Date, "dd/MMM/yyyy") & "  " & Now.Hour & ":" & Now.Minute & ":" & Now.Second
             If Page.IsPostBack = False Then
                 Try
                     edit_combo(ddlvendor, "cont_id", "cont_name", "contractor_master", "loc_id = '" & Session("LocID") & "' and isRepair  = '1'")
-                    BDPLite1.SelectedDate = Format(Now.Date, "dd/MMM/yyyy")
+                    BDPLite1.Text = Format(Now.Date, "dd/MMM/yyyy")
 
                     'strdept = getAutoCompleteList("select cont_name from contractor_master where subid=1 order by cont_name", "cont_name")
                     stritem = getAutoCompleteList("select item_name from tbl_repair_item where isDelete<>'1' and ispartno = '1' order by item_name", "item_name")
@@ -31,7 +32,7 @@ Namespace KDMT
 
                     'btnSubmit.Attributes.Add("Onclick", "return ticFunction2();")
                     btnSubmit.Attributes.Add("onclick", "return ticFunction2();")
-                    BDPLite1.SelectedDate = Format(Now.Date, "dd/MMM/yyyy")
+                    BDPLite1.Text = Format(Now.Date, "dd/MMM/yyyy")
                     Dim dr As SqlClient.SqlDataReader
 
 
@@ -41,8 +42,8 @@ Namespace KDMT
                     dr = cmd.ExecuteReader
                     'dr.Read()
                     If dr.Read Then
-                        txtJobNo.text = dr.GetValue(0)
-                        txtJob.text = dr.GetValue(1)
+                        txtJobNo.Text = dr.GetValue(0)
+                        txtJob.Text = dr.GetValue(1)
 
                     End If
 
@@ -50,7 +51,7 @@ Namespace KDMT
 
                     If Session("LocID").ToString <> "" Then
 
-                      
+
 
                         Dim userid As String
                         userid = ExecuteQuery("Select UserName from User_Master where UserID=" + Session("Userid") + " and RoleID=1")
@@ -109,7 +110,7 @@ Namespace KDMT
                 cmd.Parameters.Add(New SqlParameter("@Supervisor", txtSupervisor.Text))
                 cmd.Parameters.Add(New SqlParameter("@DeliveredBy", txtDeliver.Text))
                 cmd.Parameters.Add(New SqlParameter("@ReceivedBy", txtReceive.Text))
-                cmd.Parameters.Add(New SqlParameter("@ReceiveDate", BDPLite1.SelectedDate))
+                cmd.Parameters.Add(New SqlParameter("@ReceiveDate", BDPLite1.Text))
                 cmd.Parameters.Add(New SqlParameter("@uersid", Session("Userid")))
                 cmd.Parameters.Add(New SqlParameter("@shift ", ddlshift.SelectedValue))
                 cmd.Parameters.Add(New SqlParameter("@place ", ddlplace.SelectedValue))
@@ -210,7 +211,7 @@ Public Shared Function GetAutoCompleteData(ByVal contid As String, ByVal SearchT
             'Using con As New SqlConnection("Data Source=SureshDasari;Integrated Security=true;Initial Catalog=MySampleDB")
             Try
                 ' Dim type As String = ExecuteQuery("select Part_Type_ID  from part_type_master where cont_id = " & contid & "")
-                Using cmd As New SqlCommand("select item_name from tbl_repair_item where partType in (select Part_Type_ID  from part_type_master where cont_id = " & contid & ")  and ispartno <> '0' and isDelete<>'1' and item_name like '%" & SearchText & "%' ", con)
+                Using cmd As New SqlCommand("select item_name from tbl_repair_item where partType in (select Part_Type_ID  from part_type_master where cont_id = (" & contid & "-16))  and ispartno <> '0' and isDelete<>'1' and item_name like '%" & SearchText & "%'", con)
                     'Using cmd As New SqlCommand("select deffect_decr from tbl_deffect_Master ", con)
                     con.Open()
                     'cmd.Parameters.AddWithValue("@SearchText", username)

@@ -1,5 +1,7 @@
 Imports System.Data
 Imports System.Data.SqlClient
+Imports System.Web.Script.Serialization
+
 Namespace KDMT
     Partial Class Ajaxstore
         Inherits System.Web.UI.Page
@@ -72,6 +74,82 @@ Namespace KDMT
 
             End If
 
+            If Request("action") = "chkrepaiitemsrno" Then
+                Dim itemName As String = Request.QueryString("itemName")
+
+                Dim drnew As SqlDataReader
+                'Dim sql As String = "select * from item_detail where item_name= '" & itemid & "' and loc_id = '" & locid & "'"
+                Dim sql As String = "select * from tbl_repair_item where ispartno = '1' and item_name = '" & itemName & "'"
+                Dim cmd As New SqlClient.SqlCommand(sql, con)
+                con.Open()
+                drnew = cmd.ExecuteReader
+                If drnew.Read Then
+                    drnew.Close()
+                    con.Close()
+                    Response.Flush()
+                    Response.Write("")
+                    'Response.Write(strvalue1)
+                    Response.End()
+                Else
+                    drnew.Close()
+                    con.Close()
+                    Response.Flush()
+                    Response.Write("NO-SUCH-ITEM")
+                    'Response.Write(strvalue1)
+                    Response.End()
+                End If
+            End If
+
+            If Request("action") = "ritemqty" Then
+                Dim value As String = Request.QueryString("itemid")
+                Dim itemid As Integer
+                'sql1 = "select itemid   from tbl_Repair_Item Where  item_name= '" & value & "'"
+                itemid = ExecuteQuery("select itemid   from tbl_Repair_Item Where  item_name= '" & value & "'")
+                'sql1 = "current_repair_stock'" & itemname & "'"
+                Dim sql2 = "current_repair_stock '" & itemid & "'"
+                Dim cmd2 As New SqlClient.SqlCommand(sql2, con)
+                con.Open()
+
+                dr2 = cmd2.ExecuteReader
+                If dr2.HasRows = 0 Then
+
+                Else
+                    If dr2.Read Then
+                        strvalue = Convert.ToString(dr2(0)) + "|" + Convert.ToString(dr2(1)) '+ "|" + Convert.ToString(dr2(2)) + "|" + Convert.ToString(dr2(3).ToString())
+                    End If
+                    Response.Flush()
+                    Response.Write(strvalue)
+                    'Response.Write(strvalue1)
+                    Response.End()
+                    dr2.Close()
+                    con.Close()
+                End If
+            End If
+
+            If Request("action") = "getbusno" Then
+                Dim job As String = Request.QueryString("newjob")
+                Dim jobno As String = Request.QueryString("newjobno")
+                Dim itemcode As String = Request.QueryString("itemcode")
+                'Change by Khan Faisal  21 Dec 2013 
+                'sql1 = "select  busno  from JobOrderCard_Master where locid='0' and newjob= '" & job & "'and newjobno= '" & jobno & "'"
+                sql1 = "check_jobclosedtimevalidity '" & job & "','" & jobno & "','" & itemcode.ToString() & "'"
+
+                Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
+                con.Open()
+                dr2 = cmd2.ExecuteReader
+                If (dr2.Read) Then
+                    strvalue = Convert.ToString(dr2(0)) + "|" + Convert.ToString(dr2(1)) + "|" + Convert.ToString(dr2(2)) + "|" + Convert.ToString(dr2(3).ToString()) + "|" + Convert.ToString(dr2(4).ToString())
+                Else
+                    strvalue = "empty"
+                End If
+                Response.Flush()
+                Response.Write(strvalue)
+                Response.End()
+                dr2.Close()
+                con.Close()
+            End If
+
+
             If Request("action") = "checkvechexist" Then
 
                 Dim vechno As String = Request.QueryString("vechno")
@@ -93,6 +171,215 @@ Namespace KDMT
                 con.Close()
 
             End If
+
+            If Request("action") = "chkbusdetailsjob_Docking" Then
+                Dim value As String = Request.QueryString("busno")
+                Dim locid As String = Session("locid")
+
+                'sql1 = "select JOC_id,joccode from JobOrderCard_Master where JobOrderCard_Master.busno like '%" & value & "%' and JobOrderCard_Master.locid = 0 and docking=1"
+                sql1 = "select JOC_id,joccode,newjob,newjobno from JobOrderCard_Master where JobOrderCard_Master.busno = '" & value & "' and docking=1 and locid = 0"
+                Dim str As String
+
+                Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
+                con.Open()
+                dr2 = cmd2.ExecuteReader
+                If (dr2.Read) Then
+
+                    strvalue = dr2(0) & "!" & dr2(1) & "!" & dr2(2) & "!" & dr2(3)
+                    'str = ExecuteQuery("view_inspdeffectdetails " & dr2(0) & "")
+
+                    'strvalue = dr2(0) & "!" & dr2(1) & "!" & dr2(2) & "!" & dr2(3) & "!" & dr2(4) & "!" & dr2(5) & "!" & dr2(6) & "!" & dr2(7) & "!" & str
+                End If
+                Response.Flush()
+                Response.Write(strvalue)
+                Response.End()
+                dr2.Close()
+                con.Close()
+            End If
+
+            If Request("action") = "chkjobbusdetails" Then
+                Dim value As String = Request.QueryString("busno")
+                Dim newjob As String = Request.QueryString("newjob")
+                Dim newjobno As String = Request.QueryString("newjobno")
+                Dim locid As String = Session("locid")
+                ' sql1 = "view_itemdetail '%" & value & "%' "
+                Dim jobs As String = ""
+                sql1 = "view_jobsubdetails '" & value & "','" & newjob & "','" & newjobno & "' "
+                Dim da As New SqlClient.SqlDataAdapter(sql1, con)
+                Dim ds As New DataSet
+                da.SelectCommand.CommandTimeout = 0
+                da.Fill(ds)
+
+                'Dim cmd3 As New SqlClient.SqlCommand(sql1, con)
+                'con.Open()
+                'Dim ds As New DataSet
+                Dim i As Integer = 0
+                'ds = cmd3.ExecuteScalar
+                For i = 0 To ds.Tables(0).Rows.Count - 1
+                    If jobs = "" Then
+                        jobs = ds.Tables(0).Rows(i).Item(6).ToString
+                    Else
+                        jobs = jobs + " , " + ds.Tables(0).Rows(i).Item(6).ToString
+                    End If
+                Next
+                'If (dr2.Read) Then
+                'End If
+                'dr2.Close()
+                con.Close()
+
+                sql1 = "view_jobdetails '','" & value & "','" & newjob & "','" & newjobno & "' "
+                Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
+                con.Open()
+                dr2 = cmd2.ExecuteReader
+                If (dr2.Read) Then
+
+                    strvalue = dr2(0) & "!" & dr2(1) & "!" & dr2(2) & "!" & dr2(3) & "!" & dr2(4) & "!" & dr2(5) & "!" & dr2(6) & "!" & dr2(7) & "!" & dr2(8) & "!" & dr2(9) & "!" & jobs & "!" & dr2(11) & "!" & dr2(12)
+
+                End If
+                Response.Flush()
+                Response.Write(strvalue)
+                Response.End()
+                dr2.Close()
+                con.Close()
+            End If
+
+            If Request("action") = "chkdeffectplace" Then
+                Dim busno As String = Request.QueryString("busno")
+                Dim newjob As String = Request.QueryString("newjob")
+                Dim newjobno As String = Request.QueryString("newjobno")
+
+                Dim dr2 As SqlDataReader
+                'Dim sql As String = "select * from item_detail where item_name= '" & itemid & "' and loc_id = '" & locid & "'"
+                Dim sql As String = "select deffectplace from JobOrderCard_Master where  newjob = '" & newjob & "' and newjobno='" & newjobno & "' and busno='" & busno & "'"
+                Dim cmd As New SqlClient.SqlCommand(sql, con)
+                con.Open()
+                dr2 = cmd.ExecuteReader
+                If (dr2.Read) Then
+
+                    strvalue = strvalue + dr2(0)
+
+                End If
+
+
+                Response.Flush()
+                Response.Write(strvalue)
+                dr2.Close()
+                con.Close()
+                Response.End()
+
+            End If
+
+            If Request("action") = "chkbusdetails" Then
+                Dim value As String = Request.QueryString("busno")
+                Dim locid As String = Session("locid")
+                Dim value1 As String = Request.QueryString("deffpl")
+                ' sql1 = "view_itemdetail '%" & value & "%' "
+                Dim id1, id2 As String
+                Dim jobno As String = ""
+                id1 = GetMaxId("JOC_id", con, "JobOrderCard_Master")
+                Dim ln As Integer
+                ln = id1.Length
+                Dim dt1 As String
+                dt1 = Format(Now.Date, "ddMyy")
+                dt1 = IIf(dt1.Length = 5, Format(Now.Date, "ddmMyy"), Format(Now.Date, "ddMyy"))
+                If ln = 1 Then
+                    jobno = "00000" & id1 & Session("LocID") & value & dt1
+                    '"-" & ddldeffect.SelectedValue & "-"
+                    id2 = "00000" & id1
+                ElseIf ln = 2 Then
+                    jobno = "0000" & id1 & Session("LocID") & value & dt1
+                    id2 = "0000" & id1
+                ElseIf ln = 3 Then
+                    jobno = "000" & id1 & Session("LocID") & value & dt1
+                    id2 = "000" & id1
+                ElseIf ln = 4 Then
+                    jobno = "00" & id1 & Session("LocID") & value & dt1
+                    id2 = "00" & id1
+                ElseIf ln = 5 Then
+                    jobno = "0" & id1 & Session("LocID") & value & dt1
+                    id2 = "0" & id1
+                ElseIf ln >= 6 Then
+                    jobno = id1 & Session("LocID") & value & dt1
+                    id2 = id1
+                End If
+                con.Close()
+
+                sql1 = "view_busdetails '" & value & "' "
+                Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
+                con.Open()
+                dr2 = cmd2.ExecuteReader
+                If (dr2.Read) Then
+                    Dim lock As Integer = 0
+                    Dim lock1 As String
+                    lock1 = ExecuteQuery("select locid  from dbo.JobOrderCard_Master  where busno = '" + value + "'  and locid <>  1")
+                    'lock = IIf(lock1 = "", 0, 1)
+                    If value1 = "true" Then
+                        strvalue = dr2(0) & "!" & dr2(1) & "!" & dr2(2) & "!" & dr2(3) & "!" & dr2(4) & "!" & dr2(6) & "!" & dr2(7) & "!" & jobno
+                        Session("insp") = dr2(5)
+                    Else
+                        If (lock1 <> "0" And lock1 <> "1") Then
+                            strvalue = dr2(0) & "!" & dr2(1) & "!" & dr2(2) & "!" & dr2(3) & "!" & dr2(4) & "!" & dr2(6) & "!" & dr2(7) & "!" & jobno
+                            Session("insp") = dr2(5)
+                        ElseIf lock1 = 0 Then
+                            strvalue = ""
+                        Else
+                            strvalue = dr2(0) & "!" & dr2(1) & "!" & dr2(2) & "!" & dr2(3) & "!" & dr2(4) & "!" & dr2(6) & "!" & dr2(7) & "!" & jobno
+                            Session("insp") = dr2(5)
+                            'Response.Write("<script language=javascript>alert('Job Already Opened')</script>")
+                        End If
+                    End If
+                End If
+                Response.Flush()
+                Response.Write(strvalue)
+                Response.End()
+                dr2.Close()
+                con.Close()
+            End If
+
+            If Request("action") = "chkbus" Then
+                Dim vechno As String = Request.QueryString("busno")
+
+
+                'sql1 = "select vech_no,fuel_type,fuel_comp.comp_Desc,Vech_id from vech_master inner join fuel_comp on fuel_comp.comp_id = vech_master.comp_id where is_delete='0' and vech_no= '" & vechno & "' and fuel_type='" & Fueltype & "' "
+                sql1 = "select *  from vech_master where is_delete='0' and vech_no= '" & vechno & "'"
+                Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
+                con.Open()
+                dr2 = cmd2.ExecuteReader
+                If (dr2.Read) Then
+                    strvalue = dr2(0)
+                Else
+                    strvalue = "empty"
+                End If
+                Response.Flush()
+                Response.Write(strvalue)
+                Response.End()
+                dr2.Close()
+                con.Close()
+            End If
+
+            If Request("action") = "chkbusDefect" Then
+                Dim vechno As String = Request.QueryString("busno")
+
+
+                'sql1 = "select vech_no,fuel_type,fuel_comp.comp_Desc,Vech_id from vech_master inner join fuel_comp on fuel_comp.comp_id = vech_master.comp_id where is_delete='0' and vech_no= '" & vechno & "' and fuel_type='" & Fueltype & "' "
+                sql1 = "select busno from JobOrderCard_Master where jobdate>=dateadd(dd,-8,getdate()) and  busno= '" & vechno & "'"
+                Dim cmd2 As New SqlClient.SqlCommand(sql1, con)
+                con.Open()
+                dr2 = cmd2.ExecuteReader
+                If (dr2.Read) Then
+                    strvalue = dr2(0)
+                Else
+                    strvalue = "empty"
+                End If
+                Response.Flush()
+                Response.Write(strvalue)
+                Response.End()
+                dr2.Close()
+                con.Close()
+            End If
+
+
+
             'For Ticket Denomination
             If Request("action") = "item" Then
                 Dim value As String = Request.QueryString("itemname")
@@ -566,6 +853,31 @@ Namespace KDMT
                 'Dim drnew As SqlDataReader
                 'Dim sql As String = "select * from item_detail where item_name= '" & itemid & "' and loc_id = '" & locid & "'"
 
+            End If
+
+
+            If Request("action") = "getchartvaluemwmc" Then
+                Dim row As Dictionary(Of String, Object)
+                Dim rows As New List(Of Dictionary(Of String, Object))()
+                Dim serializer As New JavaScriptSerializer()
+                Dim poyear As String = Request.QueryString("poyear")
+                Dim cmd2 As New SqlClient.SqlCommand
+                Dim dt As DataTable = GetDatatTable(
+                        "SELECT  SUM(total_qty) as distance , concat(DateName( month , DateAdd( month ,  MONTH(trans_date) , -1 ) ),' ', year(trans_date)) as date " &
+                          "FROM store_issue_detail  a inner join store_issue_master b on a.issue_id=b.issue_id " &
+                          "where year(trans_date) = " + poyear + " " &
+                         "GROUP BY MONTH(trans_date) ,year(trans_date) order by year(trans_date)")
+                For Each dr As DataRow In dt.Rows
+                    row = New Dictionary(Of String, Object)()
+                    For Each col As DataColumn In dt.Columns
+                        row.Add(col.ColumnName, dr(col))
+                    Next
+                    rows.Add(row)
+                Next
+                Response.Write(serializer.Serialize(rows))
+                Response.End()
+                dr2.Close()
+                con.Close()
             End If
 
             If Request("action") = "geomchanged" Then

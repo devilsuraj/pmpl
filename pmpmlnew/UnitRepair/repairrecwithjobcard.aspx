@@ -1,18 +1,15 @@
-<%@ Page Language="VB" AutoEventWireup="false"  Trace ="false" CodeFile="repairrecwithjobcard.aspx.vb"
-    Inherits="KDMT.repairrecwithjobcard" %>
 
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+
+<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false"
+    CodeFile="repairrecwithjobcard.aspx.vb" Inherits="KDMT.repairrecwithjobcard" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Item Rec for Repair</title>
     <link rel="stylesheet" type="text/css" href="menu/anylinkcssmenu.css" />
 
     <script type="text/javascript" src="menu/anylinkcssmenu.js"></script>
-
+      <script src="../scripts/jquery-1.11.0.min.js"></script>
+    <script src="../scripts/jquery-ui.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link href="../styles/KDMT.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="menu/anylinkcssmenu.css" />
@@ -383,16 +380,21 @@ if (document.getElementById("txtbus").value != '')
   
 
 
-    </script>
-
-</head>
-<body class="body">
-    <form id="Form1" runat="server">
+ 
+        </script>
+<link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Item Receive for repair</h1>
+    </div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+   <div class="form-horizontal">
+       
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+           
             <div class="contantbox">
                 <div class="mpagetop">
                 </div>
@@ -400,8 +402,7 @@ if (document.getElementById("txtbus").value != '')
                     <table width="100%">
                         <tr>
                             <td class="innerheading">
-                                <span id="Span1">Item Receive for repair&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                </span>&nbsp; &nbsp;
+                               
                                 <asp:Label ID="Label1" runat="server" Text="" Font-Size="Small"></asp:Label>
                             </td>
                         </tr>
@@ -426,8 +427,11 @@ if (document.getElementById("txtbus").value != '')
                                         </td>
                                         <td align="left">
                                            <%-- <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>--%>
-                                           <BDP:BasicDatePicker ID="BDPLite1" runat="server" Width="160px">
-                                            </BDP:BasicDatePicker>
+                                 
+                                              <asp:TextBox ID="BDPLite1" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="BDPLite1"
+                                        PopupButtonID="BDPLite1" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                         </td>
                                     </tr>
                                     <tr>
@@ -525,10 +529,10 @@ if (document.getElementById("txtbus").value != '')
                                                 <%--<asp:CheckBox ID="ch1" runat="server" Text="Contract Work" Visible="False" />--%>
                                             </td>
                                             <td align="left" style="height: 28px;">
-                                                <asp:TextBox ID="txtbus" runat="server" onblur="chkbus();" Width="50px"></asp:TextBox>
+                                                <asp:TextBox ID="txtbus" runat="server" onblur="chkbus();" Width="70px"></asp:TextBox>
                                             </td>
                                             <td align="left" style="height: 28px;">
-                                                <asp:TextBox ID="txtqty" runat="server" ReadOnly="true"  Text="1" Width="30px"></asp:TextBox>
+                                                <asp:TextBox ID="txtqty" runat="server" ReadOnly="true"  Text="1" Width="40px"></asp:TextBox>
                                             </td>
                                             <td align="left" style="height: 28px;">
                                                 <asp:TextBox ID="txtremark" TextMode="MultiLine" runat="server" Width="100px">
@@ -703,5 +707,4 @@ var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMen
       
     </script>
 
-</body>
-</html>
+</asp:Content>

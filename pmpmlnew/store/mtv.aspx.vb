@@ -58,7 +58,7 @@ Namespace Kdmt
                 Dim lblreqqty As Label = CType(e.Item.Cells(7).FindControl("lblreqqty"), Label)
                 Dim lblavbqty As Label = CType(e.Item.Cells(7).FindControl("lblavbqty"), Label)
 
-                '    txtissueqty.Attributes.Add("Onblur", "return checkqty('" + txtissueqty.ClientID + "','" + lblavbqty.Text + "','" + lblreqqty.Text + "')")
+                txtissueqty.Attributes.Add("Onblur", "return checkqty('" + txtissueqty.ClientID + "','" + lblavbqty.Text + "','" + lblreqqty.Text + "')")
 
             End If
         End Sub
@@ -71,6 +71,32 @@ Namespace Kdmt
             cmd.CommandType = CommandType.StoredProcedure
             Dim i As Integer
             Try
+
+
+                For i = 0 To grddetails.Items.Count - 1
+
+
+                    Dim lblavbqty As Label = CType(grddetails.Items(i).Cells(7).FindControl("lblavbqty"), Label)
+                    Dim lblreqqty As Label = CType(grddetails.Items(i).Cells(7).FindControl("lblreqqty"), Label)
+                    Dim txtissueqty As TextBox = CType(grddetails.Items(i).Cells(8).FindControl("txtissueqty"), TextBox)
+
+                    If (Convert.ToDecimal(lblavbqty.Text) < Convert.ToDecimal(txtissueqty.Text)) Then
+                        Response.Write("<script>alert('Issue Qty should be less than Available Qty')</script>")
+                        Exit Sub
+                    End If
+                    If (Convert.ToDecimal(txtissueqty.Text) > Convert.ToDecimal(lblreqqty.Text)) Then
+                        Response.Write("<script>alert('Issue Qty should be less than Require Qty')</script>")
+
+                        Exit Sub
+                    End If
+                    If (Convert.ToDecimal(txtissueqty.Text) <= 0) Then
+                        Response.Write("<script>alert('Please enter proper Qty')</script>")
+
+                        Exit Sub
+                    End If
+                Next
+
+
 
 
                 cmd = New SqlCommand("Ins_storeissuemaster", con)

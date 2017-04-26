@@ -208,7 +208,7 @@
                 <div class="orgmiddal">
                     <input id="hdnID" runat="server" type="hidden" name="hdnID" />
                     <div>
-                        <table width="100%" border="1" align="left" cellpadding="5" cellspacing="5">
+                        <table width="100%" align="left" cellpadding="5" cellspacing="5">
                          
                             <tr>
                                 <td align="right" style="width: 100px">
@@ -222,12 +222,13 @@
                                     Job No
                                 </td>
                                 <td>                         
-                                <asp:TextBox ID="txtjob" Width="30px" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtjob" Width="60px" runat="server"></asp:TextBox>
                                     <asp:TextBox ID="txtjobno" Width="40px" onblur="Chkbusdetails();" MaxLength="4" runat="server"></asp:TextBox>
                                     <asp:Label ID="lblmsg" runat="server" ForeColor ="Red"></asp:Label>
+                                       <asp:Button ID="btnshow" runat="server" Text="Show" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="tddefect">
                                 <td align="right" style="width: 100px">
                                     Reason
                                 </td>
@@ -242,17 +243,17 @@
                                <asp:TextBox ID="txtDesc" runat="server" Width="300px" TextMode="MultiLine"></asp:TextBox>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="tddefect">
                                 <td colspan="4" align="center">
-                                    <asp:Button ID="btnshow" runat="server" Text="Show" />
+                                 
                                     <asp:Button ID="btn_update" runat="server" Text="Update" style="height: 26px" />
                                     <asp:Button ID="btnreset" runat="server" Text="Reset" />
                                 </td>
                             </tr>
 
-                            <tr id="tddefect">
+                            <tr id="tddefect" >
                                             <td colspan="4" align="center">
-                                             <table id="tbldata" runat="server" visible="false" width="100%" border="1" align="left"
+                                             <table   id="tbldata" runat="server" visible="false" width="100%" align="left"
                                         cellpadding="5" cellspacing="5">
                                                                    
                                         <tr >
@@ -297,4 +298,16 @@
             </div>
         </div>
     </div>
+     <script src="../scripts/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.tddefect').hide();
+            $('#btnshow').click(function () {
+           
+                $('.tddefect').fadeIn(300);
+            });
+        });
+       
+     
+    </script>
 </asp:Content>

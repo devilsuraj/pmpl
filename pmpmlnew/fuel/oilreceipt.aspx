@@ -1,13 +1,8 @@
-<%@ Page Language="VB" AutoEventWireup="false" EnableEventValidation="false" CodeFile="oilreceipt.aspx.vb"
-    Inherits="KDMT.oilreceipt" %>
 
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="oilreceipt.aspx.vb"
+    Inherits="kdmt.oilreceipt" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Stock Receive</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
@@ -729,12 +724,17 @@
 			
     </script>
 
-</head>
-<body onload="MM_preloadImages('../images/btn_h.gif')">
-    <form id="Form1" runat="server">
-    `<asp:HiddenField ID="Hid_Rec" runat="server" />
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+    <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Job Order Card Master</h1>
+    </div>
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+ 
+    <asp:HiddenField ID="Hid_Rec" runat="server" />
+   <div class="form-horizontal">>
+       
         <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
         <input id="hdnPOtype" runat="server" type="hidden" name="hdnPOtype" />
         <input id="hdnPoNo" runat="server" type="hidden" name="hdnPoNo" />
@@ -743,7 +743,7 @@
          <input id="hdnrecqty" runat="server" type="hidden" name="hdnPoDate" />
         <asp:HiddenField ID="recfyyear" runat="server" />
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+           
             <div class="contantbox">
                 <div class="orgtop">
                 </div>
@@ -818,8 +818,11 @@
                                                         Challan Date
                                                     </td>
                                                     <td align="left">
-                                                        <BDP:BDPLite ID="bdpchallandate" runat="server" TextBoxStyle-CssClass="textfield">
-                                                        </BDP:BDPLite>
+                                                  
+                                                            <asp:TextBox ID="bdpchallandate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="bdpchallandate"
+                                        PopupButtonID="bdpchallandate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -835,8 +838,11 @@
                                                         Receive Date
                                                     </td>
                                                     <td align="left">
-                                                        <BDP:BDPLite ID="bdprecdate" runat="server" TextBoxStyle-CssClass="textfield">
-                                                        </BDP:BDPLite>
+                                                   
+                                                            <asp:TextBox ID="bdprecdate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="bdprecdate"
+                                        PopupButtonID="bdprecdate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -850,8 +856,11 @@
                                                         Cheque Date
                                                     </td>
                                                     <td align="left">
-                                                        <BDP:BDPLite ID="BDPchqdate" runat="server" TextBoxStyle-CssClass="textfield">
-                                                        </BDP:BDPLite>
+                                                    
+                                                            <asp:TextBox ID="BDPchqdate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="BDPchqdate"
+                                        PopupButtonID="BDPchqdate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -942,12 +951,10 @@
             </div>
         </div>
     </div>
-    </form>
+
 
     <script type="text/javascript">
-<!--
-var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
-//-->
+
 
 $("#txtvendor").autocompleteArray(
 		[<% =strVendor  %>],
@@ -974,6 +981,4 @@ $("#txtvendor").autocompleteArray(
         txtRecDate.readOnly = true;     
 */
     </script>
-
-</body>
-</html>
+</asp:Content>

@@ -1,25 +1,23 @@
 <%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false"
     CodeFile="PO_Master.aspx.vb" Inherits="KDMT.PO_Master" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
-   <script src="../scripts/jquery-1.11.0.min.js"></script>
-            <script src="../scripts/jquery-ui.js"></script>
+    <script src="../scripts/jquery-1.11.0.min.js"></script>
+    <script src="../scripts/jquery-ui.js"></script>
 </asp:Content>
 <%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
     TagPrefix="BDP" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static"
+    EnableViewState="true" runat="Server">
     <div class="breadcrumbs">
-        <h1>Purchase Order (  
+        <h1>
+            Purchase Order (
             <asp:Label ID="lbldepttype" Text="" ForeColor="red" runat="server"></asp:Label>)</h1>
         <!-- Sidebar Toggle Button -->
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".page-sidebar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="toggle-icon">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </span>
+            <span class="sr-only">Toggle navigation</span> <span class="toggle-icon"><span class="icon-bar">
+            </span><span class="icon-bar"></span><span class="icon-bar"></span></span>
         </button>
         <input id="hdnID" runat="server" type="hidden" name="hdnID" />
         <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
@@ -41,12 +39,14 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">Vendor Name</label>
+                                            <label class="col-md-2 control-label">
+                                                Vendor Name</label>
                                             <div class="col-md-3">
                                                 <asp:TextBox ID="ddlvendor" runat="server" class="form-control input-sm" placeholder="Vendor Name">
                                                 </asp:TextBox>
                                             </div>
-                                            <label class="col-md-2 control-label">Category</label>
+                                            <label class="col-md-2 control-label">
+                                                Category</label>
                                             <div class="col-md-3">
                                                 <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
@@ -55,17 +55,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">PO Date</label>
+                                            <label class="col-md-2 control-label">
+                                                PO Date</label>
                                             <div class="col-md-3">
-                                              
-                                                 <asp:TextBox ID="dtPODate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="dtPODate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
                                                 <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="dtPODate"
                                                     PopupButtonID="dtPODate" Format="dd-MMM-yyyy">
                                                 </asp:CalendarExtender>
                                                 <asp:ScriptManager ID="Scriptmanager1" runat="server">
                                                 </asp:ScriptManager>
                                             </div>
-                                            <label class="col-md-2 control-label">PO No</label>
+                                            <label class="col-md-2 control-label">
+                                                PO No</label>
                                             <div class="col-md-3">
                                                 <select id="ddlPONo" runat="server" style="width: 140px">
                                                     <option value="RC">RC</option>
@@ -86,15 +87,16 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">Our Ref No</label>
+                                            <label class="col-md-2 control-label">
+                                                Our Ref No</label>
                                             <div class="col-md-3">
-                                                <input type="text" id="txtOurRefNo" name="txtOurRefNo" class="form-control input-sm" placeholder="Our Ref No" />
+                                                <input type="text" id="txtOurRefNo" name="txtOurRefNo" class="form-control input-sm"
+                                                    placeholder="Our Ref No" />
                                             </div>
-                                            <label class="col-md-2 control-label">Our Ref Date</label>
+                                            <label class="col-md-2 control-label">
+                                                Our Ref Date</label>
                                             <div class="col-md-3">
-                                             
-
-                                                 <asp:TextBox ID="dtOurRefNo" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="dtOurRefNo" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
                                                 <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="dtOurRefNo"
                                                     PopupButtonID="dtOurRefNo" Format="dd-MMM-yyyy">
                                                 </asp:CalendarExtender>
@@ -103,14 +105,16 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">Your Ref No</label>
+                                            <label class="col-md-2 control-label">
+                                                Your Ref No</label>
                                             <div class="col-md-3">
-                                                <input type="text" id="txtYourRefNo" name="txtYourRefNo" class="form-control input-sm" placeholder="Your Ref No" />
+                                                <input type="text" id="txtYourRefNo" name="txtYourRefNo" class="form-control input-sm"
+                                                    placeholder="Your Ref No" />
                                             </div>
-                                            <label class="col-md-2 control-label">Your Ref Date</label>
+                                            <label class="col-md-2 control-label">
+                                                Your Ref Date</label>
                                             <div class="col-md-3">
-                                             
-                                                  <asp:TextBox ID="dtYourRefNo" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="dtYourRefNo" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
                                                 <asp:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="dtYourRefNo"
                                                     PopupButtonID="dtYourRefNo" Format="dd-MMM-yyyy">
                                                 </asp:CalendarExtender>
@@ -119,7 +123,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">Ref ASRTU </label>
+                                            <label class="col-md-2 control-label">
+                                                Ref ASRTU
+                                            </label>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control input-sm" id="txtref_asrtu" name="txtref_asrtu" />
                                             </div>
@@ -127,7 +133,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">Special Discount (%) </label>
+                                            <label class="col-md-2 control-label">
+                                                Special Discount (%)
+                                            </label>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control input-sm" id="txtspdisc" name="txtspdisc" />
                                             </div>
@@ -135,13 +143,16 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label">VAT (%)</label>
+                                            <label class="col-md-2 control-label">
+                                                VAT (%)</label>
                                             <div class="col-md-3">
                                                 <input type="text" id="txtvat" class="form-control input-sm" value='0' name="txtvat" />
                                             </div>
-                                            <label class="col-md-2 control-label">ED (%)</label>
+                                            <label class="col-md-2 control-label">
+                                                ED (%)</label>
                                             <div class="col-md-3">
-                                                <input type="text" id="txtED" value='0' name="txtED" onblur="setfocus()" class="form-control input-sm" placeholder="0" />
+                                                <input type="text" id="txtED" value='0' name="txtED" onblur="setfocus()" class="form-control input-sm"
+                                                    placeholder="0" />
                                             </div>
                                         </div>
                                     </div>
@@ -154,48 +165,66 @@
                                             <table class="table table-bordered">
                                                 <thead style="background-color: #CCC;">
                                                     <tr>
-                                                        <th>SR No. </th>
-                                                        <th>LF No. </th>
-                                                        <th>Part No. </th>
-                                                        <th>Nomenclature</th>
-                                                        <th>Rate </th>
-                                                        <th>No of Qty	</th>
-                                                        <th>Per Qty Rate</th>
-                                                        <th>Quantity</th>
-                                                        <th>Amount</th>
+                                                        <th>
+                                                            SR No.
+                                                        </th>
+                                                        <th>
+                                                            LF No.
+                                                        </th>
+                                                        <th>
+                                                            Part No.
+                                                        </th>
+                                                        <th>
+                                                            Nomenclature
+                                                        </th>
+                                                        <th>
+                                                            Rate
+                                                        </th>
+                                                        <th>
+                                                            No of Qty
+                                                        </th>
+                                                        <th>
+                                                            Per Qty Rate
+                                                        </th>
+                                                        <th>
+                                                            Quantity
+                                                        </th>
+                                                        <th>
+                                                            Amount
+                                                        </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="tbodyIndent">
                                                     <tr>
                                                         <td>
                                                             <input type="text" id="lblsrno" style="width: 20px" readonly="readonly" size="10" />
                                                         </td>
                                                         <td>
                                                             <input type="text" id="txtlfno" style="width: 40px" size="10" onblur="emptytext();itemsearch()" />
-                                                        <td>
-                                                            <input type="text" id="txtCodeNo" onblur="emptytextpart();itemsearch();" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="txtNomenclature" onpropertychange="itemsearch()" onblur="fillitem();check1();" />
-                                                            <asp:ListBox ID="Select1" Style="display: none;" onclick="Select();"
-                                                                runat="server"></asp:ListBox>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="txtbaserate" style="width: 70px" maxlength="10" size="10" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="txtbaseqty" onblur="return calculate();" style="width: 70px"
-                                                                maxlength="10" size="10" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="txtRate" readonly="readonly" style="width: 70px" size="15" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="txtQuantity" style="width: 70px" size="10" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="txtAmount" onfocus="return Amount();" size="20" />
-                                                        </td>
+                                                            <td>
+                                                                <input type="text" id="txtCodeNo" onblur="emptytextpart();itemsearch();" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="txtNomenclature" onpropertychange="itemsearch()" onblur="fillitem();check1();" />
+                                                                <asp:ListBox ID="Select1" Style="display: none;" onclick="Select();" runat="server">
+                                                                </asp:ListBox>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="txtbaserate" style="width: 70px" maxlength="10" size="10" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="txtbaseqty" onblur="return calculate();" style="width: 70px"
+                                                                    maxlength="10" size="10" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="txtRate" readonly="readonly" style="width: 70px" size="15" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="txtQuantity" style="width: 70px" size="10" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="txtAmount" onfocus="return Amount();" size="20" />
+                                                            </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -206,20 +235,48 @@
                                             <table class="table table-bordered">
                                                 <thead style="background-color: #CCC;">
                                                     <tr>
-                                                        <th>SR No. </th>
-                                                        <th>Item No. </th>
-                                                        <th>APR </th>
-                                                        <th>MAY</th>
-                                                        <th>JUNE </th>
-                                                        <th>JULY	</th>
-                                                        <th>AUG</th>
-                                                        <th>SEP</th>
-                                                        <th>OCT</th>
-                                                        <th>NOV</th>
-                                                        <th>DEC</th>
-                                                        <th>JAN</th>
-                                                        <th>FEB</th>
-                                                        <th>MAR</th>
+                                                        <th>
+                                                            SR No.
+                                                        </th>
+                                                        <th>
+                                                            Item No.
+                                                        </th>
+                                                        <th>
+                                                            APR
+                                                        </th>
+                                                        <th>
+                                                            MAY
+                                                        </th>
+                                                        <th>
+                                                            JUNE
+                                                        </th>
+                                                        <th>
+                                                            JULY
+                                                        </th>
+                                                        <th>
+                                                            AUG
+                                                        </th>
+                                                        <th>
+                                                            SEP
+                                                        </th>
+                                                        <th>
+                                                            OCT
+                                                        </th>
+                                                        <th>
+                                                            NOV
+                                                        </th>
+                                                        <th>
+                                                            DEC
+                                                        </th>
+                                                        <th>
+                                                            JAN
+                                                        </th>
+                                                        <th>
+                                                            FEB
+                                                        </th>
+                                                        <th>
+                                                            MAR
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -237,15 +294,13 @@
                                                             <input type="text" id="txtmon2" style="width: 50px" size="10" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="txtmon3" style="width: 50px"
-                                                                size="10" />
+                                                            <input type="text" id="txtmon3" style="width: 50px" size="10" />
                                                         </td>
                                                         <td>
                                                             <input type="text" id="txtmon4" style="width: 50px" size="10" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="txtmon5" style="width: 50px"
-                                                                size="10" />
+                                                            <input type="text" id="txtmon5" style="width: 50px" size="10" />
                                                         </td>
                                                         <td>
                                                             <input type="text" id="txtmon6" style="width: 50px" size="10" />
@@ -257,18 +312,16 @@
                                                             <input type="text" id="txtmon8" style="width: 50px" size="10" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="txtmon9" style="width: 50px"
-                                                                size="10" /></td>
+                                                            <input type="text" id="txtmon9" style="width: 50px" size="10" />
+                                                        </td>
                                                         <td>
                                                             <input type="text" id="txtmon10" style="width: 50px" size="10" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="txtmon11" style="width: 50px"
-                                                                size="10" />
+                                                            <input type="text" id="txtmon11" style="width: 50px" size="10" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="txtmon12" style="width: 50px"
-                                                                size="10" onblur="addPODetailsother();" />
+                                                            <input type="text" id="txtmon12" style="width: 50px" size="10" onblur="addPODetailsother();" />
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -284,20 +337,21 @@
                                                         <span style="font-size: 14px">(2) Payment will be made </span>
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control" value="Through Bank" id="txtPayment" name="txtPayment" tabindex="9" />
+                                                        <input type="text" class="form-control" value="Through Bank" id="txtPayment" name="txtPayment"
+                                                            tabindex="9" />
                                                     </td>
                                                     <td colspan="1" rowspan="6" valign="top">
                                                         <span style="font-size: 18px">This purchase is made under the
-                                <br />
+                                                            <br />
                                                             <br />
                                                             powers vested in me under the
-                                <br />
+                                                            <br />
                                                             <br />
                                                             B.P.M.C. Act, 1994 Chapter V,
-                                <br />
+                                                            <br />
                                                             <br />
                                                             Section(1)(i)(2) Exection
-                                <br />
+                                                            <br />
                                                             <br />
                                                             of contract waived.</span>
                                                     </td>
@@ -323,7 +377,8 @@
                                                         <span style="font-size: 14px">(5) Bank charges/commission will be borne by</span>
                                                     </td>
                                                     <td>
-                                                        <input class="form-control" type="text" id="txtBankCharges" name="txtBankCharges" tabindex="11" />
+                                                        <input class="form-control" type="text" id="txtBankCharges" name="txtBankCharges"
+                                                            tabindex="11" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -347,10 +402,11 @@
                                                         <span style="font-size: 14px">(8) Validity Period</span>
                                                     </td>
                                                     <td>
-                                                        <input class="form-control" type="text" id="txtValidityPeriod" name="txtValidityPeriod" tabindex="14" />
+                                                        <input class="form-control" type="text" id="txtValidityPeriod" name="txtValidityPeriod"
+                                                            tabindex="14" />
                                                     </td>
                                                 </tr>
-                                                <tr >
+                                                <tr>
                                                     <td>
                                                         <span style="font-size: 14px">Total Commitment Rs.............year</span>
                                                     </td>
@@ -370,494 +426,494 @@
                                                         <span style="font-size: 14px">Sr.No</span>
                                                         <input class="form-control" type="text" id="txtSrNo" name="txtSrNo" tabindex="17" />
                                                     </td>
-                                                    <td colspan="1"> <span style="font-size: 14px">Res.No.</span>
-                                                        <input class="form-control" type="text" id="txtResNo" name="txtResNo" tabindex="22" /> </div>
-                                                </tr>
-                                                <tr>
-                                                  
-                                                    <td colspan="2">
-                                                        <span style="font-size: 14px">Purchase Authorised by </span>
-                                                        <input class="form-control" type="text" id="txtPurchase" name="txtPurchase" tabindex="24" />
-                                                    </td>
-
-                                                    <td colspan="2">
-                                                        
-                                                        <span style="font-size: 14px">Trans.ManagDt.</span>
-                                                    
-                                                           <asp:TextBox ID="Date2" Width="350px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                                    <td colspan="1">
+                                                        <span style="font-size: 14px">Res.No.</span>
+                                                        <input class="form-control" type="text" id="txtResNo" name="txtResNo" tabindex="22" />
+                                        </div>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <span style="font-size: 14px">Purchase Authorised by </span>
+                                                <input class="form-control" type="text" id="txtPurchase" name="txtPurchase" tabindex="24" />
+                                            </td>
+                                            <td colspan="2">
+                                                <span style="font-size: 14px">Trans.ManagDt.</span>
+                                                <asp:TextBox ID="Date2" Width="350px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
                                                 <asp:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="Date2"
                                                     PopupButtonID="Date2" Format="dd-MMM-yyyy">
                                                 </asp:CalendarExtender>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span style="font-size: 14px">Audited by</span>
-                                                        <input class="form-control" type="text" id="txtAudited" name="txtAudited" tabindex="18" />
-                                                    </td>
-                                                    <td>
-                                                        <span style="font-size: 14px">Cl.</span>
-                                                        <input class="form-control" type="text" id="txtCl" size="15px" name="txtCl" tabindex="19" />
-                                                        
-                                                    </td>
-                                                    <td> <span style="font-size: 14px">Dt.</span>
-                                                     
-                                                           <asp:TextBox ID="Date1" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="font-size: 14px">Audited by</span>
+                                                <input class="form-control" type="text" id="txtAudited" name="txtAudited" tabindex="18" />
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 14px">Cl.</span>
+                                                <input class="form-control" type="text" id="txtCl" size="15px" name="txtCl" tabindex="19" />
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 14px">Dt.</span>
+                                                <asp:TextBox ID="Date1" CssClass="form-control input-sm" runat="server"></asp:TextBox>
                                                 <asp:CalendarExtender ID="CalendarExtender5" runat="server" TargetControlID="Date1"
                                                     PopupButtonID="Date1" Format="dd-MMM-yyyy">
-                                                </asp:CalendarExtender> </td>
-
-                                                    <td align="left">
-                                                        <span style="font-size: 14px">Budegt Account Hd</span>
-                                                        <input class="form-control" type="text" id="txtBudgetAccount" name="txtBudgetAccount" onclick="return txtBudgetAccount_onclick()"
-                                                            tabindex="25" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">  <span style="font-size: 14px">Prepared by</span>
-                                                        <input class="form-control" type="text" id="txtPreparedby" name="txtPreparedby" tabindex="26" /></td>
-                                                    <td colspan="2">
-                                                       
-                                                        <span style="font-size: 14px">Checked by</span>
-                                                        <input class="form-control" type="text" id="txtCheckedBy" name="txtCheckedBy" tabindex="28" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <span style="font-size: 14px">Audited Officer</span>  <input class="form-control" type="text" id="txtAudit_officer" name="txtAudit_officer" tabindex="21" />
-                                                    </td>
-                                                    
-                                                    <td colspan="2">
-                                                        <span style="font-size: 14px">Indent Ref No .</span>
-                                                        <input class="form-control" type="text" id="txtIndentRefNo" name="txtIndentRefNo" tabindex="29" onblur="setfocus()" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="6">
-                                                        <asp:Button ID="Button1" runat="server" Text="Save" />
-                                                        <asp:Button ID="btn_print" Text="Print" runat="server" />
-                                                        <a href="po_master.aspx">Reset</a>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
+                                                </asp:CalendarExtender>
+                                            </td>
+                                            <td align="left">
+                                                <span style="font-size: 14px">Budegt Account Hd</span>
+                                                <input class="form-control" type="text" id="txtBudgetAccount" name="txtBudgetAccount"
+                                                    onclick="return txtBudgetAccount_onclick()" tabindex="25" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <span style="font-size: 14px">Prepared by</span>
+                                                <input class="form-control" type="text" id="txtPreparedby" name="txtPreparedby" tabindex="26" />
+                                            </td>
+                                            <td colspan="2">
+                                                <span style="font-size: 14px">Checked by</span>
+                                                <input class="form-control" type="text" id="txtCheckedBy" name="txtCheckedBy" tabindex="28" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <span style="font-size: 14px">Audited Officer</span>
+                                                <input class="form-control" type="text" id="txtAudit_officer" name="txtAudit_officer"
+                                                    tabindex="21" />
+                                            </td>
+                                            <td colspan="2">
+                                                <span style="font-size: 14px">Indent Ref No .</span>
+                                                <input class="form-control" type="text" id="txtIndentRefNo" name="txtIndentRefNo"
+                                                    tabindex="29" onblur="setfocus()" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <asp:Button ID="Button1" runat="server" Text="Save" />
+                                                <asp:Button ID="btn_print" Text="Print" runat="server" />
+                                                <a href="po_master.aspx">Reset</a>
+                                            </td>
+                                        </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                            <!--form body ends-->
                         </div>
+                        <!--form body ends-->
                     </div>
                 </div>
             </div>
-            </div>
-            <!-- END PAGE BASE CONTENT -->
         </div>
-        <script language="javascript" type="text/javascript">
-            var Optype = 0
-            var Fuel
-            var ID = 0;
-            var rowcnt = 1;
-            var rowcntSave = 1;
-            var rowcntother = 1;
-            var rowcntothersave = 1;
-            function addPODetails() {
-                if (document.getElementById('hdnsrno').value == '') {
-                    document.getElementById('hdnsrno').value = 0;
-                }
-                var srno = 0;
-                var lblsrno = document.getElementById('lblsrno');
-                var txtlfNo = document.getElementById('txtlfno');
-                var txtCodeNo = document.getElementById('txtCodeNo');
-                var txtNomenclature = document.getElementById('txtNomenclature');
-                var txtbaserate = document.getElementById('txtbaserate');
-                var txtbaseqty = document.getElementById('txtbaseqty');
-                var txtQuantity = document.getElementById('txtQuantity');
-                var txtRate = document.getElementById('txtRate');
-                var txtAmount = document.getElementById('txtAmount');
-                var tbody = document.getElementById('tbodyIndent');
-                var row = tbody.insertRow(rowcnt);
-                row.setAttribute('id', 'trPO_' + rowcnt);
-                var cells1 = row.insertCell(0);
-                cells1.setAttribute('id', 'tdsrno_' + rowcnt);
-                var cells2 = row.insertCell(1);
-                cells2.setAttribute('id', 'tdlfno_' + rowcnt);
-                var cells3 = row.insertCell(2);
-                cells3.setAttribute('id', 'tdCodeNo_' + rowcnt);
-                var cells4 = row.insertCell(3);
-                cells4.setAttribute('id', 'tdNomenclature_' + rowcnt);
-                var cells5 = row.insertCell(4);
-                cells5.setAttribute('id', 'tdbaserate_' + rowcnt);
-                var cells6 = row.insertCell(5);
-                cells6.setAttribute('id', 'tdbaseqty_' + rowcnt);
-                var cells7 = row.insertCell(6);
-                cells7.setAttribute('id', 'tdQuantity_' + rowcnt);
-                var cells8 = row.insertCell(7);
-                cells8.setAttribute('id', 'tdRate_' + rowcnt);
-                var cells9 = row.insertCell(8);
-                cells9.setAttribute('id', 'tdAmount_' + rowcnt);
-                var cells10 = row.insertCell(9);
-                cells1.innerHTML = parseInt(document.getElementById('hdnsrno').value) + 1;
-                document.getElementById('hdnsrno').value = parseInt(document.getElementById('hdnsrno').value) + 1
-                cells2.innerHTML = txtlfNo.value;
-                cells3.innerHTML = txtCodeNo.value;
-                cells4.innerHTML = txtNomenclature.value;
-                cells5.innerHTML = txtbaserate.value;
-                cells6.innerHTML = txtbaseqty.value;
-                cells7.innerHTML = txtRate.value;
-                cells8.innerHTML = txtQuantity.value;
-                cells9.innerHTML = txtAmount.value;
-                cells10.innerHTML = '<a href="javascript:void(0)" OnClick= "deleteRow(\'trPO_' + rowcnt + '\')" ><IMG Type="Button" class="Button" src="../images/icon_delete.gif" Value="Delete" ></a>'
-                rowcnt = rowcnt + 1;
-                lblsrno.value = '';
-                txtlfNo.value = '';
-                txtCodeNo.value = '';
-                txtNomenclature.value = '';
-                txtbaserate.value = '';
-                txtbaseqty.value = '';
-                txtQuantity.value = '';
-                txtRate.value = '';
-                txtAmount.value = '';
-                txtlfNo.focus();
-                document.getElementById('hdnrwcnt').value = rowcnt;
-                // alert(document.getElementById('hdnrwcnt').value)
-            }
-            function addPODetailsother() {
-                if (document.getElementById('hdnsrnoother').value == '') {
-                    document.getElementById('hdnsrnoother').value = 0;
-                }
-                var srnoother = 0;
-                var lblsrno = document.getElementById('lblsrnoother');
-                var txtsrno1 = document.getElementById('txtsrno1');
-                var txtQty1 = document.getElementById('txtmon1');
-                var txtQty2 = document.getElementById('txtmon2');
-                var txtQty3 = document.getElementById('txtmon3');
-                var txtQty4 = document.getElementById('txtmon4');
-                var txtQty5 = document.getElementById('txtmon5');
-                var txtQty6 = document.getElementById('txtmon6');
-                var txtQty7 = document.getElementById('txtmon7');
-                var txtQty8 = document.getElementById('txtmon8');
-                var txtQty9 = document.getElementById('txtmon9');
-                var txtQty10 = document.getElementById('txtmon10');
-                var txtQty11 = document.getElementById('txtmon11');
-                var txtQty12 = document.getElementById('txtmon12');
-                var tbody = document.getElementById('tbodyother');
-                var row = tbody.insertRow(rowcntother);
-                row.setAttribute('id', 'trPOother_' + rowcntothersave);
-                var cells1 = row.insertCell(0);
-                cells1.setAttribute('id', 'tdsrnoother_' + rowcntothersave);
-                var cells2 = row.insertCell(1);
-                cells2.setAttribute('id', 'tdsrno1_' + rowcntothersave);
-                var cells3 = row.insertCell(2);
-                cells3.setAttribute('id', 'tdQty1_' + rowcntothersave);
-                var cells4 = row.insertCell(3);
-                cells4.setAttribute('id', 'tdQty2_' + rowcntothersave);
-                var cells5 = row.insertCell(4);
-                cells5.setAttribute('id', 'tdQty3_' + rowcntothersave);
-                var cells6 = row.insertCell(5);
-                cells6.setAttribute('id', 'tdQty4_' + rowcntothersave);
-                var cells7 = row.insertCell(6);
-                cells7.setAttribute('id', 'tdQty5_' + rowcntothersave);
-                var cells8 = row.insertCell(7);
-                cells8.setAttribute('id', 'tdQty6_' + rowcntothersave);
-                var cells9 = row.insertCell(8);
-                cells9.setAttribute('id', 'tdQty7_' + rowcntothersave);
-                var cells10 = row.insertCell(9);
-                cells10.setAttribute('id', 'tdQty8_' + rowcntothersave);
-                var cells11 = row.insertCell(10);
-                cells11.setAttribute('id', 'tdQty9_' + rowcntothersave);
-                var cells12 = row.insertCell(11);
-                cells12.setAttribute('id', 'tdQty10_' + rowcntothersave);
-                var cells13 = row.insertCell(12);
-                cells13.setAttribute('id', 'tdQty11_' + rowcntothersave);
-                var cells14 = row.insertCell(13);
-                cells14.setAttribute('id', 'tdQty12_' + rowcntothersave);
-                var cells15 = row.insertCell(14);
-                cells1.innerHTML = parseInt(document.getElementById('hdnsrnoother').value) + 1;
-                document.getElementById('hdnsrnoother').value = parseInt(document.getElementById('hdnsrnoother').value) + 1
-                cells2.innerHTML = txtsrno1.value;
-                cells3.innerHTML = txtQty1.value;
-                cells4.innerHTML = txtQty2.value;
-                cells5.innerHTML = txtQty3.value;
-                cells6.innerHTML = txtQty4.value;
-                cells7.innerHTML = txtQty5.value;
-                cells8.innerHTML = txtQty6.value;
-                cells9.innerHTML = txtQty7.value;
-                cells10.innerHTML = txtQty8.value;
-                cells11.innerHTML = txtQty9.value;
-                cells12.innerHTML = txtQty10.value;
-                cells13.innerHTML = txtQty11.value;
-                cells14.innerHTML = txtQty12.value;
-                cells15.innerHTML = '<a href="javascript:void(0)" OnClick= "deleteRowother(\'trPOother_' + rowcntothersave + '\')" ><IMG Type="Button" class="Button" src="../images/icon_delete.gif" Value="Delete" ></a>'
-                rowcntother = rowcntother + 1;
-                rowcntothersave = rowcntothersave + 1
-                txtsrno1.value = '';
-                txtQty1.value = '';
-                txtQty2.value = '';
-                txtQty3.value = '';
-                txtQty4.value = '';
-                txtQty5.value = '';
-                txtQty6.value = '';
-                txtQty7.value = '';
-                txtQty8.value = '';
-                txtQty9.value = '';
-                txtQty10.value = '';
-                txtQty11.value = '';
-                txtQty12.value = '';
-                // txtsrno1.focus();        
-                document.getElementById('hdnrwcntother').value = rowcntothersave;
-                // alert(document.getElementById('hdnrwcnt').value)
-                txtsrno1.focus();
-                ValidateSaveother();
-            }
-            function ValidateSaveother() {
-                //debugger
-                var detvaluesother = '';
-                var i = 0;
-                var hdnrwcntother = document.getElementById('hdnrwcntother').value;
-                for (i = 1; i < hdnrwcntother ; i++) {
-                    if (document.getElementById('tdsrno1_' + i) != null) {
-                        var srno1 = document.getElementById('tdsrno1_' + i).innerHTML;
-                        var mon1 = document.getElementById('tdQty1_' + i).innerHTML;//                
-                        var mon2 = document.getElementById('tdQty2_' + i).innerHTML;
-                        var mon3 = document.getElementById('tdQty3_' + i).innerHTML;
-                        var mon4 = document.getElementById('tdQty4_' + i).innerHTML;
-                        var mon5 = document.getElementById('tdQty5_' + i).innerHTML;
-                        var mon6 = document.getElementById('tdQty6_' + i).innerHTML;
-                        var mon7 = document.getElementById('tdQty7_' + i).innerHTML;
-                        var mon8 = document.getElementById('tdQty8_' + i).innerHTML;
-                        var mon9 = document.getElementById('tdQty9_' + i).innerHTML;
-                        var mon10 = document.getElementById('tdQty10_' + i).innerHTML;
-                        var mon11 = document.getElementById('tdQty11_' + i).innerHTML;
-                        var mon12 = document.getElementById('tdQty12_' + i).innerHTML;
-                        //                detvaluesother = detvaluesother + txtlfNo + '^' + CodeNo + '^' + Nomenclature + '^' + baserate + '^' + baseqty + '|';
-                        detvaluesother = detvaluesother + srno1 + '^' + mon1 + '^' + mon2 + '^' + mon3 + '^' + mon4 + '^' + mon5 + '^' + mon6 + '^' + mon7 + '^' + mon8 + '^' + mon9 + '^' + mon10 + '^' + mon11 + '^' + mon12 + '|';
-                    }
-                }
-                document.getElementById("hdndetailother").value = detvaluesother
-            }
-            function deleteRow(cnt) {
-                var tr = document.getElementById(cnt);
-                document.getElementById('tbodyIndent').removeChild(tr);
-                var hdnrwcnt = document.getElementById('hdnrwcnt');
-                //hdnrwcnt.value = hdnrwcnt.value -1;
-                rowcnt = rowcnt - 1;
+    </div>
+    <!-- END PAGE BASE CONTENT -->
+    </div>
+    <script language="javascript" type="text/javascript">
+        var Optype = 0
+        var Fuel
+        var ID = 0;
+        var rowcnt = 1;
+        var rowcntSave = 1;
+        var rowcntother = 1;
+        var rowcntothersave = 1;
+        function addPODetails() {
+            if (document.getElementById('hdnsrno').value == '') {
                 document.getElementById('hdnsrno').value = 0;
-                for (i = 1; i < hdnrwcnt.value  ; i++) {
-                    if (document.getElementById('tdNomenclature_' + i) != null) {
-                        document.getElementById('tdsrno_' + i).innerHTML = parseInt(document.getElementById('hdnsrno').value) + 1
-                        document.getElementById('hdnsrno').value = parseInt(document.getElementById('hdnsrno').value) + 1
-                    }
-                }
             }
-            function deleteRowother(cnt) {
-                var tr = document.getElementById(cnt);
-                document.getElementById('tbodyother').removeChild(tr);
-                var hdnrowcntother = document.getElementById('hdnrwcntother');
-                //hdnrwcnt.value = hdnrwcnt.value -1;
-                rowcntother = rowcntother - 1;
+            var srno = 0;
+            var lblsrno = document.getElementById('lblsrno');
+            var txtlfNo = document.getElementById('txtlfno');
+            var txtCodeNo = document.getElementById('txtCodeNo');
+            var txtNomenclature = document.getElementById('txtNomenclature');
+            var txtbaserate = document.getElementById('txtbaserate');
+            var txtbaseqty = document.getElementById('txtbaseqty');
+            var txtQuantity = document.getElementById('txtQuantity');
+            var txtRate = document.getElementById('txtRate');
+            var txtAmount = document.getElementById('txtAmount');
+            var tbody = document.getElementById('tbodyIndent');
+            var row = tbody.insertRow(rowcnt);
+            row.setAttribute('id', 'trPO_' + rowcnt);
+            var cells1 = row.insertCell(0);
+            cells1.setAttribute('id', 'tdsrno_' + rowcnt);
+            var cells2 = row.insertCell(1);
+            cells2.setAttribute('id', 'tdlfno_' + rowcnt);
+            var cells3 = row.insertCell(2);
+            cells3.setAttribute('id', 'tdCodeNo_' + rowcnt);
+            var cells4 = row.insertCell(3);
+            cells4.setAttribute('id', 'tdNomenclature_' + rowcnt);
+            var cells5 = row.insertCell(4);
+            cells5.setAttribute('id', 'tdbaserate_' + rowcnt);
+            var cells6 = row.insertCell(5);
+            cells6.setAttribute('id', 'tdbaseqty_' + rowcnt);
+            var cells7 = row.insertCell(6);
+            cells7.setAttribute('id', 'tdQuantity_' + rowcnt);
+            var cells8 = row.insertCell(7);
+            cells8.setAttribute('id', 'tdRate_' + rowcnt);
+            var cells9 = row.insertCell(8);
+            cells9.setAttribute('id', 'tdAmount_' + rowcnt);
+            var cells10 = row.insertCell(9);
+            cells1.innerHTML = parseInt(document.getElementById('hdnsrno').value) + 1;
+            document.getElementById('hdnsrno').value = parseInt(document.getElementById('hdnsrno').value) + 1
+            cells2.innerHTML = txtlfNo.value;
+            cells3.innerHTML = txtCodeNo.value;
+            cells4.innerHTML = txtNomenclature.value;
+            cells5.innerHTML = txtbaserate.value;
+            cells6.innerHTML = txtbaseqty.value;
+            cells7.innerHTML = txtRate.value;
+            cells8.innerHTML = txtQuantity.value;
+            cells9.innerHTML = txtAmount.value;
+            cells10.innerHTML = '<a href="javascript:void(0)" OnClick= "deleteRow(\'trPO_' + rowcnt + '\')" ><IMG Type="Button" class="Button" src="../images/icon_delete.gif" Value="Delete" ></a>'
+            rowcnt = rowcnt + 1;
+            lblsrno.value = '';
+            txtlfNo.value = '';
+            txtCodeNo.value = '';
+            txtNomenclature.value = '';
+            txtbaserate.value = '';
+            txtbaseqty.value = '';
+            txtQuantity.value = '';
+            txtRate.value = '';
+            txtAmount.value = '';
+            txtlfNo.focus();
+            document.getElementById('hdnrwcnt').value = rowcnt;
+            // alert(document.getElementById('hdnrwcnt').value)
+        }
+        function addPODetailsother() {
+            if (document.getElementById('hdnsrnoother').value == '') {
                 document.getElementById('hdnsrnoother').value = 0;
-                for (i = 1; i < hdnrowcntother.value  ; i++) {
-                    if (document.getElementById('tdQty1_' + i) != null) {
-                        document.getElementById('tdsrnoother_' + i).innerHTML = parseInt(document.getElementById('hdnsrnoother').value) + 1
-                        document.getElementById('hdnsrnoother').value = parseInt(document.getElementById('hdnsrnoother').value) + 1
-                    }
+            }
+            var srnoother = 0;
+            var lblsrno = document.getElementById('lblsrnoother');
+            var txtsrno1 = document.getElementById('txtsrno1');
+            var txtQty1 = document.getElementById('txtmon1');
+            var txtQty2 = document.getElementById('txtmon2');
+            var txtQty3 = document.getElementById('txtmon3');
+            var txtQty4 = document.getElementById('txtmon4');
+            var txtQty5 = document.getElementById('txtmon5');
+            var txtQty6 = document.getElementById('txtmon6');
+            var txtQty7 = document.getElementById('txtmon7');
+            var txtQty8 = document.getElementById('txtmon8');
+            var txtQty9 = document.getElementById('txtmon9');
+            var txtQty10 = document.getElementById('txtmon10');
+            var txtQty11 = document.getElementById('txtmon11');
+            var txtQty12 = document.getElementById('txtmon12');
+            var tbody = document.getElementById('tbodyother');
+            var row = tbody.insertRow(rowcntother);
+            row.setAttribute('id', 'trPOother_' + rowcntothersave);
+            var cells1 = row.insertCell(0);
+            cells1.setAttribute('id', 'tdsrnoother_' + rowcntothersave);
+            var cells2 = row.insertCell(1);
+            cells2.setAttribute('id', 'tdsrno1_' + rowcntothersave);
+            var cells3 = row.insertCell(2);
+            cells3.setAttribute('id', 'tdQty1_' + rowcntothersave);
+            var cells4 = row.insertCell(3);
+            cells4.setAttribute('id', 'tdQty2_' + rowcntothersave);
+            var cells5 = row.insertCell(4);
+            cells5.setAttribute('id', 'tdQty3_' + rowcntothersave);
+            var cells6 = row.insertCell(5);
+            cells6.setAttribute('id', 'tdQty4_' + rowcntothersave);
+            var cells7 = row.insertCell(6);
+            cells7.setAttribute('id', 'tdQty5_' + rowcntothersave);
+            var cells8 = row.insertCell(7);
+            cells8.setAttribute('id', 'tdQty6_' + rowcntothersave);
+            var cells9 = row.insertCell(8);
+            cells9.setAttribute('id', 'tdQty7_' + rowcntothersave);
+            var cells10 = row.insertCell(9);
+            cells10.setAttribute('id', 'tdQty8_' + rowcntothersave);
+            var cells11 = row.insertCell(10);
+            cells11.setAttribute('id', 'tdQty9_' + rowcntothersave);
+            var cells12 = row.insertCell(11);
+            cells12.setAttribute('id', 'tdQty10_' + rowcntothersave);
+            var cells13 = row.insertCell(12);
+            cells13.setAttribute('id', 'tdQty11_' + rowcntothersave);
+            var cells14 = row.insertCell(13);
+            cells14.setAttribute('id', 'tdQty12_' + rowcntothersave);
+            var cells15 = row.insertCell(14);
+            cells1.innerHTML = parseInt(document.getElementById('hdnsrnoother').value) + 1;
+            document.getElementById('hdnsrnoother').value = parseInt(document.getElementById('hdnsrnoother').value) + 1
+            cells2.innerHTML = txtsrno1.value;
+            cells3.innerHTML = txtQty1.value;
+            cells4.innerHTML = txtQty2.value;
+            cells5.innerHTML = txtQty3.value;
+            cells6.innerHTML = txtQty4.value;
+            cells7.innerHTML = txtQty5.value;
+            cells8.innerHTML = txtQty6.value;
+            cells9.innerHTML = txtQty7.value;
+            cells10.innerHTML = txtQty8.value;
+            cells11.innerHTML = txtQty9.value;
+            cells12.innerHTML = txtQty10.value;
+            cells13.innerHTML = txtQty11.value;
+            cells14.innerHTML = txtQty12.value;
+            cells15.innerHTML = '<a href="javascript:void(0)" OnClick= "deleteRowother(\'trPOother_' + rowcntothersave + '\')" ><IMG Type="Button" class="Button" src="../images/icon_delete.gif" Value="Delete" ></a>'
+            rowcntother = rowcntother + 1;
+            rowcntothersave = rowcntothersave + 1
+            txtsrno1.value = '';
+            txtQty1.value = '';
+            txtQty2.value = '';
+            txtQty3.value = '';
+            txtQty4.value = '';
+            txtQty5.value = '';
+            txtQty6.value = '';
+            txtQty7.value = '';
+            txtQty8.value = '';
+            txtQty9.value = '';
+            txtQty10.value = '';
+            txtQty11.value = '';
+            txtQty12.value = '';
+            // txtsrno1.focus();        
+            document.getElementById('hdnrwcntother').value = rowcntothersave;
+            // alert(document.getElementById('hdnrwcnt').value)
+            txtsrno1.focus();
+            ValidateSaveother();
+        }
+        function ValidateSaveother() {
+            //debugger
+            var detvaluesother = '';
+            var i = 0;
+            var hdnrwcntother = document.getElementById('hdnrwcntother').value;
+            for (i = 1; i < hdnrwcntother; i++) {
+                if (document.getElementById('tdsrno1_' + i) != null) {
+                    var srno1 = document.getElementById('tdsrno1_' + i).innerHTML;
+                    var mon1 = document.getElementById('tdQty1_' + i).innerHTML; //                
+                    var mon2 = document.getElementById('tdQty2_' + i).innerHTML;
+                    var mon3 = document.getElementById('tdQty3_' + i).innerHTML;
+                    var mon4 = document.getElementById('tdQty4_' + i).innerHTML;
+                    var mon5 = document.getElementById('tdQty5_' + i).innerHTML;
+                    var mon6 = document.getElementById('tdQty6_' + i).innerHTML;
+                    var mon7 = document.getElementById('tdQty7_' + i).innerHTML;
+                    var mon8 = document.getElementById('tdQty8_' + i).innerHTML;
+                    var mon9 = document.getElementById('tdQty9_' + i).innerHTML;
+                    var mon10 = document.getElementById('tdQty10_' + i).innerHTML;
+                    var mon11 = document.getElementById('tdQty11_' + i).innerHTML;
+                    var mon12 = document.getElementById('tdQty12_' + i).innerHTML;
+                    //                detvaluesother = detvaluesother + txtlfNo + '^' + CodeNo + '^' + Nomenclature + '^' + baserate + '^' + baseqty + '|';
+                    detvaluesother = detvaluesother + srno1 + '^' + mon1 + '^' + mon2 + '^' + mon3 + '^' + mon4 + '^' + mon5 + '^' + mon6 + '^' + mon7 + '^' + mon8 + '^' + mon9 + '^' + mon10 + '^' + mon11 + '^' + mon12 + '|';
                 }
             }
-            function Amount() {
-                var Quantity = document.getElementById('txtQuantity');
-                var Rate = document.getElementById('txtRate');
-                var Amt = document.getElementById('txtAmount');
-                if (Rate.value == '') {
-                    alert('Enter the Rate');
-                    setTimeout(function () { Rate.focus() }, 10);
-                    return false;
-                }
-                if (isNaN(Rate.value)) {
-                    alert('Enter numeric Rate');
-                    setTimeout(function () { Rate.focus() }, 10);
-                    Rate.value = '';
-                    return false;
-                }
-                // return checkQuntity ();
-                if (checkQuntity() == true) {
-                    Amt.value = ((Rate.value) * (Quantity.value)).toFixed(2);
-                    addPODetails();
+            document.getElementById("hdndetailother").value = detvaluesother
+        }
+        function deleteRow(cnt) {
+            var tr = document.getElementById(cnt);
+            document.getElementById('tbodyIndent').removeChild(tr);
+            var hdnrwcnt = document.getElementById('hdnrwcnt');
+            //hdnrwcnt.value = hdnrwcnt.value -1;
+            rowcnt = rowcnt - 1;
+            document.getElementById('hdnsrno').value = 0;
+            for (i = 1; i < hdnrwcnt.value; i++) {
+                if (document.getElementById('tdNomenclature_' + i) != null) {
+                    document.getElementById('tdsrno_' + i).innerHTML = parseInt(document.getElementById('hdnsrno').value) + 1
+                    document.getElementById('hdnsrno').value = parseInt(document.getElementById('hdnsrno').value) + 1
                 }
             }
-            function DeleteUnitConfirm() {
-                if (confirm("Are you sure you wan`t to delete.")) { return true }
-                else { return false }
+        }
+        function deleteRowother(cnt) {
+            var tr = document.getElementById(cnt);
+            document.getElementById('tbodyother').removeChild(tr);
+            var hdnrowcntother = document.getElementById('hdnrwcntother');
+            //hdnrwcnt.value = hdnrwcnt.value -1;
+            rowcntother = rowcntother - 1;
+            document.getElementById('hdnsrnoother').value = 0;
+            for (i = 1; i < hdnrowcntother.value; i++) {
+                if (document.getElementById('tdQty1_' + i) != null) {
+                    document.getElementById('tdsrnoother_' + i).innerHTML = parseInt(document.getElementById('hdnsrnoother').value) + 1
+                    document.getElementById('hdnsrnoother').value = parseInt(document.getElementById('hdnsrnoother').value) + 1
+                }
             }
-            function poexists() {
-                //debugger 
-                var ddlPONo = document.getElementById('ddlPONo').value;
-                var dtPODate = document.getElementById('dtPODate_TextBox').value;
-                var txtpono = document.getElementById('txtPONo').value;
-                var ddlCat = document.getElementById('ddlCategory').value;
-                var url = "../tmtAjax/Common_ajax.aspx?action=checkpoexists&potype=" + ddlPONo + "&pono=" + txtpono + "&poCat=" + ddlCat + "&dtpoDate=" + dtPODate;
+        }
+        function Amount() {
+            var Quantity = document.getElementById('txtQuantity');
+            var Rate = document.getElementById('txtRate');
+            var Amt = document.getElementById('txtAmount');
+            if (Rate.value == '') {
+                alert('Enter the Rate');
+                setTimeout(function () { Rate.focus() }, 10);
+                return false;
+            }
+            if (isNaN(Rate.value)) {
+                alert('Enter numeric Rate');
+                setTimeout(function () { Rate.focus() }, 10);
+                Rate.value = '';
+                return false;
+            }
+            // return checkQuntity ();
+            if (checkQuntity() == true) {
+                Amt.value = ((Rate.value) * (Quantity.value)).toFixed(2);
+                addPODetails();
+            }
+        }
+        function DeleteUnitConfirm() {
+            if (confirm("Are you sure you wan`t to delete.")) { return true }
+            else { return false }
+        }
+        function poexists() {
+            //debugger 
+            var ddlPONo = document.getElementById('ddlPONo').value;
+            var dtPODate = document.getElementById('dtPODate_TextBox').value;
+            var txtpono = document.getElementById('txtPONo').value;
+            var ddlCat = document.getElementById('ddlCategory').value;
+            var url = "../tmtAjax/Common_ajax.aspx?action=checkpoexists&potype=" + ddlPONo + "&pono=" + txtpono + "&poCat=" + ddlCat + "&dtpoDate=" + dtPODate;
+            sendRequest(url);
+            return false;
+        }
+        function getDefect() {
+            var url = '../tmtAjax/Common_ajax.aspx?action=getDefectDetails'
+            sendRequest(url);
+            return false;
+        }
+        function DeleteDefect(ID) {
+            if (Optype == 1) {
+                alert('Please quit editing mode for deleting.');
+                return false;
+            }
+            if (DeleteUnitConfirm() == true) {
+                Optype = 2;
+                var url = "../tmtAjax/Master_ajax.aspx?action=DefectDetails&Id=" + ID + "&Optype=" + Optype;
                 sendRequest(url);
                 return false;
             }
-            function getDefect() {
-                var url = '../tmtAjax/Common_ajax.aspx?action=getDefectDetails'
-                sendRequest(url);
+        }
+        function ddlSelection(tdvalue, ddl) {
+            for (i = 0; i < ddl.length; i++) {
+                if (ddl.options[i].text == tdvalue) {
+                    ddl.selectedIndex = i;
+                }
+            }
+        }
+        function editDefect(id) {
+            var ddlDefPriority = document.getElementById('ddlDefPriority');
+            ddlSelection(document.getElementById('tdDefPriority_' + id).innerHTML, ddlDefPriority);
+            document.getElementById('dtDefectDate_TextBox').value = document.getElementById('tdDefDate_' + id).innerHTML;
+            document.getElementById('txtBusNo').value = document.getElementById('tdBusNo_' + id).innerHTML;
+            document.getElementById('txtDriverNo').value = document.getElementById('tdDriverNo_' + id).innerHTML;
+            document.getElementById('txtDefectTime').value = document.getElementById('tdDefectTime_' + id).innerHTML;
+            document.getElementById('txtDescription').value = document.getElementById('tdDescription_' + id).innerHTML;
+            document.getElementById('hdnID').value = id
+            Optype = 1;
+        }
+        function validatedata() {
+            ValidateSave();
+            var ddlvendor = document.getElementById('ddlvendor');
+            var ddlCategory = document.getElementById('ddlCategory');
+            var ddlPONo = document.getElementById('ddlPONo');
+            var txtpono = document.getElementById('txtPONo');
+            var txtOurRefNo = document.getElementById('txtOurRefNo');
+            var txtYourRefNo = document.getElementById('txtYourRefNo');
+            var hdndetail = document.getElementById('hdndetail');
+            if (ddlvendor.value == 0) {
+                alert('Select vendor name');
+                ddlvendor.focus();
                 return false;
             }
-            function DeleteDefect(ID) {
-                if (Optype == 1) {
-                    alert('Please quit editing mode for deleting.');
-                    return false;
-                }
-                if (DeleteUnitConfirm() == true) {
-                    Optype = 2;
-                    var url = "../tmtAjax/Master_ajax.aspx?action=DefectDetails&Id=" + ID + "&Optype=" + Optype;
-                    sendRequest(url);
-                    return false;
+            var category = ddlCategory.options[ddlCategory.selectedIndex].text;
+            if (category == 'Select') {
+                alert('Select Category');
+                ddlCategory.focus();
+                return false;
+            }
+            else if (ddlPONo.value == 0) {
+                alert('Select PO name');
+                ddlPONo.focus();
+                return false;
+            }
+            else if (txtpono.value == '') {
+                alert('Enter PONo.');
+                txtpono.focus();
+                return false;
+            }
+            else if (IsNumeric(txtpono.value) == false) {
+                alert('please Enter numbers Only.');
+                txtpono.focus();
+                return false;
+            }
+            else if (hdndetail.value == '') {
+                alert('please  enter item');
+                document.getElementById('txtlfno').focus();
+                return false;
+            }
+            ValidateSaveother();
+        }
+        function ValidateSave() {
+            var detvalues = '';
+            var i = 0;
+            var hdnrwcnt = document.getElementById('hdnrwcnt').value;
+            for (i = 1; i < hdnrwcnt; i++) {
+                if (document.getElementById('tdNomenclature_' + i) != null) {
+                    var txtlfNo = document.getElementById('tdlfno_' + i).innerHTML;
+                    var CodeNo = document.getElementById('tdCodeNo_' + i).innerHTML;
+                    var Nomenclature = document.getElementById('tdNomenclature_' + i).innerHTML;
+                    var baserate = document.getElementById('tdbaserate_' + i).innerHTML;
+                    var baseqty = document.getElementById('tdbaseqty_' + i).innerHTML;
+                    var Quantity = document.getElementById('tdQuantity_' + i).innerHTML;
+                    var Rate = document.getElementById('tdRate_' + i).innerHTML;
+                    var Amount = document.getElementById('tdAmount_' + i).innerHTML;
+                    detvalues = detvalues + txtlfNo + '^' + CodeNo + '^' + Nomenclature + '^' + baserate + '^' + baseqty + '^' + Quantity + '^' + Rate + '^' + Amount + '|';
                 }
             }
-            function ddlSelection(tdvalue, ddl) {
-                for (i = 0; i < ddl.length; i++) {
-                    if (ddl.options[i].text == tdvalue) {
-                        ddl.selectedIndex = i;
-                    }
+            document.getElementById("hdndetail").value = detvalues
+        }
+        function ValidateSave1() {
+            var detvalues = '';
+            var i = 0;
+            //        var BusNo = document.getElementById('txtBusNo');        
+            //        if (BusNo.value == ''){
+            //            alert('Bus No. should not be empty')
+            //            BusNo.focus();  ,
+            //            return false;
+            //        }
+            var hdnrwcnt = document.getElementById('hdnrwcnt').value;
+            var ddlvendor = document.getElementById('ddlvendor').value;
+            var ddlPONo = document.getElementById('ddlPONo').value;
+            var dtPODate = document.getElementById('dtPODate_TextBox').value;
+            var txtOurRefNo = document.getElementById('txtOurRefNo').value;
+            var dtOurRefNo = document.getElementById('dtOurRefNo_TextBox').value;
+            var txtYourRefNo = document.getElementById('txtYourRefNo').value;
+            var dtYourRefNo = document.getElementById('dtYourRefNo_TextBox').value;
+            var txtpono = document.getElementById('txtPONo').value;
+            var txtPayment = document.getElementById('txtPayment').value;
+            var txtDescount = document.getElementById('txtDescount').value;
+            var txtFright = document.getElementById('txtFright').value;
+            var txtBankCharges = document.getElementById('txtBankCharges').value;
+            var txtGoodsent = document.getElementById('txtGoodsent').value;
+            var txtDelivery = document.getElementById('txtDelivery').value;
+            var txtValidityPeriod = document.getElementById('txtValidityPeriod').value;
+            var txtYear = document.getElementById('txtYear').value;
+            var txtBCReg = document.getElementById('txtBCReg').value;
+            var txtSrNo = document.getElementById('txtSrNo').value;
+            var txtAudited = document.getElementById('txtAudited').value;
+            var txtAudit_officer = document.getElementById('txtAudit_officer').value;
+            var txtCl = document.getElementById('txtCl').value;
+            var Date1_TextBox = document.getElementById('Date1_TextBox').value;
+            var Date2_TextBox = document.getElementById('Date2_TextBox').value;
+            var txtResNo = document.getElementById('txtResNo').value;
+            var txtPurchase = document.getElementById('txtPurchase').value;
+            var txtBudgetAccount = document.getElementById('txtBudgetAccount').value;
+            var txtPreparedby = document.getElementById('txtPreparedby').value;
+            var txtCheckedBy = document.getElementById('txtCheckedBy').value;
+            var txtIndentRefNo = document.getElementById('txtIndentRefNo').value;
+            var txtspdiscount = document.getElementById('txtspdisc').value;
+            var txtvat = document.getElementById('txtvat').value;
+            var txted = document.getElementById('txted').value;
+            var ddlCategory = document.getElementById('ddlCategory').value;
+            for (i = 1; i < hdnrwcnt; i++) {
+                if (document.getElementById('tdNomenclature_' + i) != null) {
+                    var txtlfNo = document.getElementById('tdlfno_' + i).innerHTML;
+                    var CodeNo = document.getElementById('tdCodeNo_' + i).innerHTML;
+                    var Nomenclature = document.getElementById('tdNomenclature_' + i).innerHTML;
+                    var Quantity = document.getElementById('tdQuantity_' + i).innerHTML;
+                    var Rate = document.getElementById('tdRate_' + i).innerHTML;
+                    var Amount = document.getElementById('tdAmount_' + i).innerHTML;
+                    detvalues = detvalues + txtlfNo + '^' + CodeNo + '^' + Nomenclature + '^' + Quantity + '^' + Rate + '^' + Amount + '|';
                 }
             }
-            function editDefect(id) {
-                var ddlDefPriority = document.getElementById('ddlDefPriority');
-                ddlSelection(document.getElementById('tdDefPriority_' + id).innerHTML, ddlDefPriority);
-                document.getElementById('dtDefectDate_TextBox').value = document.getElementById('tdDefDate_' + id).innerHTML;
-                document.getElementById('txtBusNo').value = document.getElementById('tdBusNo_' + id).innerHTML;
-                document.getElementById('txtDriverNo').value = document.getElementById('tdDriverNo_' + id).innerHTML;
-                document.getElementById('txtDefectTime').value = document.getElementById('tdDefectTime_' + id).innerHTML;
-                document.getElementById('txtDescription').value = document.getElementById('tdDescription_' + id).innerHTML;
-                document.getElementById('hdnID').value = id
-                Optype = 1;
+            if (document.getElementById('hdnID').value != '') { ID = document.getElementById('hdnID').value }
+            if (Optype == 0) {
+                //  var url = "../store/Ajaxstore.aspx?action=POMaster&Id=" + ID + "&vendorId=" + ddlvendor + "&PONoId=" + ddlPONo +  "&PONo=" + txtpono + "&PODate=" + dtPODate  + "&OurRefNo=" + txtOurRefNo + "&dtOurRefNo=" + dtOurRefNo  + "&YourRefNo=" + txtYourRefNo + "&dtYourRefNo=" + dtYourRefNo  +"&Indentdetails=" + detvalues  + "&Optype=" + Optype+"&txtPayment=" + txtPayment  +  "&txtDescount=" + txtDescount  + "&txtFright=" + txtFright   + "&txtBankCharges=" + txtBankCharges  + "&txtGoodsent=" + txtGoodsent   + "&txtDelivery=" + txtDelivery  + "&txtValidityPeriod=" + txtValidityPeriod  +"&txtYear=" + txtYear  + "&txtBCReg=" + txtBCReg  +"&txtSrNo=" + txtSrNo  + "&txtAudited=" + txtAudited  +"&txtCl=" + txtCl  + "&Date1_TextBox=" + Date1_TextBox  +"&Date2_TextBox=" + Date2_TextBox  + "&txtAudit_officer=" + txtAudit_officer  +"&txtResNo=" + txtResNo + "&txtPurchase=" + txtPurchase +"&txtBudgetAccount=" + txtBudgetAccount   + "&txtPreparedby=" + txtPreparedby   +"&txtCheckedBy=" + txtCheckedBy    + "&txtIndentRefNo=" + txtIndentRefNo  + "&txtspdiscount=" + txtspdiscount  + "&txtvat=" + txtvat  + "&txted=" + txted;                         
+                var url = "../store/Ajaxstore.aspx?action=POMaster&Id=" + ID + "&vendorId=" + ddlvendor + "&PONoId=" + ddlPONo + "&PONo=" + txtpono + "&PODate=" + dtPODate + "&OurRefNo=" + txtOurRefNo + "&dtOurRefNo=" + dtOurRefNo + "&YourRefNo=" + txtYourRefNo + "&dtYourRefNo=" + dtYourRefNo + "&Indentdetails=" + detvalues + "&Optype=" + Optype + "&txtPayment=" + txtPayment + "&txtDescount=" + txtDescount + "&txtFright=" + txtFright + "&txtBankCharges=" + txtBankCharges + "&txtGoodsent=" + txtGoodsent + "&txtDelivery=" + txtDelivery + "&txtValidityPeriod=" + txtValidityPeriod + "&txtYear=" + txtYear + "&txtBCReg=" + txtBCReg + "&txtSrNo=" + txtSrNo + "&txtAudited=" + txtAudited + "&txtCl=" + txtCl + "&Date1_TextBox=" + Date1_TextBox + "&Date2_TextBox=" + Date2_TextBox + "&txtAudit_officer=" + txtAudit_officer + "&txtResNo=" + txtResNo + "&txtPurchase=" + txtPurchase + "&txtBudgetAccount=" + txtBudgetAccount + "&txtPreparedby=" + txtPreparedby + "&txtCheckedBy=" + txtCheckedBy + "&txtIndentRefNo=" + txtIndentRefNo + "&txtspdiscount=" + txtspdiscount + "&txtvat=" + txtvat + "&txted=" + txted + "&ddlCategory=" + ddlCategory;
             }
-            function validatedata() {
-                ValidateSave();
-                var ddlvendor = document.getElementById('ddlvendor');
-                var ddlCategory = document.getElementById('ddlCategory');
-                var ddlPONo = document.getElementById('ddlPONo');
-                var txtpono = document.getElementById('txtPONo');
-                var txtOurRefNo = document.getElementById('txtOurRefNo');
-                var txtYourRefNo = document.getElementById('txtYourRefNo');
-                var hdndetail = document.getElementById('hdndetail');
-                if (ddlvendor.value == 0) {
-                    alert('Select vendor name');
-                    ddlvendor.focus();
-                    return false;
-                }
-                var category = ddlCategory.options[ddlCategory.selectedIndex].text;
-                if (category == 'Select') {
-                    alert('Select Category');
-                    ddlCategory.focus();
-                    return false;
-                }
-                else if (ddlPONo.value == 0) {
-                    alert('Select PO name');
-                    ddlPONo.focus();
-                    return false;
-                }
-                else if (txtpono.value == '') {
-                    alert('Enter PONo.');
-                    txtpono.focus();
-                    return false;
-                }
-                else if (IsNumeric(txtpono.value) == false) {
-                    alert('please Enter numbers Only.');
-                    txtpono.focus();
-                    return false;
-                }
-                else if (hdndetail.value == '') {
-                    alert('please  enter item');
-                    document.getElementById('txtlfno').focus();
-                    return false;
-                }
-                ValidateSaveother();
+            else {
+                var url = "../store/Ajaxstore.aspx?action=POMaster&Id=" + ID + "&vendorId=" + ddlvendor + "&PONoId=" + ddlPONo + "&PODate=" + dtPODate + "&OurRefNo=" + txtOurRefNo + "&OurRefNo=" + dtOurRefNo + "&YourRefNo=" + txtYourRefNo + "&YourRefNo=" + dtYourRefNo + "&Indentdetails=" + detvalues + "&Optype=" + Optype;
+                Optype = 0;
             }
-            function ValidateSave() {
-                var detvalues = '';
-                var i = 0;
-                var hdnrwcnt = document.getElementById('hdnrwcnt').value;
-                for (i = 1; i < hdnrwcnt ; i++) {
-                    if (document.getElementById('tdNomenclature_' + i) != null) {
-                        var txtlfNo = document.getElementById('tdlfno_' + i).innerHTML;
-                        var CodeNo = document.getElementById('tdCodeNo_' + i).innerHTML;
-                        var Nomenclature = document.getElementById('tdNomenclature_' + i).innerHTML;
-                        var baserate = document.getElementById('tdbaserate_' + i).innerHTML;
-                        var baseqty = document.getElementById('tdbaseqty_' + i).innerHTML;
-                        var Quantity = document.getElementById('tdQuantity_' + i).innerHTML;
-                        var Rate = document.getElementById('tdRate_' + i).innerHTML;
-                        var Amount = document.getElementById('tdAmount_' + i).innerHTML;
-                        detvalues = detvalues + txtlfNo + '^' + CodeNo + '^' + Nomenclature + '^' + baserate + '^' + baseqty + '^' + Quantity + '^' + Rate + '^' + Amount + '|';
-                    }
-                }
-                document.getElementById("hdndetail").value = detvalues
-            }
-            function ValidateSave1() {
-                var detvalues = '';
-                var i = 0;
-                //        var BusNo = document.getElementById('txtBusNo');        
-                //        if (BusNo.value == ''){
-                //            alert('Bus No. should not be empty')
-                //            BusNo.focus();  ,
-                //            return false;
-                //        }
-                var hdnrwcnt = document.getElementById('hdnrwcnt').value;
-                var ddlvendor = document.getElementById('ddlvendor').value;
-                var ddlPONo = document.getElementById('ddlPONo').value;
-                var dtPODate = document.getElementById('dtPODate_TextBox').value;
-                var txtOurRefNo = document.getElementById('txtOurRefNo').value;
-                var dtOurRefNo = document.getElementById('dtOurRefNo_TextBox').value;
-                var txtYourRefNo = document.getElementById('txtYourRefNo').value;
-                var dtYourRefNo = document.getElementById('dtYourRefNo_TextBox').value;
-                var txtpono = document.getElementById('txtPONo').value;
-                var txtPayment = document.getElementById('txtPayment').value;
-                var txtDescount = document.getElementById('txtDescount').value;
-                var txtFright = document.getElementById('txtFright').value;
-                var txtBankCharges = document.getElementById('txtBankCharges').value;
-                var txtGoodsent = document.getElementById('txtGoodsent').value;
-                var txtDelivery = document.getElementById('txtDelivery').value;
-                var txtValidityPeriod = document.getElementById('txtValidityPeriod').value;
-                var txtYear = document.getElementById('txtYear').value;
-                var txtBCReg = document.getElementById('txtBCReg').value;
-                var txtSrNo = document.getElementById('txtSrNo').value;
-                var txtAudited = document.getElementById('txtAudited').value;
-                var txtAudit_officer = document.getElementById('txtAudit_officer').value;
-                var txtCl = document.getElementById('txtCl').value;
-                var Date1_TextBox = document.getElementById('Date1_TextBox').value;
-                var Date2_TextBox = document.getElementById('Date2_TextBox').value;
-                var txtResNo = document.getElementById('txtResNo').value;
-                var txtPurchase = document.getElementById('txtPurchase').value;
-                var txtBudgetAccount = document.getElementById('txtBudgetAccount').value;
-                var txtPreparedby = document.getElementById('txtPreparedby').value;
-                var txtCheckedBy = document.getElementById('txtCheckedBy').value;
-                var txtIndentRefNo = document.getElementById('txtIndentRefNo').value;
-                var txtspdiscount = document.getElementById('txtspdisc').value;
-                var txtvat = document.getElementById('txtvat').value;
-                var txted = document.getElementById('txted').value;
-                var ddlCategory = document.getElementById('ddlCategory').value;
-                for (i = 1; i < hdnrwcnt ; i++) {
-                    if (document.getElementById('tdNomenclature_' + i) != null) {
-                        var txtlfNo = document.getElementById('tdlfno_' + i).innerHTML;
-                        var CodeNo = document.getElementById('tdCodeNo_' + i).innerHTML;
-                        var Nomenclature = document.getElementById('tdNomenclature_' + i).innerHTML;
-                        var Quantity = document.getElementById('tdQuantity_' + i).innerHTML;
-                        var Rate = document.getElementById('tdRate_' + i).innerHTML;
-                        var Amount = document.getElementById('tdAmount_' + i).innerHTML;
-                        detvalues = detvalues + txtlfNo + '^' + CodeNo + '^' + Nomenclature + '^' + Quantity + '^' + Rate + '^' + Amount + '|';
-                    }
-                }
-                if (document.getElementById('hdnID').value != '') { ID = document.getElementById('hdnID').value }
-                if (Optype == 0) {
-                    //  var url = "../store/Ajaxstore.aspx?action=POMaster&Id=" + ID + "&vendorId=" + ddlvendor + "&PONoId=" + ddlPONo +  "&PONo=" + txtpono + "&PODate=" + dtPODate  + "&OurRefNo=" + txtOurRefNo + "&dtOurRefNo=" + dtOurRefNo  + "&YourRefNo=" + txtYourRefNo + "&dtYourRefNo=" + dtYourRefNo  +"&Indentdetails=" + detvalues  + "&Optype=" + Optype+"&txtPayment=" + txtPayment  +  "&txtDescount=" + txtDescount  + "&txtFright=" + txtFright   + "&txtBankCharges=" + txtBankCharges  + "&txtGoodsent=" + txtGoodsent   + "&txtDelivery=" + txtDelivery  + "&txtValidityPeriod=" + txtValidityPeriod  +"&txtYear=" + txtYear  + "&txtBCReg=" + txtBCReg  +"&txtSrNo=" + txtSrNo  + "&txtAudited=" + txtAudited  +"&txtCl=" + txtCl  + "&Date1_TextBox=" + Date1_TextBox  +"&Date2_TextBox=" + Date2_TextBox  + "&txtAudit_officer=" + txtAudit_officer  +"&txtResNo=" + txtResNo + "&txtPurchase=" + txtPurchase +"&txtBudgetAccount=" + txtBudgetAccount   + "&txtPreparedby=" + txtPreparedby   +"&txtCheckedBy=" + txtCheckedBy    + "&txtIndentRefNo=" + txtIndentRefNo  + "&txtspdiscount=" + txtspdiscount  + "&txtvat=" + txtvat  + "&txted=" + txted;                         
-                    var url = "../store/Ajaxstore.aspx?action=POMaster&Id=" + ID + "&vendorId=" + ddlvendor + "&PONoId=" + ddlPONo + "&PONo=" + txtpono + "&PODate=" + dtPODate + "&OurRefNo=" + txtOurRefNo + "&dtOurRefNo=" + dtOurRefNo + "&YourRefNo=" + txtYourRefNo + "&dtYourRefNo=" + dtYourRefNo + "&Indentdetails=" + detvalues + "&Optype=" + Optype + "&txtPayment=" + txtPayment + "&txtDescount=" + txtDescount + "&txtFright=" + txtFright + "&txtBankCharges=" + txtBankCharges + "&txtGoodsent=" + txtGoodsent + "&txtDelivery=" + txtDelivery + "&txtValidityPeriod=" + txtValidityPeriod + "&txtYear=" + txtYear + "&txtBCReg=" + txtBCReg + "&txtSrNo=" + txtSrNo + "&txtAudited=" + txtAudited + "&txtCl=" + txtCl + "&Date1_TextBox=" + Date1_TextBox + "&Date2_TextBox=" + Date2_TextBox + "&txtAudit_officer=" + txtAudit_officer + "&txtResNo=" + txtResNo + "&txtPurchase=" + txtPurchase + "&txtBudgetAccount=" + txtBudgetAccount + "&txtPreparedby=" + txtPreparedby + "&txtCheckedBy=" + txtCheckedBy + "&txtIndentRefNo=" + txtIndentRefNo + "&txtspdiscount=" + txtspdiscount + "&txtvat=" + txtvat + "&txted=" + txted + "&ddlCategory=" + ddlCategory;
-                }
-                else {
-                    var url = "../store/Ajaxstore.aspx?action=POMaster&Id=" + ID + "&vendorId=" + ddlvendor + "&PONoId=" + ddlPONo + "&PODate=" + dtPODate + "&OurRefNo=" + txtOurRefNo + "&OurRefNo=" + dtOurRefNo + "&YourRefNo=" + txtYourRefNo + "&YourRefNo=" + dtYourRefNo + "&Indentdetails=" + detvalues + "&Optype=" + Optype;
-                    Optype = 0;
-                }
-                //         var defId  = '<%=request.querystring("IndNo") %>'     
+            //         var defId  = '<%=request.querystring("IndNo") %>'     
             //        alert(defId);
             sendRequest(url);
         }
@@ -1009,8 +1065,8 @@
                     resp = ""
                     resp = xmlHttp.responseText;
                     var ele1 = resp.split('|');
-                    document.getElementById('txtPartNo').value = ele1[2];
-                    document.getElementById('txtsubrack').value = ele1[3];
+                    document.getElementById('txtPartNo').value = ele1[3];
+                    document.getElementById('txtsubrack').value = ele1[2];
                 }
             }
             var itemname = document.getElementById('txtItemName').value;
@@ -1257,8 +1313,8 @@
                     var ele1 = resp.split('|');
                     // document.getElementById('txtbqty').value =ele1[0];
                     //document.getElementById('txtRate').value =ele1[1];
-                    document.getElementById('txtCodeNo').value = ele1[2];
-                    document.getElementById('txtlfno').value = ele1[3];
+                    document.getElementById('txtCodeNo').value = ele1[3];
+                    document.getElementById('txtlfno').value = ele1[2];
                 }
             }
             var itemname = document.getElementById('txtNomenclature').value;
@@ -1271,8 +1327,8 @@
         function setfocus() {
             document.getElementById('txtlfno').focus();
         }
-        </script>
-        <script>
+    </script>
+    <script>
         
             $("#txtref_asrtu").autocomplete(
                    
@@ -1292,5 +1348,5 @@
 		   source: [<% =strVendor  %>]
 		}
 	);
-        </script>
+    </script>
 </asp:Content>

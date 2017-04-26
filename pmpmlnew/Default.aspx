@@ -1,154 +1,100 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+          <script src="<% =Session("host") %>/scripts/jquery-1.11.0.min.js"></script>
+    <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="http://www.amcharts.com/lib/3/serial.js"></script>
+<script src="http://www.amcharts.com/lib/3/themes/light.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" Runat="Server">
       <!-- END HEADER -->
-            <div class="container-fluid">
-                <div class="page-content">
+            <div class="container-fluid" style="margin-top:-50px">
+                <div class="">
                     <!-- BEGIN BREADCRUMBS -->
                     <div class="breadcrumbs">
-                        <span class="aption-subject bold uppercase font-dark" style="font-size:16px;">Nt Wadi Depot (Shivaji Nagar)</span>
+                        <h1 class="aption-subject bold uppercase font-dark"><%=Session("deponame") %></h1>
                         
                     </div>
                     <!-- END BREADCRUMBS -->
                     <!-- BEGIN PAGE BASE CONTENT -->
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="dashboard-stat2 bordered">
-                                <div class="display">
-                                    <div class="number">
-                                        <h3 class="font-green-sharp">
-                                            <span data-counter="counterup" data-value="7800">0</span>
-                                            <small class="font-green-sharp">$</small>
-                                        </h3>
-                                        <small>TOTAL PROFIT</small>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="icon-pie-chart"></i>
-                                    </div>
-                                </div>
-                                <div class="progress-info">
-                                    <div class="progress">
-                                        <span style="width: 76%;" class="progress-bar progress-bar-success green-sharp">
-                                            <span class="sr-only">76% progress</span>
-                                        </span>
-                                    </div>
-                                    <div class="status">
-                                        <div class="status-title"> progress </div>
-                                        <div class="status-number"> 76% </div>
+
+                    <div class="row widget-row">
+                        <div class="col-md-3">
+                            <!-- BEGIN WIDGET THUMB -->
+                            <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+                                <h4 class="widget-thumb-heading">Total Defects</h4>
+                                <div class="widget-thumb-wrap">
+                                   <i class=" widget-thumb-icon bg-green fa fa-cogs" aria-hidden="true"></i>
+                                    <div class="widget-thumb-body">
+                                       
+                                        <span class="widget-thumb-body-stat" data-counter="counterup" data-value='<%=Session("total_defect") %>'><%=Session("total_defect") %></span>
                                     </div>
                                 </div>
                             </div>
+                            <!-- END WIDGET THUMB -->
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="dashboard-stat2 bordered">
-                                <div class="display">
-                                    <div class="number">
-                                        <h3 class="font-red-haze">
-                                            <span data-counter="counterup" data-value="1349">0</span>
-                                        </h3>
-                                        <small>NEW FEEDBACKS</small>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="icon-like"></i>
-                                    </div>
-                                </div>
-                                <div class="progress-info">
-                                    <div class="progress">
-                                        <span style="width: 85%;" class="progress-bar progress-bar-success red-haze">
-                                            <span class="sr-only">85% change</span>
-                                        </span>
-                                    </div>
-                                    <div class="status">
-                                        <div class="status-title"> change </div>
-                                        <div class="status-number"> 85% </div>
+                        <div class="col-md-3">
+                            <!-- BEGIN WIDGET THUMB -->
+                            <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+                                <h4 class="widget-thumb-heading">Depot Defects</h4>
+                                <div class="widget-thumb-wrap">
+                                    <i class="widget-thumb-icon bg-red fa fa-bus"></i>
+                                    <div class="widget-thumb-body">
+                                     
+                                        <span class="widget-thumb-body-stat" data-counter="counterup" data-value='<%=Session("depo_defect") %>'><%=Session("depo_defect") %></span>
                                     </div>
                                 </div>
                             </div>
+                            <!-- END WIDGET THUMB -->
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="dashboard-stat2 bordered">
-                                <div class="display">
-                                    <div class="number">
-                                        <h3 class="font-blue-sharp">
-                                            <span data-counter="counterup" data-value="567"></span>
-                                        </h3>
-                                        <small>NEW ORDERS</small>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="icon-basket"></i>
-                                    </div>
-                                </div>
-                                <div class="progress-info">
-                                    <div class="progress">
-                                        <span style="width: 45%;" class="progress-bar progress-bar-success blue-sharp">
-                                            <span class="sr-only">45% grow</span>
-                                        </span>
-                                    </div>
-                                    <div class="status">
-                                        <div class="status-title"> grow </div>
-                                        <div class="status-number"> 45% </div>
+                        <div class="col-md-3">
+                            <!-- BEGIN WIDGET THUMB -->
+                            <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+                                <h4 class="widget-thumb-heading">Road Defects</h4>
+                                <div class="widget-thumb-wrap">
+                                <i class=" widget-thumb-icon bg-purple fa fa-road" aria-hidden="true"></i>
+                                    <div class="widget-thumb-body">
+                           
+                                        <span class="widget-thumb-body-stat" data-counter="counterup" data-value='<%=Session("docking") %>'><%=Session("docking") %></span>
                                     </div>
                                 </div>
                             </div>
+                            <!-- END WIDGET THUMB -->
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="dashboard-stat2 bordered">
-                                <div class="display">
-                                    <div class="number">
-                                        <h3 class="font-purple-soft">
-                                            <span data-counter="counterup" data-value="276"></span>
-                                        </h3>
-                                        <small>NEW USERS</small>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="icon-user"></i>
-                                    </div>
-                                </div>
-                                <div class="progress-info">
-                                    <div class="progress">
-                                        <span style="width: 57%;" class="progress-bar progress-bar-success purple-soft">
-                                            <span class="sr-only">56% change</span>
-                                        </span>
-                                    </div>
-                                    <div class="status">
-                                        <div class="status-title"> change </div>
-                                        <div class="status-number"> 57% </div>
+                        <div class="col-md-3">
+                            <!-- BEGIN WIDGET THUMB -->
+                            <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+                                <h4 class="widget-thumb-heading">Docking Defects</h4>
+                                <div class="widget-thumb-wrap">
+                                  <i class=" widget-thumb-icon bg-blue fa fa-industry" aria-hidden="true"></i>
+                                    <div class="widget-thumb-body">
+                                 
+                                        <span class="widget-thumb-body-stat" data-counter="counterup" data-value='<%=Session("road_defect") %>'><%=Session("road_defect") %></span>
                                     </div>
                                 </div>
                             </div>
+                            <!-- END WIDGET THUMB -->
                         </div>
                     </div>
+
+                    
                     <div class="row">
-                        <div class="col-lg-6 col-xs-12 col-sm-12">
+                        <div class="col-lg-12 col-xs-12 col-sm-12">
                             <div class="portlet light bordered">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <span class="caption-subject bold uppercase font-dark">Modules</span>
+                                        <span class="caption-subject bold uppercase font-dark">Month wise Material Consumption</span>
                                        
                                     </div>
                                     
                                 </div>
                                 <div class="portlet-body">
-                                    <div id="dashboard_amchart_1" class="CSSAnimationChart"></div>
+                                    <div id="dashboard_amchart_1" style=" width: 100%;
+                                         height: 500px;" ></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-xs-12 col-sm-12">
-                            <div class="portlet light bordered">
-                                <div class="portlet-title">
-                                    <div class="caption ">
-                                        <span class="caption-subject font-dark bold uppercase">Depot</span>
-                                       
-                                    </div>
-                                    
-                                </div>
-                                <div class="portlet-body">
-                                    <div id="dashboard_amchart_4" class="CSSAnimationChart"></div>
-                                </div>
-                            </div>
-                        </div>
+                   
                     </div>
                     
                     
@@ -157,102 +103,7 @@
                     
                     
                     
-                    <div class="row">
-                        <div class="col-lg-6 col-xs-12 col-sm-12">
-                            <div class="portlet light bordered">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class="icon-cursor font-dark hide"></i>
-                                        <span class="caption-subject font-dark bold uppercase">General Stats</span>
-                                    </div>
-                                    <div class="actions">
-                                        <a href="javascript:;" class="btn btn-sm btn-circle red easy-pie-chart-reload">
-                                            <i class="fa fa-repeat"></i> Reload </a>
-                                    </div>
-                                </div>
-                                <div class="portlet-body">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="easy-pie-chart">
-                                                <div class="number transactions" data-percent="55">
-                                                    <span>+55</span>% </div>
-                                                <a class="title" href="javascript:;"> Transactions
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="margin-bottom-10 visible-sm"> </div>
-                                        <div class="col-md-4">
-                                            <div class="easy-pie-chart">
-                                                <div class="number visits" data-percent="85">
-                                                    <span>+85</span>% </div>
-                                                <a class="title" href="javascript:;"> New Visits
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="margin-bottom-10 visible-sm"> </div>
-                                        <div class="col-md-4">
-                                            <div class="easy-pie-chart">
-                                                <div class="number bounce" data-percent="46">
-                                                    <span>-46</span>% </div>
-                                                <a class="title" href="javascript:;"> Bounce
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xs-12 col-sm-12">
-                            <div class="portlet light bordered">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class="icon-equalizer font-dark hide"></i>
-                                        <span class="caption-subject font-dark bold uppercase">Server Stats</span>
-                                        <span class="caption-helper">monthly stats...</span>
-                                    </div>
-                                    <div class="tools">
-                                        <a href="" class="collapse"> </a>
-                                        <a href="#portlet-config" data-toggle="modal" class="config"> </a>
-                                        <a href="" class="reload"> </a>
-                                        <a href="" class="remove"> </a>
-                                    </div>
-                                </div>
-                                <div class="portlet-body">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="sparkline-chart">
-                                                <div class="number" id="sparkline_bar5"></div>
-                                                <a class="title" href="javascript:;"> Network
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="margin-bottom-10 visible-sm"> </div>
-                                        <div class="col-md-4">
-                                            <div class="sparkline-chart">
-                                                <div class="number" id="sparkline_bar6"></div>
-                                                <a class="title" href="javascript:;"> CPU Load
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="margin-bottom-10 visible-sm"> </div>
-                                        <div class="col-md-4">
-                                            <div class="sparkline-chart">
-                                                <div class="number" id="sparkline_line"></div>
-                                                <a class="title" href="javascript:;"> Load Rate
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     
                     
                     
@@ -263,7 +114,102 @@
    
         <!-- END CONTAINER -->
         <!-- BEGIN QUICK SIDEBAR -->
+      <script>
+          /**
+ * Plugin to auto-truncate the axis labels
+ */
+          AmCharts.addInitHandler(function (chart) {
+
+              // Add handler for when the chart is inited
+              chart.addListener("init", function (e) {
+
+                  // Process each value axis
+                  for (var i = 0; i < chart.valueAxes.length; i++) {
+                      var axis = chart.valueAxes[i];
+                      if (axis.title) {
+
+                          // Get available height
+                          var ph = chart.plotAreaHeight;
+
+                          // Calculate title actual height
+                          var th = axis.titleLabel.node.clientWidth;
+                          if (th > ph) {
+
+                              // Preserve original title
+                              axis.originalTitle = axis.title;
+
+                              // Start truncating the title
+                              while (th > ph) {
+                                  if (axis.title.match(/[\W]+/)) {
+                                      // Truncate a word
+                                      axis.title = axis.title.replace(/[\W]?[\w]*$/, "");
+                                  } else {
+                                      // Truncate a character
+                                      axis.title = axis.title.replace(/[\w]{1}$/, "");
+                                  }
+                                  axis.titleLabel.node.firstElementChild.innerHTML = axis.title + "...";
+                                  th = axis.titleLabel.node.clientWidth;
+                              }
+
+                              // Set up hover balloon
+                              var title = document.createElementNS("http://www.w3.org/2000/svg", "title");
+                              title.textContent = axis.originalTitle;
+                              axis.titleLabel.node.appendChild(title);
+
+
+                          }
+                      }
+                  }
+              });
+          }, ["serial"]);
+          $.get("<% =Session("host") %>/store/ajaxstore.aspx?action=getchartvaluemwmc&poyear=2016", function (data) {
+              var chartData = JSON.parse( data);
+              console.log(chartData);
+              var chart = AmCharts.makeChart("dashboard_amchart_1", {
+                  type: "serial",
+                  fontSize: 12,
+                  fontFamily: "Open Sans",
+                  dataProvider: chartData,
+                  startDuration: 1,
+                  color: "#6c7b88",
+                  "categoryField": "date",
+                  "categoryAxis": {
+                      "gridPosition": "middle",
+                      "gridAlpha": 0,
+                      "labelFunction": function (valueText, serialDataItem, categoryAxis) {
+                          if (valueText.length > 3)
+                              return valueText.substring(0, 3) + '';
+                          else
+                              return valueText;
+                      }
+                  },
+                  "valueAxis": [{
+                      "gridColor": "#FFFFFF",
+                      "gridAlpha": 0.2,
+                      "dashLength": 0,
+                      "labelFunction": function (valueText, serialDataItem, valueAxis) {
+                          if (valueText.length > 3)
+                              return valueText.substring(0, 3) + '';
+                          else
+                              return valueText;
+                      }
+                  }],
+                  "graphs": [{
+                      "balloonText": "[[category]] : <b>[[value]]</b>",
+                      "fillAlphas": 0.8,
+                      "lineAlpha": 0.2,
+                      "type": "column",
+                      "valueField": "distance",
+                  }],
+                  "export": {
+                      "enabled": true
+                  }
+              });
+          });
+          
+
       
+      </script>
       
 </asp:Content>
 

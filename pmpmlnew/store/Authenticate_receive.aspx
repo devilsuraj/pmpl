@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="Authenticate_receive.aspx.vb"
+<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="Authenticate_receive.aspx.vb"
      Inherits="kdmt.Authenticate_receive" %>
 <%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
     TagPrefix="BDP" %>
@@ -139,9 +139,11 @@ var i=1;
 var j=0;
     for (i=2;i<=rowCount;i++)
     {
-    var id = 'dgresult__ctl' + i + '_authenticate'
+        var id = '_ctl0_ContentPlaceHolder1_dgresult__ctl' + i + '_authenticate'
+   
     if (id != checkid )
     {
+        document.getElementById(id).checked = false;
         document.getElementById(id).checked = false ;
      }
      else
@@ -151,7 +153,7 @@ var j=0;
     }
 }
 
-function validate ()
+function validate()
 {
 
     var rowCount = document.getElementById("dgresult").rows.length;
@@ -159,7 +161,8 @@ function validate ()
     var j=0;
     for (i=2;i<=rowCount;i++)
     {
-        var id = 'dgresult__ctl' + i + '_authenticate'
+        var id = '_ctl0_ContentPlaceHolder1_dgresult__ctl' + i + '_authenticate'
+       
         if (document.getElementById(id).checked == true )
         {
             j = 1            
@@ -181,7 +184,7 @@ function validate ()
         var MID = document.getElementById("hdnMID").value
         var ID = document.getElementById("hdnID").value
         var cnt = document.getElementById("hdncnt").value   
-        var drbdate = document.getElementById("bdpdrbdate_TextBox").value
+        var drbdate = document.getElementById("_ctl0_ContentPlaceHolder1_bdpdrbdate_TextBox").value
                                            
         var rdbsp = '';       
         var drbno = '';  
@@ -326,7 +329,7 @@ function validate ()
                                         </asp:TemplateColumn>
                                         <asp:TemplateColumn HeaderText="Authenticate">
                                             <ItemTemplate>
-                                                <asp:RadioButton ID="authenticate" runat="server" />
+                                                <asp:RadioButton ID="authenticate" ClientIDMode="AutoID" runat="server" />
                                             </ItemTemplate>
                                         </asp:TemplateColumn>
                                     </Columns>
@@ -337,7 +340,7 @@ function validate ()
                         <tr>
                             <td>
                                 DRB Date :
-                                <BDP:BDPLite ID="bdpdrbdate" TextBoxStyle-Width="80px" runat="server">
+                                <BDP:BDPLite ID="bdpdrbdate" ClientIDMode="AutoID" TextBoxStyle-Width="80px" runat="server">
                                 </BDP:BDPLite>
                             </td>
                         </tr>
@@ -372,7 +375,7 @@ function validate ()
             </div>
         </div>
     </div>
-    </form>
+    
 
     <script type="text/javascript">
 <!--

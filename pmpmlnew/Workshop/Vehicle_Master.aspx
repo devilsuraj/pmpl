@@ -95,10 +95,10 @@ var ID = 0;
         else if(Diesel.checked==true) {
            Fuel = 1;
         }    
-        var RTODate = document.getElementById('dtRTODate_TextBox').value;
-        var FitRenewalDate = document.getElementById('dtFitRenewalDate_TextBox').value;
-        var DepoDate = document.getElementById('dtDepoDate_TextBox').value;
-        var PutDate = document.getElementById('dtPutDate_TextBox').value;
+        var RTODate = document.getElementById('dtRTODate').value;
+        var FitRenewalDate = document.getElementById('dtFitRenewalDate').value;
+        var DepoDate = document.getElementById('dtDepoDate').value;
+        var PutDate = document.getElementById('dtPutDate').value;
         var CurStatus = document.getElementById('ddlCurStatus').value;
         var remark = document.getElementById('txtremark').value;         
         if (document.getElementById('hdnID').value!=''){ID = document.getElementById('hdnID').value}
@@ -189,9 +189,10 @@ function handleresponse() {
             return false;
         }
         else if(resp.indexOf('Add') != -1) {      
-            alert('Data Added Successfully.');        
-            getVehicle();
-            Clean();
+            alert('Data Added Successfully.');
+            window.location.href = "Vehicle_Master.aspx";
+           // getVehicle();
+            //Clean();
             return false;
         }
         else if(resp.indexOf('Edit') != -1) {    
@@ -338,8 +339,8 @@ function handleresponse() {
                             </tr>
                             <tr>
                                 <td align="center" colspan="4">
-                                    <label>
-                                        <input name="Save" type="button" id="btnSave" value="Save" onclick="ValidateSave();" /></label>
+                                
+                                    <asp:Button ID="btnSave" runat="server" Text="Save" Height="32px" Width="63px" OnClientClick="ValidateSave()" />
                                     <a href="Vehicle_Master.aspx">Reset</a>
                                 </td>
                             </tr>

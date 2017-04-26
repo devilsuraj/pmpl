@@ -121,7 +121,7 @@
                                         JOC No :
                                     </td>
                                     <td align="left">
-                                        <asp:TextBox ID="txtjob" Width="30px" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtjob" Width="60px" runat="server"></asp:TextBox>
                                         <asp:TextBox ID="txtjobno" Width="40px" MaxLength="4" TabIndex="1" AutoPostBack="True"
                                             runat="server"></asp:TextBox>
                                         <input type="text" id="txtjoc" style="width: 170px; display: none" class="textfield"

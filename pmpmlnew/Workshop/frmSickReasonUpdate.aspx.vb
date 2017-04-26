@@ -84,7 +84,7 @@ Namespace KDMT
                 Response.Write("<script>alert ('Saved Successfully') </script>")
                 tbldata.Visible = False
             Catch ex As Exception
-
+                Response.Write(ex.Message)
             End Try
         End Sub
 

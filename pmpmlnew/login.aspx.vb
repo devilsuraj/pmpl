@@ -20,7 +20,10 @@ Partial Class Login
             Con.Open()
         End If
 
-        Dim cmd As New SqlClient.SqlCommand("SELECT USERID, USERNAME, USERPASS,Dept_code,Loc_ID,RoleId,Windowid FROM USER_MASTER WHERE USERNAME = '" & txtusername.Value & "' AND USERPASS ='" & txtpass.Value & "' AND dbo.User_Master.isDeleted=0 and dept_code='" & DropDownList1.SelectedValue & "'", Con)
+        Dim cmd As New SqlClient.SqlCommand("SELECT a.USERID, a.USERNAME, a.USERPASS,a.Dept_code,a.Loc_ID,a.RoleId,a.Windowid," &
+                "(select b.depo_name from depo_master b where b.depo_code =  a.Loc_ID  ) as deponame FROM USER_MASTER " &
+                    "a WHERE a.USERNAME = '" & txtusername.Value & "' AND a.USERPASS ='" & txtpass.Value & "' " &
+                    "AND a.isDeleted=0 and a.dept_code='" & DropDownList1.SelectedValue & "'", Con)
         Dim dr As SqlClient.SqlDataReader
 
         dr = cmd.ExecuteReader
@@ -51,9 +54,11 @@ Partial Class Login
                 Session("UserId") = dr("USERID").ToString
                 Session("LocID") = dr("Loc_ID")
                 Session("RoleId") = dr("RoleId")
+                Session("deponame") = dr("deponame")
                 Session("Dept_code") = Trim(dr("Dept_code"))
                 If DropDownList1.SelectedValue = "1" Then
                     Session("Dept_type") = "SP"
+
                 ElseIf DropDownList1.SelectedValue = "2" Then
                     Session("Dept_type") = "HW"
 
@@ -70,6 +75,7 @@ Partial Class Login
                     Session("UserName") = dr("USERNAME")
                     Session("UserId") = dr("USERID").ToString
                     Session("LocID") = dr("Loc_ID")
+                    Session("deponame") = dr("deponame")
                     Session("RoleId") = dr("RoleId")
                     Session("Dept_code") = dr("dept_code")
                     Session("engineer") = ddlengineer.SelectedItem.ToString

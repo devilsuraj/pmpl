@@ -57,7 +57,7 @@ Namespace KDMT
                 Else
                     lblindent.Text = ""
                 End If
-                BindGrid(grdstock, con, "VIEW_ITEMISSUE '" & txtindent.Text & "','" & fromdate & "','" & todate & "'")
+                BindGrid(grdstock, con, "VIEW_ITEMISSUE '" & txtindent.Text & "','" & fromdate & "','" & todate & "','" & Session("locid").ToString() & "'")
                 If grdstock.Items.Count = 0 Then
                     Response.Write("<script>alert ('Record Not Found') </script>")
                     dicsryst.Visible = False
@@ -89,7 +89,7 @@ Namespace KDMT
                 Else
                     lblindent.Text = ""
                 End If
-                dt = GetDatatTable("VIEW_ITEMISSUE '" & Session("indent") & "','" & Session("issuefrom") & "','" & Session("issueto") & "'")
+                dt = GetDatatTable("VIEW_ITEMISSUE '" & Session("indent") & "','" & Session("issuefrom") & "','" & Session("issueto") & "','" & Session("locid").ToString() & "'")
                 Session("itemissuedt") = dt
                 If dt.Rows.Count = 0 Then
                     Response.Write("<script>alert ('Record Not Found') </script>")

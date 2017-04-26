@@ -28,6 +28,7 @@ Namespace KDMT
                     '    edit_combo(ddlLocation, "Depo_Code", "Depo_Name", "Depo_Master", "Depo_Code=" & Session("LocID").ToString() & "")
                     'End If
                     edit_combo(ddlLocation, "Depo_Code", "Depo_Name", "Depo_Master", "Depo_Code=" & Session("LocID").ToString() & "")
+                    ddlLocation.SelectedValue = Session("LocID").ToString()
 
                     'btnadd.Attributes.Add("Onclick", " return ValidateSave();")
                     'btnaddandsave.Attributes.Add("Onclick", "return ValidateSave();")

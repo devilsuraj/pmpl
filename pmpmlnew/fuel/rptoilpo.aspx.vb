@@ -18,6 +18,7 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             strvendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
+            Session("MenuId") = 5
             If Not IsPostBack Then
                 Dim i As Integer = 1
                 For i = 1 To 5

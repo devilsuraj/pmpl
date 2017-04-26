@@ -483,16 +483,17 @@ Namespace KDMT
 
                                             cmd.Parameters.AddWithValue("@dutyno", txtrt.Text)
                                             cmd.Parameters.AddWithValue("@place", txtplc.Text)
-                                            cmd.Parameters.AddWithValue("@worktime", txtwt.Text)
                                             cmd.Parameters.AddWithValue("@deftime", txtdt.Text)
-                                            cmd.Parameters.AddWithValue("@reason", txtarreason.Value)
+                                            cmd.Parameters.AddWithValue("@worktime", txtwt.Text)
                                             cmd.Parameters.AddWithValue("@supervisor", txtname.Text)
+                                            cmd.Parameters.AddWithValue("@reason", txtarreason.Value)
+
                                             cmd.Parameters.AddWithValue("@Supervisorname", ddlsupervisor.SelectedItem.Text)
                                             cmd.Parameters.AddWithValue("@shift", ddlshift.SelectedItem.Text)
                                             cmd.Parameters.AddWithValue("@newjob", txtjob.Value)
                                             cmd.Parameters.AddWithValue("@newjobno", txtjobno.Value)
                                             cmd.Parameters.AddWithValue("@engineer", Session("engineer"))
-
+                                            cmd.Parameters.AddWithValue("@Remark ", txtRemark.Value)
                                             con.Open()
                                             'Dim first As Integer = 0              'added 15/01
                                             'first =

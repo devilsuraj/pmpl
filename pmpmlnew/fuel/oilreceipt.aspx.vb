@@ -12,6 +12,7 @@ Namespace KDMT
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             strVendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
             If Page.IsPostBack = False Then
+                Session("MenuId") = 5
                 Try
                     Dim SQL As String
                     txtPOtype.Focus()
@@ -21,9 +22,9 @@ Namespace KDMT
                     btnSubmit.Attributes.Add("onclick", "return validate();ValidateSave();")
 
                     If Not Session("LocID").ToString Is Nothing Then
-                        bdpchallandate.SelectedDate = Now.Date
-                        bdprecdate.SelectedDate = Now.Date
-                        BDPchqdate.SelectedDate = Now.Date
+                        bdpchallandate.Text = Now.Date
+                        bdprecdate.Text = Now.Date
+                        BDPchqdate.Text = Now.Date
                         SQL = "select item_name,item_name from item_master where loc_id = '" & Session("LocID") & "' "
                         strSubRackNo = getAutoCompleteList(SQL, "item_name")
 
@@ -51,12 +52,12 @@ Namespace KDMT
                 cmd.CommandType = CommandType.StoredProcedure
 
                 cmd.Parameters.AddWithValue("@vendor", intvendor)
-                cmd.Parameters.AddWithValue("@oilrecdate", bdprecdate.SelectedDate)
+                cmd.Parameters.AddWithValue("@oilrecdate", bdprecdate.Text)
                 cmd.Parameters.AddWithValue("@challan_no ", txtchalan.Text)
-                cmd.Parameters.AddWithValue("@challan_date", bdpchallandate.SelectedDate)
+                cmd.Parameters.AddWithValue("@challan_date", bdpchallandate.Text)
 
                 cmd.Parameters.AddWithValue("@chqno ", txtchqno.Text)
-                cmd.Parameters.AddWithValue("@chqdate", BDPchqdate.SelectedDate)
+                cmd.Parameters.AddWithValue("@chqdate", BDPchqdate.Text)
                 cmd.Parameters.AddWithValue("@chqamt ", txtchqamt.Text)
 
                 cmd.Parameters.AddWithValue("@pono", hdnPoNo.Value)
@@ -82,7 +83,7 @@ Namespace KDMT
                     cmd.CommandType = CommandType.StoredProcedure
 
 
-                    cmd.Parameters.AddWithValue("@oilissuedate", bdprecdate.SelectedDate)
+                    cmd.Parameters.AddWithValue("@oilissuedate", bdprecdate.Text)
                     cmd.Parameters.AddWithValue("@oilrefno", "")
                     cmd.Parameters.AddWithValue("@workername", "")
                     cmd.Parameters.AddWithValue("@oiligatepass", "")
@@ -159,7 +160,7 @@ Namespace KDMT
         End Sub
         Public Function GetFinYear(ByVal yearinc As Integer)
             Dim finyear As String = ""
-            Dim s As DateTime = bdprecdate.SelectedDate
+            Dim s As DateTime = bdprecdate.Text
             Dim m As Integer = s.Month
             Dim y As Integer = s.Year
             If (m > 3) Then

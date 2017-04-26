@@ -50,6 +50,7 @@ Namespace KDMT
                 End If
 
             Catch ex As Exception
+                Response.Write("<script>alert('Error Occured While saving')</script>")
 
             End Try
         End Sub
@@ -287,14 +288,14 @@ Namespace KDMT
                 Dim strDetail As New StringBuilder
 
                 'Dim StrHead As String = "<TABLE  ID='tblChallan' style='width:100%;' cellspacing='0' cellpadding='0' border='1' border-collapse='collapse' class='mytable'><thead><tr><td style='height: 40px' colspan='9' align='center'><div style='float:left; width:30%'><img id='img' src='../images/images_print.png' alt='Sikkim Nationalised  Transport' /></div><div style='float:left;text-align:center'><h2 style='padding: 0; margin: 0'>SIKKIM NATIONALISED TRANSPORT<br />GOVERNMENT OF SIKKIM</h2></div><div style='clear:both'></div><div style='float:left;'><b>From : </b>" & dtFRom.ToString("dd-MMM-yyyy") & "  <b>To :  </b>" & dtTo.ToString("dd-MMM-yyyy") & "</div><div style='float:right;'><b>Date : </b>" & Date.Now.ToString("dd-MMM-yyy") & "</div><div style='clear:both'></div></td></tr></TABLE>"
-
+                'onblur ='Return checkqty('txtIssQty_" & i & "','" + dt.Rows(i).Item("Avl_Qty") + "','" + dt.Rows(i).Item("Req_Qty") + "')
                 dt = GetDatatTable("GET_WORKSOP_MATERIAL_REQUEST  " & wmrno & " ," & locid & "")
                 '''''''''temporarry using 
                 If dt.Rows.Count > 0 Then
                     strDetail.Append("<TABLE  ID='tblChallan' style='width:100%'  cellspacing='0' cellpadding='0' border='1' class='mytable'><TR class='bold'><TD>Sr No</TD><TD>LF No.</TD><TD>Part No.</TD><TD>Item Name</TD><TD>Available Qty. </TD><TD>Requested Qty</TD><TD>Issue Qty</TD><TD>Balance</TD><TD>Issued_Qty</TD>")
                     For i = 0 To dt.Rows.Count - 1
                         strDetail.Append("<TR><TD>" & i + 1 & "</TD><TD ID='tdlfNo_" & i & "' align='right'>" & dt.Rows(i).Item("lfno") & "</TD><TD align='left' ID='tdPartNo_" & i & "'>" & dt.Rows(i).Item("Part_No") & "</TD><TD align='left' ID='tdItemName_" & i & "'>" & dt.Rows(i).Item("Item_Name") & "</TD>")
-                        strDetail.Append("<TD align='right' ID='tdbqty_" & i & "'>" & dt.Rows(i).Item("Avl_Qty") & "</TD><TD align='right' ID='tdqty_" & i & "'>" & dt.Rows(i).Item("Req_Qty") & "</TD><TD align='right' ><input  type='text' id='txtIssQty_" & i & "' value='0'></TD><TD align='right' ID='tdBalQty_" & i & "'>" & dt.Rows(i).Item("Bal_Qty") & "</TD><TD align='right' ID='tdIssuedQty_" & i & "'>" & dt.Rows(i).Item("Req_Qty") - dt.Rows(i).Item("Bal_Qty") & "</TD></TR>")
+                        strDetail.Append("<TD align='right' ID='tdbqty_" & i & "'>" & dt.Rows(i).Item("Avl_Qty") & "</TD><TD align='right' ID='tdqty_" & i & "'>" & dt.Rows(i).Item("Req_Qty") & "</TD><TD align='right' ><input  type='text' id='txtIssQty_" & i & "' onblur='return ValIssQty(" & i & ")'  value ='0'></TD><TD align='right' ID='tdBalQty_" & i & "'>" & dt.Rows(i).Item("Bal_Qty") & "</TD><TD align='right' ID='tdIssuedQty_" & i & "'>" & dt.Rows(i).Item("Req_Qty") - dt.Rows(i).Item("Bal_Qty") & "</TD></TR>")
                     Next
                     strDetail.Append("</TABLE>")
                     Response.Write("got~" & Type & "~" & strDetail.ToString() & "~" & dt.Rows(0).Item("busno") & "~" & dt.Rows(0).Item("wmr_contid") & "~" & dt.Rows(0).Item("Cont_Name") & "~" & dt.Rows.Count & "~")

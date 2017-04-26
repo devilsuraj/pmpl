@@ -303,7 +303,7 @@ Namespace KDMT
                 LoadGraphData()
                 CreateBarGraph()
             Catch ex As Exception
-
+                Response.Write(ex.Message)
             End Try
         End Sub
     End Class

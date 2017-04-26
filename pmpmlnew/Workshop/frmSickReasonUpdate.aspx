@@ -223,7 +223,7 @@
                                     Job No
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtjob" Width="30px" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtjob" Width="60px" runat="server"></asp:TextBox>
                                     <asp:TextBox ID="txtjobno" Width="40px" onblur="Chkbusdetails();" MaxLength="4" runat="server"></asp:TextBox>
                                     <asp:Label ID="lblmsg" runat="server" ForeColor ="Red"></asp:Label>
                                 </td>
@@ -271,7 +271,7 @@
                            
                                         <tr >
                                             <td align="left" colspan="4">
-                                              Old Sick Reason:
+                                              Sick Reason:
                                            
                                                <asp:Label ID="lbloldSickReason" Font-Bold="true" runat="server"></asp:Label>
                                             </td>

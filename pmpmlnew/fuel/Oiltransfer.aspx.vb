@@ -6,9 +6,10 @@
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             ' btnadd.Attributes.Add("Onclick", "return validate()")
+            Session("MenuId") = 5
             If Not IsPostBack Then
                 edit_combo(ddloiltype, "Oil_id", "Oil_Name", "[Oil_type_master]", "0=0")
-                bdpchalandate.SelectedDate = Now.Date()
+                bdpchalandate.Text = Now.Date()
             End If
         End Sub
     End Class

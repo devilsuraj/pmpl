@@ -67,7 +67,7 @@ Namespace KDMT
                 'Dim vendorId As String = ddlvendor.SelectedValue
 
                 Dim vendorId As String = ExecuteQuery("SELECT VENDOR_ID FROM STOCK_VENDOR WHERE VENDOR_NAME = '" & ddlvendor.Text & "'")
-                Dim PONoId As String = Request.Form("ddlPONo")
+                Dim PONoId As String = ddlPONo.Value
                 ' Dim PODate As String = dtPODate.Text
                 Dim OurRefNo As String = Request.Form("txtOurRefNo")
                 'Dim dtOurRefNo As String = dtOurRefNo.Text
@@ -102,7 +102,7 @@ Namespace KDMT
                 Dim txtspdiscount As String = Request.Form("txtspdisc")
                 Dim txtvat As Double = Request.Form("txtvat")
                 Dim txted As Double = Request.Form("txted")
-                Dim ddlCategory As String = Request.Form("ddlCategory")
+                '   Dim ddlCategory As Integer = ddlCategory.SelectedValue
 
                 Dim txtrefasrtu As String = Request.Form("txtref_asrtu")
 
@@ -156,9 +156,10 @@ Namespace KDMT
                     cmd.Parameters.AddWithValue("@special_discount", txtspdiscount)
                     cmd.Parameters.AddWithValue("@vat", txtvat)
                     cmd.Parameters.AddWithValue("@ed", txted)
-                    cmd.Parameters.AddWithValue("@item_id", ddlCategory)
+                    cmd.Parameters.AddWithValue("@item_id", ddlCategory.SelectedValue)
                     cmd.Parameters.AddWithValue("@ref_asrtu", txtrefasrtu)
                     cmd.Parameters.AddWithValue("@PO_fin_year", fin_year.ToString())
+                    cmd.Parameters.AddWithValue("@PO_LocId", Session("LocID"))
 
                     Dim strmaxid As New SqlParameter("@maxid", SqlDbType.BigInt)
                     strmaxid.Direction = ParameterDirection.Output
@@ -245,7 +246,7 @@ Namespace KDMT
                             End If
                         Next
                     End If
-                    Response.Write("<script>alert('Saved Successfuly');if(confirm('Do You Want To Print PO')){window.location.href = '../report/rptPO.aspx?potype=" + PONoId + "&PoNo=" + txtPONo.Text + "&poyear=" + fin_year + "&category=" + ddlCategory + "&vendor=" + ddlvendor.Text + "&srno=" + "0" + "&srno1=" + "2" + " ' }</script>")
+                    Response.Write("<script>alert('Saved Successfuly');if(confirm('Do You Want To Print PO')){window.location.href = '../report/rptPO.aspx?potype=" + PONoId + "&PoNo=" + txtPONo.Text + "&poyear=" + fin_year + "&category=" + ddlCategory.SelectedValue + "&vendor=" + ddlvendor.Text + "&srno=" + "0" + "&srno1=" + "2" + " ' }</script>")
                 End If
             Else
 

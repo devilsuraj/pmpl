@@ -236,6 +236,8 @@ Namespace KDMT
             SQL = "SELECT isNull(MAX(" & ColName & "),0) FROM " & TabName
 
             Dim cmd As New SqlClient.SqlCommand(SQL, con)
+            con.Open()
+
             dr = cmd.ExecuteReader
             dr.Read()
             If IsDBNull(dr.GetValue(0)) = True Then

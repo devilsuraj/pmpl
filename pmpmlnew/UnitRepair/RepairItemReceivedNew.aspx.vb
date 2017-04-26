@@ -11,7 +11,7 @@ Namespace KDMT
         Public strapp As String = ""
         Public strVendor As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+            Session("MenuId") = 3
             Try
                 stritem = getAutoCompleteList("select item_name from item_detail where item_name like '%as%'  order by item_name", "item_name")
                 'btnSubmit.Attributes.Add("onclick", "return validatevendor();")
@@ -22,7 +22,7 @@ Namespace KDMT
                     btnSubmit.Attributes.Add("onclick", "return validate();")
                     'If Not Session("LocID").ToString Is Nothing Then
                     'BDPLite1.Text = Now.Date
-                    BDPLite1.SelectedDate = Format(Now.Date, "dd/MMM/yyyy")
+                    BDPLite1.Text = Format(Now.Date, "dd/MMM/yyyy")
                     gridbind()
 
                 End If
@@ -50,7 +50,7 @@ Namespace KDMT
             cmd = New SqlCommand("Ins_UnitRepairReceivemst", con)
             cmd.CommandType = CommandType.StoredProcedure
             cmd.Parameters.AddWithValue("@inwardno", txtInwardNo.Text)
-            cmd.Parameters.AddWithValue("@trans_date", BDPLite1.SelectedDate)
+            cmd.Parameters.AddWithValue("@trans_date", BDPLite1.Text)
             cmd.Parameters.AddWithValue("@dept", ddlvendor.SelectedValue)
             cmd.Parameters.AddWithValue("@userid", Session("Userid"))
             cmd.Parameters.AddWithValue("@submittedby", txtSubmitted.Text)
@@ -140,11 +140,11 @@ Namespace KDMT
             Response.Write("<script>alert('Saved Successfuly');</script>")
 
             'maxid()
-            'BDPLite1.SelectedDate = Now.Date
+            'BDPLite1.Text = Now.Date
             'txtdept.Value = ""
             'txtvendor.Value = ""
             'txtchallanno.Text = ""
-            'BDPLite2.SelectedDate = Now.Date
+            'BDPLite2.Text = Now.Date
             'txtitem.Value = ""
             'txtapproveby.Value = ""
             'txtqty.Text = ""

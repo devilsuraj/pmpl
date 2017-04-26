@@ -181,6 +181,7 @@ Namespace KDMT
                 '  Response.Write("<script>window.print();</script>")
                 'Response.Write("<script>window.print(); window.location.href='../store/storemasterold.aspx'</script>")
             Catch ex As Exception
+                Response.Write(ex.Message)
             Finally
                 'strvendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
             End Try

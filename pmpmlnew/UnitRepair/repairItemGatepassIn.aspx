@@ -1,14 +1,10 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="repairItemGatepassIn.aspx.vb" Inherits="KDMT.repairItemGatepassIn" %>
+﻿
+<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false"
+    CodeFile="repairItemGatepassIn.aspx.vb" Inherits="KDMT.repairItemGatepassIn" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title></title>
-</head>
+
 
 <script language="javascript">
 
@@ -99,12 +95,18 @@
 
 </script>
 
-<body>
-    <form id="form1" runat="server">
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+<link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>GATEPASS IN</h1>
+    </div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div class="form-horizontal">
+    
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+         
             <div class="contantbox">
                 <div class="orgtop1">
                 </div>
@@ -133,8 +135,11 @@
                             </td>
                             <td align="left">
                                 Received Date :-
-                                <BDP:BDPLite ID="BDPrecdate" runat="server" TextBoxStyle-CssClass="textfield">
-                                </BDP:BDPLite>
+                            
+                                    <asp:TextBox ID="BDPrecdate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="BDPrecdate"
+                                        PopupButtonID="BDPrecdate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                             </td>
                         </tr>
                         <tr id="Tr1" runat="server">
@@ -195,6 +200,4 @@
             </div>
         </div>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

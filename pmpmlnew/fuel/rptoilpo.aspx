@@ -1,10 +1,7 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="rptoilpo.aspx.vb" Inherits="KDMT.rptoilpo" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="rptoilpo.aspx.vb"
+    Inherits="kdmt.rptoilpo" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Po Print</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <link href="../styles/KDMT.css" type="text/css" rel="stylesheet"></link>
@@ -80,11 +77,17 @@ if (document.getElementById ("txtvendor").value != '')
             display: none;
         }
     </style>
-</head>
-<body class="body">
-    <form id="Form1" runat="server">
+    <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Job Order Card Master</h1>
+    </div>
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+ 
+ 
     <a href="../fuel/oilPO.aspx" class="ctrl">Back</a>
-    <div>
+     <div class="form-horizontal">>
 
         <script src="<% =session("host") %>SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
 
@@ -332,7 +335,7 @@ function selectItem(li) {
             </td>
         </tr>
     </table>
-    </form>
+
 
     <script>
   
@@ -354,5 +357,4 @@ $("#txtvendor").autocompleteArray(
 
     </script>
 
-</body>
-</html>
+</asp:Content>

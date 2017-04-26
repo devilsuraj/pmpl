@@ -23,7 +23,7 @@ Namespace KDMT
 
                 If Not IsPostBack Then
                     edit_combo(ddlReason, "reason_id", "reason", "tblSickReasonMst", "0=0  ")
-                    BDPLite1.SelectedDate = Format(Now.Date, "dd/MMM/yyyy")
+                    BDPLite1.Text = Format(Now.Date, "dd/MMM/yyyy")
                     txtjob.Text = ExecuteQuery("(SELECT RIGHT('0' + RTRIM(year(getdate())), 2)+ RIGHT('0' + RTRIM(month(getdate())), 2))")
                     'btnSubmit.Attributes.Add("onclick", "return chkBrakedown()")
                     tbldata.Visible = "False"
@@ -49,9 +49,9 @@ Namespace KDMT
 
                 ElseIf defect <> "1" Then
                     lblmsg.Text = "cannot declare as sick"
-                    
+
                     tbldata.Visible = False
-               Else
+                Else
                     lblmsg.Text = "Job Card closed"
                 End If
 
@@ -64,7 +64,7 @@ Namespace KDMT
         Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSubmit.Click
             Try
 
-               
+
                 cmd = New SqlCommand("ins_SickBus", con)
                 cmd.CommandType = CommandType.StoredProcedure
 
@@ -73,7 +73,7 @@ Namespace KDMT
                 cmd.Parameters.AddWithValue("@newjobno", txtjobno.Text)
                 cmd.Parameters.AddWithValue("@note", txtDesc.Text)
                 cmd.Parameters.AddWithValue("@userid", Session("Userid"))
-                cmd.Parameters.AddWithValue("@sickdate", BDPLite1.SelectedDate)
+                cmd.Parameters.AddWithValue("@sickdate", BDPLite1.Text)
                 cmd.Parameters.AddWithValue("@sickshift", ddlshift.SelectedValue)
                 cmd.Parameters.AddWithValue("@reason", ddlreason.SelectedValue)
                 con.Open()

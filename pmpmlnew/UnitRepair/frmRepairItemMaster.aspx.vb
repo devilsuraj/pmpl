@@ -8,11 +8,12 @@ Namespace KDMT
         Dim DA As SqlClient.SqlDataAdapter
         Public stritem As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 3
             If Page.IsPostBack = False Then
                 btnSubmit.Attributes.Add("onclick", "return validate();")
-                BDPLite1.SelectedDate = Now.Date
+                BDPLite1.Text = Now.Date
                 edit_combo(ddlvendor, "cont_id", "cont_name", "contractor_master", "loc_id = '" & Session("LocID") & "' and isRepair  = '1'")
-             End If
+            End If
         End Sub
 
         Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles btnSubmit.Click
@@ -44,7 +45,7 @@ Namespace KDMT
                     cmd.CommandType = CommandType.StoredProcedure
 
                     cmd.Parameters.AddWithValue("@itemname", Trim(txtname.Text))
-                    cmd.Parameters.AddWithValue("@transdate", BDPLite1.SelectedDate)
+                    cmd.Parameters.AddWithValue("@transdate", BDPLite1.Text)
                     cmd.Parameters.AddWithValue("@unit", txtunit.Text)
                     cmd.Parameters.AddWithValue("@userid", Session("Userid"))
                     cmd.Parameters.AddWithValue("@is_delete", 0)

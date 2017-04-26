@@ -17,6 +17,7 @@ Namespace KDMT
         Public stritem As String = ""
         Public strapp As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 3
             Label1.Text = Format(Now.Date, "dd/MMM/yyyy") & "  " & Now.Hour & ":" & Now.Minute & ":" & Now.Second
             If Page.IsPostBack = False Then
                 Try
@@ -28,7 +29,7 @@ Namespace KDMT
 
                     If Session("LocID").ToString <> "" Then
 
-                        BDPLite1.SelectedDate = Format(Now.Date, "dd/MMM/yyyy")
+                        BDPLite1.Text = Format(Now.Date, "dd/MMM/yyyy")
                         edit_combo(ddlvendor, "cont_id", "cont_name", "contractor_master", "loc_id = '" & Session("LocID") & "' and isRepair  = '1'")
 
                         Dim userid As String
@@ -67,7 +68,7 @@ Namespace KDMT
                 cmd.Parameters.Add(New SqlParameter("@Supervisor", txtSupervisor.Text))
                 cmd.Parameters.Add(New SqlParameter("@DeliveredBy", txtdelivered.Text))
                 cmd.Parameters.Add(New SqlParameter("@ReceivedBy", txtreceived.Text))
-                cmd.Parameters.Add(New SqlParameter("@ReceiveDate", BDPLite1.SelectedDate))
+                cmd.Parameters.Add(New SqlParameter("@ReceiveDate", BDPLite1.Text))
                 cmd.Parameters.Add(New SqlParameter("@uersid", Session("Userid")))
                 cmd.Parameters.Add(New SqlParameter("@shift ", ddlshift.SelectedValue))
                 cmd.Parameters.Add(New SqlParameter("@place ", ddlplace.SelectedValue))

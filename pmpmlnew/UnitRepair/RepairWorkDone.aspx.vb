@@ -13,6 +13,7 @@ Namespace KDMT
         Public sb As New StringBuilder()
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 3
             If Not IsPostBack Then
                 btnSubmit.Attributes.Add("Onclick", "return validate ()")
                 edit_combo(ddlvendor, "cont_id", "cont_name", "contractor_master", "loc_id = '" & Session("LocID") & "' and isRepair  = '1'")
@@ -25,10 +26,13 @@ Namespace KDMT
         End Sub
         Protected Sub dgresult_ItemDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.DataGridItemEventArgs) Handles dgresult.ItemDataBound
             If e.Item.ItemType = ListItemType.Item Or e.Item.ItemType = ListItemType.AlternatingItem Or e.Item.ItemType = ListItemType.SelectedItem Then
-                Dim bdpliteToDate As BasicFrame.WebControls.BDPLite
-                bdpliteToDate = CType(e.Item.FindControl("bdpTodate"), BasicFrame.WebControls.BDPLite)
-                bdpliteToDate.SelectedDate = Now.Date()
+                'Dim bdpliteToDate As BasicFrame.WebControls.BDPLite
+                'bdpliteToDate = CType(e.Item.FindControl("bdpTodate"), BasicFrame.WebControls.BDPLite)
+                'bdpliteToDate.SelectedDate = Now.Date()
 
+                Dim bdptodate As TextBox
+                bdptodate = CType(e.Item.FindControl("bdpTodate"), TextBox)
+                bdptodate.Text = Now.Date().ToString()
                 If e.Item.Cells(16).Text = "3" Then
                     e.Item.BackColor = Color.BurlyWood
                 End If
@@ -42,7 +46,7 @@ Namespace KDMT
 
                 i += 1
                 Dim fromdate As DateTime = e.Item.Cells(15).Text
-                sb.AppendLine("function getindent" + i.ToString() + "() {  if((Date.parse('" + fromdate + "')) > (Date.parse(document.getElementById('" + bdpliteToDate.ClientID + "_TextBox').value))){ alert('Done Date Should be equal or greater than received date');var d1=new Date(); document.getElementById('" + bdpliteToDate.ClientID + "_TextBox').value = d1.toString('dd-MMM-yyyy');    ; return false ; }};  var b" + i.ToString() + "= document.getElementById('" + bdpliteToDate.ClientID + "_TextBox')  ; addEventHandler(b" + i.ToString() + ",getindent" + i.ToString() + ");")
+                sb.AppendLine("function getindent" + i.ToString() + "() {  if((Date.parse('" + fromdate + "')) > (Date.parse(document.getElementById('" + bdptodate.ClientID + "').value))){ alert('Done Date Should be equal or greater than received date');var d1=new Date(); document.getElementById('" + bdptodate.ClientID + "').value = d1.toString('dd-MMM-yyyy');    ; return false ; }};  var b" + i.ToString() + "= document.getElementById('" + bdptodate.ClientID + "_TextBox')  ; addEventHandler(b" + i.ToString() + ",getindent" + i.ToString() + ");")
             End If
         End Sub
 
@@ -63,10 +67,10 @@ Namespace KDMT
                     Dim txtqty As TextBox = CType(dgresult.Items(i).Cells(9).FindControl("txtqty"), TextBox)
                     Dim txtWrkDone As TextBox = CType(dgresult.Items(i).Cells(12).FindControl("txtWrkDone"), TextBox)
                     Dim ddlResult As DropDownList = CType(dgresult.Items(i).Cells(13).FindControl("ddlResult"), DropDownList)
-                    Dim bdpfromdate As BasicFrame.WebControls.BDPLite
-                    bdpfromdate = CType(dgresult.Items(i).Cells(10).FindControl("bdpfromdate"), BasicFrame.WebControls.BDPLite)
-                    Dim bdpTodate As BasicFrame.WebControls.BDPLite
-                    bdpTodate = CType(dgresult.Items(i).Cells(11).FindControl("bdpTodate"), BasicFrame.WebControls.BDPLite)
+                    'Dim bdpfromdate As BasicFrame.WebControls.BDPLite
+                    'bdpfromdate = CType(dgresult.Items(i).Cells(10).FindControl("bdpfromdate"), TextBox)
+                    Dim bdpTodate As TextBox
+                    bdpTodate = CType(dgresult.Items(i).Cells(11).FindControl("bdpTodate"), TextBox)
                     Dim chkselect As CheckBox = CType(dgresult.Items(i).Cells(14).FindControl("chkselect"), CheckBox)
 
 
@@ -79,7 +83,7 @@ Namespace KDMT
                         cmd.Parameters.AddWithValue("@itemcode", dgresult.Items(i).Cells(2).Text)
                         cmd.Parameters.AddWithValue("@qty", txtqty.Text)
                         cmd.Parameters.AddWithValue("@frmdate", dgresult.Items(i).Cells(15).Text)
-                        cmd.Parameters.AddWithValue("@todate", bdpTodate.SelectedDate)
+                        cmd.Parameters.AddWithValue("@todate", bdpTodate.Text)
                         cmd.Parameters.AddWithValue("@workdone", txtWrkDone.Text)
                         cmd.Parameters.AddWithValue("@result", ddlResult.SelectedItem.Text)
                         cmd.Parameters.AddWithValue("@userid", Session("Userid"))

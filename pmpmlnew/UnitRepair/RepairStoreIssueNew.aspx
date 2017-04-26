@@ -1,13 +1,7 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="RepairStoreIssueNew.aspx.vb"
-    Inherits="KDMT.RepairStoreIssueNew" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false"
+    CodeFile="RepairStoreIssueNew.aspx.vb" Inherits="KDMT.RepairStoreIssueNew" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Repair Item Issue </title>
     <link rel="stylesheet" type="text/css" href="menu/anylinkcssmenu.css" />
 
@@ -16,6 +10,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link href="../styles/KDMT.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="menu/anylinkcssmenu.css" />
+
+        <script src="../scripts/jquery-1.11.0.min.js"></script>
+    <script src="../scripts/jquery-ui.js"></script>
 
     <script type="text/javascript" src="menu/anylinkcssmenu.js"></script>
 
@@ -636,7 +633,7 @@ function getbalqty()
     }
     }
     var itemname= document.getElementById('txtItemName').value  ;
-    xmlHttp.open("GET","AjaxStore.aspx?Action=ritemqty&itemid=" + itemname  ,true);
+    xmlHttp.open("GET","../store/AjaxStore.aspx?Action=ritemqty&itemid=" + itemname  ,true);
     xmlHttp.send(null);
 }
 
@@ -771,24 +768,29 @@ function getbusno() {
 
 
     if (document.getElementById('txtJobNo').value != '') {
-        xmlHttp.open("GET", "AjaxStore.aspx?Action=getbusno&newjob=" + document.getElementById("txtjob").value + "&newjobno=" + document.getElementById("txtJobNo").value, true);
-        xmlHttp.open("GET", "AjaxStore.aspx?Action=getbusno&newjob=" + document.getElementById("txtjob").value + "&newjobno=" + document.getElementById("txtJobNo").value + "&itemcode=0", true);
+        xmlHttp.open("GET", "../store/AjaxStore.aspx?Action=getbusno&newjob=" + document.getElementById("txtjob").value + "&newjobno=" + document.getElementById("txtJobNo").value, true);
+        xmlHttp.open("GET", "../store/AjaxStore.aspx?Action=getbusno&newjob=" + document.getElementById("txtjob").value + "&newjobno=" + document.getElementById("txtJobNo").value + "&itemcode=0", true);
         xmlHttp.send(null);
     }
 }
 
 
     </script>
-
-</head>
-<body class="body">
-    <form id="Form1" runat="server">
+    
+<link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>GATEPASS IN</h1>
+    </div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
     <asp:HiddenField ID="ispartno" runat="server" />
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+   <div class="form-horizontal">
+      
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+            
             <div class="contantbox">
                 <div class="mpagetop">
                 </div>
@@ -817,8 +819,11 @@ function getbusno() {
                                             Date : -
                                         </td>
                                         <td align="left">
-                                        <BDP:BDPLite ID="BDPLite1" runat="server" TextBoxStyle-CssClass="textfield">
-                                                        </BDP:BDPLite>
+                                  
+                                                  <asp:TextBox ID="BDPLite1" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="BDPLite1"
+                                        PopupButtonID="BDPLite1" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                             <%--<asp:Label ID="lblissuedate" runat="server" Text=""></asp:Label>--%>
                                             <%-- <BDP:BDPLite ID="BDPLite1" runat="server">
                                             </BDP:BDPLite>--%>
@@ -891,16 +896,16 @@ function getbusno() {
                                                 <asp:TextBox ID="txtSerialNo" runat="server" Width="150px"></asp:TextBox>
                                             </td>
                                             <td class="style2">
-                                                <asp:TextBox ID="txtjob" Width="30px" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtjob" Width="60px" runat="server"></asp:TextBox>
                                                 <asp:TextBox ID="txtJobNo" onblur="getbusno();" runat="server" Width="56px" MaxLength="4"></asp:TextBox>
                                             </td>
-                                            <td style="height: 28px; width: 55px;">
+                                            <td style="height: 28px; width: 65px;">
                                                 <asp:TextBox ID="txtBusNo" runat="server" Width="56px"></asp:TextBox>
                                             </td>
-                                            <td style="height: 28px; width: 55px;">
+                                            <td style="height: 28px; width: 75px;">
                                                 <asp:TextBox ID="txtbqty" ReadOnly="true" runat="server" Width="56px"></asp:TextBox>
                                             </td>
-                                            <td align="left" style="width: 43px; height: 28px;">
+                                            <td align="left" style="width: 53px; height: 28px;">
                                                 <asp:TextBox ID="txtqty" runat="server" Width="56px" ></asp:TextBox>
                                             </td>
                                             <td>
@@ -954,5 +959,4 @@ function getbusno() {
 	
     </script>
 
-</body>
-</html>
+</asp:Content>

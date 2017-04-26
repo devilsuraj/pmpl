@@ -13,11 +13,11 @@ Namespace KDMT
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Not IsPostBack Then
-
+                Session("MenuId") = 3
 
                 Try
-                    BDPLite1.SelectedDate = Now.Date
-                    ' BDPreqdate.SelectedDate = Now.Date
+                    BDPLite1.Text = Now.Date
+                    ' BDPreqdate.Text = Now.Date
                     btnSubmit.Attributes.Add("Onclick", "return validate ()")
                     trother.Visible = "True"
                     'edit_combo(ddlgatepasstype, "gatepasstypeid", "gatepasstypedesc", "tbl_gatepasstype", "gatepasstypeid = '3'")
@@ -138,7 +138,7 @@ Namespace KDMT
                 cmd.Parameters.AddWithValue("@gatepasstypeno", hdngatepassno.Value)
                 cmd.Parameters.AddWithValue("@nmmtchallan", txtnmmtchalan.Text)
                 cmd.Parameters.AddWithValue("@challanno", txtchallanno.Text)
-                cmd.Parameters.AddWithValue("@challandate", BDPLite1.SelectedDate)
+                cmd.Parameters.AddWithValue("@challandate", BDPLite1.Text)
                 cmd.Parameters.AddWithValue("@fromdept", nmmtdept.SelectedValue)
                 cmd.Parameters.AddWithValue("@toplace", ddltoloc.SelectedValue)
                 cmd.Parameters.AddWithValue("@outforwhat", ddlgatepasstype.SelectedValue)

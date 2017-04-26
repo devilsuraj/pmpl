@@ -1,12 +1,8 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="repairItemGatepass.aspx.vb" Inherits="KDMT.repairItemGatepass" %>
 
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false"
+    CodeFile="repairItemGatepass.aspx.vb" Inherits="KDMT.repairItemGatepass" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Repair Item Gatepass</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <%--<script language="javascript" src="../Scripts/LogSheet_repairoutward.js"></script>--%>
@@ -149,11 +145,16 @@
             height: 27px;
         }
     </style>
-</head>
-<body onload="MM_preloadImages('../images/btn_h.gif')">
+
+<link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>GATEPASS IN</h1>
+    </div>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <form id="Form1" runat="server">
+    <div class="form-horizontal">
     <asp:HiddenField ID="hdndepttype" runat="server" />
     <asp:HiddenField ID="Hid_Rec" runat="server" />
     <input id="hdnID" runat="server" type="hidden" name="hdnID" />
@@ -161,10 +162,10 @@
     <input id="hdngatepassno" runat="server" type="hidden" name="hdngatepassno" />
     <input id="hdndetail" runat="server" type="hidden" name="hdnrwcnt" />
     <input id="hdngatepassid" runat="server" type="hidden" name="hdngatepassid" />
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+
+      
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+          
             <div class="contantbox">
                 <div class="orgtop1">
                 </div>
@@ -218,9 +219,11 @@
                                                         Challan Date :
                                                     </td>
                                                     <td align="left">
-                                                        <%-- <asp:Label ID="BDPLite1" runat="server" Text=""></asp:Label>--%><BDP:BDPLite
-                                                            ID="BDPLite1" runat="server" TextBoxStyle-CssClass="textfield">
-                                                        </BDP:BDPLite>
+                                                       
+                                                              <asp:TextBox ID="BDPLite1" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="BDPLite1"
+                                        PopupButtonID="BDPLite1" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                                     </td>
                                                     <td>
                                                     </td>
@@ -480,8 +483,11 @@
                                                         Date :
                                                     </td>
                                                     <td align="left">
-                                                        <BDP:BDPLite ID="secdate" runat="server" TextBoxStyle-CssClass="textfield">
-                                                        </BDP:BDPLite>
+                                                 
+                                                              <asp:TextBox ID="secdate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="secdate"
+                                        PopupButtonID="secdate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -553,6 +559,4 @@
             </div>
         </div>
     </div>
-    </form>
-</body>
-</html>
+   </asp:Content>

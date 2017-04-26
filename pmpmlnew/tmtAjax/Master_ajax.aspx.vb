@@ -30,8 +30,9 @@ Namespace KDMT
                 Dim dtDepoDate As String = Request.QueryString("DepoDate")
                 Dim dtPutDate As String = Request.QueryString("PutDate")
                 Dim intCurStatus As Integer = Request.QueryString("CurStatus")
+                Dim remark As String = Request.QueryString("remark")
 
-                strSql = "Ins_Vehicle_Master " & intId & ",'" & strBusNo & "'," & intBusType & "," & intBusCompany & ",'" & strModelNo & "','" & dtDepoDate & "','" & dtRTODate & "','" & dtFitRenewalDate & "','" & dtPutDate & "'," & intCurStatus & "," & intFuel & ",1," & intOptype
+                strSql = "Ins_Vehicle_Master " & intId & ",'" & strBusNo & "'," & intBusType & "," & intBusCompany & ",'" & strModelNo & "','" & dtDepoDate & "','" & dtRTODate & "','" & dtFitRenewalDate & "','" & dtPutDate & "','" & intCurStatus & "','" & intFuel & "','1','" & intOptype & "','" & remark & "'"
                 intExst = ExecuteQuery(strSql)
             ElseIf strAction = "ForceDeletetInd" Then
                 strSql = "UPDATE Indent_Request_Details SET Force_Close = 1 WHERE Indent_Details_ID = " & intId

@@ -366,7 +366,7 @@
                                             </asp:TemplateColumn>
                                             <asp:TemplateColumn HeaderText="Issue Qty">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtissueqty" Style="text-align: right" Width="40px" Text='<%# DataBinder.Eval(Container, "DataItem.Inddet_reqqty") %>'
+                                                    <asp:TextBox ID="txtissueqty" ClientIDMode="AutoID" Style="text-align: right" Width="70px" Text='<%# DataBinder.Eval(Container, "DataItem.Inddet_reqqty") %>'
                                                         MaxLength="6" runat="server"></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateColumn>

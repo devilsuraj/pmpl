@@ -12,6 +12,7 @@ Namespace KDMT
         Public strapp As String = ""
         Public strserialNo As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 3
             Label1.Text = Format(Now.Date, "dd/MMM/yyyy") & "  " & Now.Hour & ":" & Now.Minute & ":" & Now.Second
             txtjob.Text = ExecuteQuery("(SELECT RIGHT('0' + RTRIM(year(getdate())), 2)+ RIGHT('0' + RTRIM(month(getdate())), 2))")
             stritem = getAutoCompleteList("select item_name from tbl_repair_item where isDelete<>'1' order by item_name", "item_name")
@@ -26,7 +27,7 @@ Namespace KDMT
                         stritem = getAutoCompleteList("select item_name from tbl_repair_item where isDelete<>'1' order by item_name", "item_name")
                         strserialNo = getAutoCompleteList("select Part_Company_No from part_master where Is_Delete <> '1' and part_type<>'1'", "Part_Company_No")
                         'lblissuedate.Text = Format(Now.Date, "dd/MMM/yyyy")
-                        BDPLite1.SelectedDate = Format(Now.Date, "dd/MMM/yyyy")
+                        BDPLite1.Text = Format(Now.Date, "dd/MMM/yyyy")
                         'stritem = getAutoCompleteList("select item_name from tbl_Repair_Item order by item_name", "item_name")
                         edit_combo(ddlvendor, "cont_id", "cont_name", "contractor_master", "loc_id = '" & Session("LocID") & "' and isRepair  = '0'")
 
@@ -66,7 +67,7 @@ Namespace KDMT
             cmd.CommandType = CommandType.StoredProcedure
 
             cmd.Parameters.AddWithValue("@requestno", txtref.Text)
-            cmd.Parameters.AddWithValue("@trans_date", BDPLite1.SelectedDate)
+            cmd.Parameters.AddWithValue("@trans_date", BDPLite1.Text)
             cmd.Parameters.AddWithValue("@gatepassno", txtgate.Text)
             cmd.Parameters.AddWithValue("@deprt", ddlvendor.SelectedValue)
             cmd.Parameters.AddWithValue("@supervisor", txtapproved.Text)
@@ -113,7 +114,7 @@ Namespace KDMT
                 Response.Write("<script>alert('Saved Successfuly');window.location.href='RepairStoreIssueNew.aspx'</script>")
             End If
             txtref.Text = ""
-            'BDPLite1.SelectedDate = Format(Now.Date, "dd/MMM/yyyy")
+            'BDPLite1.Text = Format(Now.Date, "dd/MMM/yyyy")
 
             'txtitem.Value = ""
             'txtsupervisor.Value = ""

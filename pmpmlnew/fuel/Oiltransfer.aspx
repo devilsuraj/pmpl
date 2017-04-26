@@ -1,12 +1,8 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Oiltransfer.aspx.vb" Inherits="KDMT.Oiltransfer" %>
 
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="Oiltransfer.aspx.vb"
+    Inherits="kdmt.Oiltransfer" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Diesel Indent</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
@@ -300,17 +296,23 @@ xmlHttp.send(null);
             height: 33px;
         }
     </style>
-</head>
-<body onload="MM_preloadImages('../images/btn_h.gif')">
-    <form id="Form1" runat="server">
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+    
+    <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Job Order Card Master</h1>
+    </div>
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+ 
+    <div class="form-horizontal">>
+       
         <input id="hdnID" runat="server" type="hidden" name="hdnID" />
         <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
         <input id="hdnsrno" runat="server" type="hidden" name="hdnsrno" />
         <input id="hdndetail" runat="server" type="hidden" name="hdnrwcnt" />
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+         
             <div class="contantbox">
                 <div class="orgtop">
                 </div>
@@ -325,8 +327,11 @@ xmlHttp.send(null);
                             <tr>
                                 <td>
                                     <span>Transfer Date</span>
-                                    <BDP:BDPLite ID="bdpchalandate" runat="server" TextBoxStyle-CssClass="textfield">
-                                    </BDP:BDPLite>
+                              
+                                             <asp:TextBox ID="bdpchalandate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="bdpchalandate"
+                                        PopupButtonID="bdpchalandate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                 </td>
                                 <td align="left">
                                 </td>
@@ -387,12 +392,10 @@ xmlHttp.send(null);
             </div>
         </div>
     </div>
-    </form>
+
 
     <script type="text/javascript">
-<!--
-var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
-//-->
+
 
 $("#txtvendor").autocompleteArray(
 		[<% =strVendor  %>],
@@ -411,5 +414,4 @@ $("#txtvendor").autocompleteArray(
 
     </script>
 
-</body>
-</html>
+</asp:Content>

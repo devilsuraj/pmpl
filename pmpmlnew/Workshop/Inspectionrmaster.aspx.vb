@@ -114,6 +114,7 @@ Namespace KDMT
                 End If
                 'cleare()
             Catch ex As Exception
+                Response.Write(ex.Message)
             End Try
         End Sub
         Protected Sub btnreset_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnreset.Click

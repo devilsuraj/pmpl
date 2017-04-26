@@ -10,10 +10,11 @@ Namespace KDMT
         Public strVendor As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Not IsPostBack Then
+                Session("MenuId") = 5
                 btnSubmit.Attributes.Add("onclick", "return validate();")
                 BindGrid(dgresult, con, "view_indent_diesel")
                 btnSubmit.Visible = False
-                bdpchalandate.SelectedDate = Now.Date()
+                bdpchalandate.Text = Now.Date()
             End If
 
         End Sub
@@ -34,7 +35,7 @@ Namespace KDMT
 
 
 
-            Call fnExecuteNonQuery("update indent_diesel   set  challan_date = '" & bdpchalandate.SelectedDate & "',shortage = '" & txtshort.Text & "',short_amt = '" & txtshortamt.Text & "',challan_no = '" & txtchalanno.Text & "',rec_qty = '" & txtrec_qty.Text & "',challan_amt = '" & txtchalan_amt.Text & "',receive_user = '" & Session("UserId") & "',flag = 1    where indent_id = '" & hdnid.value & "'")
+            Call fnExecuteNonQuery("update indent_diesel   set  challan_date = '" & bdpchalandate.Text & "',shortage = '" & txtshort.Text & "',short_amt = '" & txtshortamt.Text & "',challan_no = '" & txtchalanno.Text & "',rec_qty = '" & txtrec_qty.Text & "',challan_amt = '" & txtchalan_amt.Text & "',receive_user = '" & Session("UserId") & "',flag = 1    where indent_id = '" & hdnid.Value & "'")
             BindGrid(dgresult, con, "view_indent_diesel")
             clean()
             Call Show_Msg(Page, "Updated Successfully", "tanker_master.aspx")

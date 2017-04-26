@@ -9,7 +9,7 @@ Namespace kdmt
         Public strDepot As String = ""
         Public strVendor As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+            Session("MenuId") = 5
             strVendor = getAutoCompleteList("select fuel_vendor_desc from Fuel_vendor order by fuel_vendor_desc", "fuel_vendor_desc")
             strDepot = getAutoCompleteList("select cont_name from contractor_master order by cont_name", "cont_name")
             If Page.IsPostBack = False Then
@@ -19,8 +19,8 @@ Namespace kdmt
                     'strVendor = getAutoCompleteList("select fuel_vendor_desc  from  fuel_vendor order by fuel_vendor_desc", "fuel_vendor_desc")
 
                     'ExecuteQuery ("select * from "
-                    bdpchqdate.SelectedDate = Now.Date
-                    bdptankerdate.SelectedDate = Now.Date
+                    bdpchqdate.Text = Now.Date
+                    bdptankerdate.Text = Now.Date
 
                 Catch ex As Exception
 
@@ -48,12 +48,12 @@ Namespace kdmt
                     Dim depoid As Integer = ExecuteQuery("select cont_id from contractor_master where cont_name='" & txtdepot.Text & "'")
                     cmd.Parameters.AddWithValue("@adv_no", txtindentno.Text)
 
-                    cmd.Parameters.AddWithValue("@adv_chq_date", bdpchqdate.SelectedDate)
+                    cmd.Parameters.AddWithValue("@adv_chq_date", bdpchqdate.Text)
                     cmd.Parameters.AddWithValue("@vendor_id", vendorid)
                     cmd.Parameters.AddWithValue("@depo_id", depoid)
                     cmd.Parameters.AddWithValue("@amount", txtamount.Text)
                     cmd.Parameters.AddWithValue("@chq_no", txtchqno.Text)
-                    cmd.Parameters.AddWithValue("@tanker_date", bdptankerdate.SelectedDate)
+                    cmd.Parameters.AddWithValue("@tanker_date", bdptankerdate.Text)
                     cmd.Parameters.AddWithValue("@indent_user", Session("UserId"))
 
                     con.Open()
@@ -61,12 +61,12 @@ Namespace kdmt
                     con.Close()
 
                     maxid()
-                    bdpchqdate.SelectedDate = Now.Date
+                    bdpchqdate.Text = Now.Date
                     txtvendor.Text = ""
                     txtdepot.Text = ""
                     txtamount.Text = ""
                     txtchqno.Text = ""
-                    bdptankerdate.SelectedDate = Now.Date
+                    bdptankerdate.Text = Now.Date
                     Response.Write("<script>alert('Saved Successfuly');</script>")
 
                 End If

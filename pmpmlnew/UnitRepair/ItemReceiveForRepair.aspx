@@ -1,13 +1,7 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="ItemReceiveForRepair.aspx.vb"
-    Inherits="KDMT.ItemReceiveForRepair" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false"
+    CodeFile="ItemReceiveForRepair.aspx.vb" Inherits="KDMT.ItemReceiveForRepair" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Item Received for Repair</title>
     
      <link rel="stylesheet" type="text/css" href="menu/anylinkcssmenu.css" />
@@ -19,7 +13,8 @@
     <link rel="stylesheet" type="text/css" href="menu/anylinkcssmenu.css" />
 
     <script type="text/javascript" src="menu/anylinkcssmenu.js"></script>
-
+    <script src="../scripts/jquery-1.11.0.min.js"></script>
+    <script src="../scripts/jquery-ui.js"></script>
     <script type="text/javascript" language="javascript">
     
 //anylinkcssmenu.init("menu_anchors_class") ////Pass in the CSS class of anchor links (that contain a sub menu)
@@ -33,7 +28,7 @@ anylinkcssmenu.init("anchorclass")
         }
     </style>
 
-    x
+
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link href="../styles/KDMT.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="menu/anylinkcssmenu.css" />
@@ -657,14 +652,18 @@ function emptytextpart ()
 }
     </script>
 
-</head>
-<body class="body">
-    <form id="Form1" runat="server">
+    <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Item Receive For Repair</h1>
+    </div>
+ 
     <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+      <div class="form-horizontal">
+      
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+          
             <div class="contantbox">
                 <div class="mpagetop">
                 </div>
@@ -672,8 +671,7 @@ function emptytextpart ()
                     <table width="100%">
                         <tr>
                             <td class="innerheading">
-                                <span id="Span1">Item Receive For Repair  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                </span>&nbsp;
+                               
                                 <asp:Label ID="Label1" runat="server" Text="" Font-Size="Small"></asp:Label>
                             </td>
                         </tr>
@@ -698,8 +696,12 @@ function emptytextpart ()
                                         </td>
                                         <td align="left">
                                            <%-- <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>--%>
-                                           <BDP:BasicDatePicker ID="BDPLite1" runat="server" Width="160px">
-                                            </BDP:BasicDatePicker>
+                                  
+                                             <asp:TextBox ID="BDPLite1" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="BDPLite1"
+                                        PopupButtonID="BDPLite1" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
+                                            <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
                                         </td>
                                     </tr>
                                     <tr>
@@ -891,5 +893,4 @@ function emptytextpart ()
 	
 
 </script>
-</body>
-</html>
+</asp:Content>

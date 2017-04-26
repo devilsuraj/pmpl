@@ -31,18 +31,10 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     <link href="<% =Session("host") %>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="<% =Session("host") %>assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<% =Session("host") %>assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="<% =Session("host") %>assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="<% =Session("host") %>assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="<% =Session("host") %>assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN THEME GLOBAL STYLES -->
+
     <link href="<% =Session("host") %>assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="<% =Session("host") %>assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
-    <!-- END THEME GLOBAL STYLES -->
+ 
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="<% =Session("host") %>assets/pages/css/login-5.min.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL STYLES -->
@@ -51,24 +43,11 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <!-- END HEAD -->
+        <script src="<% =Session("host") %>scripts/jquery-1.11.0.min.js"></script>
+    <script src="<% =Session("host") %>scripts/jquery-ui.js"></script>
     <script language="javascript">
 
-        function showengg() {
-            //debugger
-            var dvchk = document.getElementById('engg');
-            var dvchk2 = document.getElementById('Span1');
-            var deptype = document.getElementById('ddldeptname').value;
-            if (deptype == '2') {
-                dvchk.style.display = '';
-                dvchk2.style.display = '';
-            }
-
-            else {
-                dvchk.style.display = 'none';
-                dvchk2.style.display = 'none';
-            }
-
-        }
+      
 
     </script>
 <body class=" login">
@@ -84,9 +63,11 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="col-md-6 login-container bs-reset mt-login-5-bsfix">
                     <div class="login-content">
 
-                        <div>
-                            <div class="form-body">
-                                <div class="row">
+                        
+                        <div class="content">
+                            <div class="portlet light bordered form-horizontal">
+                                <!-- BEGIN LOGIN div -->
+                                <div class="login-div" action="index.html" method="post" novalidate>
                                     <div class="form-group">
                                         <asp:DropDownList ID="DropDownList1" ClientIDMode="Static" onchange="showengg();" runat="server" class="form-control">
                                             <asp:ListItem Text="SparePart Section" Value="1"></asp:ListItem>
@@ -96,20 +77,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <asp:ListItem Text="Workshop Section" Value="5"></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="content">
-                            <div class="portlet light bordered form-horizontal">
-                                <!-- BEGIN LOGIN div -->
-                                <div class="login-div" action="index.html" method="post" novalidate>
                                     <h3 class="form-title font-blue text-center">Pune Mahanagar Parivahan Mahamandal Limited
                                     </h3>
                                     <div class="alert alert-danger display-hide">
                                         <button class="close" data-close="alert"></button>
                                         <span>Enter any username and password. </span>
                                     </div>
+
                                     <div class="form-group">
                                         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                                         <label class="control-label visible-ie8 visible-ie9">Username</label>
@@ -183,39 +157,30 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
         </div>
-        <!-- END : LOGIN PAGE 5-1 -->
-        <!--[if lt IE 9]>
-<script src="<% =Session("host") %>assets/global/plugins/respond.min.js"></script>
-<script src="<% =Session("host") %>assets/global/plugins/excanvas.min.js"></script> 
-<script src="<% =Session("host") %>assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
-        <!-- BEGIN CORE PLUGINS -->
-        <script src="<% =Session("host") %>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="<% =Session("host") %>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="<% =Session("host") %>assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="<% =Session("host") %>assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="<% =Session("host") %>assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="<% =Session("host") %>assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="<% =Session("host") %>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-        <script src="<% =Session("host") %>assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
-        <script src="<% =Session("host") %>assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
-        <script src="<% =Session("host") %>assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="<% =Session("host") %>assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="<% =Session("host") %>assets/pages/scripts/login-5.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <!-- END THEME LAYOUT SCRIPTS -->
+ 
+    
+      
 
     </form>
-        <script src="../scripts/jquery-1.11.0.min.js"></script>
+    
+      <script src="../scripts/jquery-1.11.0.min.js"></script>
     <script src="../scripts/jquery-ui.js"></script>
+    <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js"></script>
+        <script src="<% =Session("host") %>assets/pages/scripts/login-5.js" type="text/javascript"></script>
+    
     <script>
+        $('.login-bg').backstretch([
+                "<% =Session("host") %>assets/pages/img/login/bg1.jpg",
+                "<% =Session("host") %>assets/pages/img/login/bg2.jpg",
+                "<% =Session("host") %>assets/pages/img/login/bg3.jpg"
+                ], {
+                    fade: 300,
+                    duration: 1200
+                }
+            );
+
+
+
         $(document).ready(function () {
             $('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
@@ -230,7 +195,10 @@ License: You must have a valid license purchased only from themeforest(the above
             }
         }
     </script>
-    
+       
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+     
 </body>
 
 </html>

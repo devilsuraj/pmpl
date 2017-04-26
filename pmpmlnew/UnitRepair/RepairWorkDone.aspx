@@ -1,13 +1,7 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="RepairWorkDone.aspx.vb"
-    Inherits="KDMT.RepairWorkDone" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false"
+    CodeFile="RepairWorkDone.aspx.vb" Inherits="KDMT.RepairWorkDone" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Repair Items</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <%--<script language="javascript" src="../Scripts/LogSheet_repairoutward.js"></script>--%>
@@ -107,11 +101,15 @@ function IsNumeric(strString)
         
     </script>
 
-</head>
-<body onload="MM_preloadImages('../images/btn_h.gif')">
+<link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Repair Work Done</h1>
+    </div>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <form id="Form1" runat="server">
+    
     <asp:HiddenField ID="hdndepttype" runat="server" />
     <asp:HiddenField ID="Hid_Rec" runat="server" />
     <input id="hdnID" runat="server" type="hidden" name="hdnID" />
@@ -119,10 +117,10 @@ function IsNumeric(strString)
     <input id="hdngatepassno" runat="server" type="hidden" name="hdngatepassno" />
     <input id="hdndetail" runat="server" type="hidden" name="hdnrwcnt" />
     <input id="hdngatepassid" runat="server" type="hidden" name="hdngatepassid" />
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+     <div class="form-horizontal">
+     
         <div id="middal">
-            <uc:leftmenu ID="Leftmenu1" runat="server" />
+         
             <div class="contantbox">
                 <div class="orgtop1">
                 </div>
@@ -132,7 +130,7 @@ function IsNumeric(strString)
                         <tbody>
                             <tr style="height: 50px">
                                 <td class="innerheading">
-                                    <span id="Label3">Repair Items</span>
+                                    
                                     <asp:Label ID="Label4" runat="server" Text="" Font-Size="Small"></asp:Label>
                                 </td>
                             </tr>
@@ -178,7 +176,7 @@ function IsNumeric(strString)
                                                             </asp:BoundColumn>
                                                             <asp:TemplateColumn HeaderText="Qty">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="txtqty" runat="server" MaxLength="4" Width="30px"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtqty" runat="server" MaxLength="4" Width="50px"></asp:TextBox>
                                                                 </ItemTemplate>
                                                             </asp:TemplateColumn>
                                                             <%--<asp:TemplateColumn HeaderText="From Date" ItemStyle-Width="20px">
@@ -191,8 +189,11 @@ function IsNumeric(strString)
                                                             <asp:BoundColumn DataField="recdate" HeaderText="Received Date"></asp:BoundColumn>
                                                             <asp:TemplateColumn HeaderText="Done Date" ItemStyle-Width="20px">
                                                                 <ItemTemplate>
-                                                                    <BDP:BDPLite ID="bdpTodate" TextBoxStyle-Width='80px' runat="server">
-                                                                    </BDP:BDPLite>
+                                                        
+                                                                    <asp:TextBox ID="bdpTodate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="bdpTodate"
+                                        PopupButtonID="bdpTodate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="10px"></ItemStyle>
                                                             </asp:TemplateColumn>
@@ -203,7 +204,7 @@ function IsNumeric(strString)
                                                             </asp:TemplateColumn>
                                                             <asp:TemplateColumn HeaderText="Reason">
                                                                 <ItemTemplate>
-                                                                    <asp:DropDownList ID="ddlResult" runat="server">
+                                                                    <asp:DropDownList ID="ddlResult" Width="100px" runat="server">
                                                                         <asp:ListItem Text="SELECT" Value="0"></asp:ListItem>
                                                                         <asp:ListItem Text="Repaired" Value="Repaired"></asp:ListItem>
                                                                         <asp:ListItem Text="Scrap" Value="Scrap"></asp:ListItem>
@@ -263,6 +264,4 @@ function IsNumeric(strString)
    <%=sb.ToString() %>
     </script>
 
-    </form>
-</body>
-</html>
+</asp:Content>

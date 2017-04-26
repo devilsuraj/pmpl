@@ -800,10 +800,13 @@
 
     </script>
     <style> 
-   
+   .gridhead {
+    background-color: #636e77;
+    color: white;
+}
         table{border-collapse:collapse!important; }
             table td, table th {
-                background-color: #fff !important;
+            
                 text-align: left;
                 padding: 10px;
                 margin-top: 3px;

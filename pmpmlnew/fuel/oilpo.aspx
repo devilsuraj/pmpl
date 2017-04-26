@@ -1,12 +1,8 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="oilpo.aspx.vb" Inherits="KDMT.oilpo" %>
+﻿<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="oilpo.aspx.vb"
+    Inherits="kdmt.oilpo" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
     <title>PO Master</title>
 
     <script language="javascript" type="text/javascript">
@@ -991,11 +987,16 @@ function addPODetailsother() {
             width: 817px;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+
+    <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Job Order Card Master</h1>
+    </div>
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <div class="form-horizontal">>
+
         <input id="hdnID" runat="server" type="hidden" name="hdnID" />
         <input id="hdnrwcnt" runat="server" type="hidden" name="hdnrwcnt" />
         <input id="hdnsrno" runat="server" type="hidden" name="hdnsrno" />
@@ -1005,7 +1006,7 @@ function addPODetailsother() {
          <input id="hdndetailother" runat="server" type="hidden" name="hdndetailother" />
     </div>
     <div id="middal1">
-        <uc:leftmenu ID="Leftmenu1" runat="server" />
+    
         <div class="contantbox">
             <div class="orgtop1">
             </div>
@@ -1032,9 +1033,11 @@ function addPODetailsother() {
                             P.O Date
                         </td>
                         <td>
-                            <BDP:BDPLite ID="dtPODate" TextBoxStyle-Width="100px" runat="server">
-                                <TextBoxStyle Width="100px" />
-                            </BDP:BDPLite>
+                          
+                                     <asp:TextBox ID="dtPODate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="dtPODate"
+                                        PopupButtonID="dtPODate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                         </td>
                         <td align="right">
                             P.O No.
@@ -1061,10 +1064,12 @@ function addPODetailsother() {
                             Our Ref Date
                         </td>
                         <td>
-                            <BDP:BDPLite ID="dtOurRefNo" TextBoxStyle-Width="100px" TextBoxStyle-CssClass="textfield"
-                                runat="server">
-                                <TextBoxStyle Width="100px" />
-                            </BDP:BDPLite>
+                    
+                        
+                                     <asp:TextBox ID="dtOurRefNo" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="dtOurRefNo"
+                                        PopupButtonID="dtOurRefNo" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -1078,10 +1083,11 @@ function addPODetailsother() {
                             Your Ref Date :
                         </td>
                         <td>
-                            <BDP:BDPLite ID="dtYourRefNo" TextBoxStyle-Width="100px" TextBoxStyle-CssClass="textfield"
-                                runat="server">
-                                <TextBoxStyle Width="100px" />
-                            </BDP:BDPLite>
+                         
+                                     <asp:TextBox ID="dtYourRefNo" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="dtYourRefNo"
+                                        PopupButtonID="dtYourRefNo" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -1385,9 +1391,11 @@ function addPODetailsother() {
                             <span style="font-size: 14px">Res.No.</span>
                             <input type="text" id="txtResNo" name="txtResNo" tabindex="22" />
                             <span style="font-size: 14px">Trans.ManagDt.</span>
-                            <BDP:BDPLite ID="Date2" TextBoxStyle-Width="100px" runat="server" TabIndex="23">
-                                <TextBoxStyle Width="100px" />
-                            </BDP:BDPLite>
+                     
+                                     <asp:TextBox ID="Date2" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="Date2"
+                                        PopupButtonID="Date2" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -1407,9 +1415,11 @@ function addPODetailsother() {
                             <span style="font-size: 14px">Cl.</span>
                             <input type="text" id="txtCl" size="15px" name="txtCl" tabindex="19" />
                             <span style="font-size: 14px">Dt.</span>
-                            <BDP:BDPLite ID="Date1" TextBoxStyle-Width="100px" runat="server" TabIndex="20">
-                                <TextBoxStyle Width="100px" />
-                            </BDP:BDPLite>
+                     
+                                     <asp:TextBox ID="Date1" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender5" runat="server" TargetControlID="Date1"
+                                        PopupButtonID="Date1" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                         </td>
                         <td align="left" colspan="2">
                             <span style="font-size: 14px">Budegt Account Hd</span>
@@ -1502,5 +1512,4 @@ $("#ddlvendor").autocompleteArray(
 
     </script>
 
-</body>
-</html>
+</asp:Content>

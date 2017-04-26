@@ -48,8 +48,8 @@ Namespace KDMT
                     ddltype.SelectedValue = 0
 
                     strmain = getAutoCompleteList("select deffect_decr from tbl_deffect_Master where subid=0 order by deffect_decr", "deffect_decr")
-
-                    Call Show_Msg(Page, "Save Successfully", "Workshop_Deffect_Details.aspx")
+                    Response.Write("<script>alert('Saved Successfuly');window.location.href='Workshop_Deffect_Details.aspx'</script>")
+                    'Call Show_Msg(Page, "Save Successfully", "Workshop_Deffect_Details.aspx")
                 End If
 
             Catch ex As Exception

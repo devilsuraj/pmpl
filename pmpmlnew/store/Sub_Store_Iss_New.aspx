@@ -205,23 +205,23 @@
 
                     if (IssQty == '') {
                         alert('Please Enter Issue Qty ');
-                        setTimeout(function () { document.getElementById('txtIssQty_' + k).focus() }, 10);
+                        setTimeout(function () { document.getElementById('txtIssQty_' + k).focus() }, 1000);
                         return false;
                     }
                     if (IsNumeric(IssQty) == false) {
                         alert('Please Enter Proper value ');
-                        setTimeout(function () { document.getElementById('txtIssQty_' + k).focus() }, 10);
+                        setTimeout(function () { document.getElementById('txtIssQty_' + k).focus() }, 1000);
                         return false;
                     }
                     if (parseFloat(IssQty) > parseFloat(Reqqty)) {
                         alert('Issue Qty Should be less than Requested Qty');
-                        setTimeout(function () { document.getElementById('txtIssQty_' + k).focus() }, 10);
+                        setTimeout(function () { document.getElementById('txtIssQty_' + k).focus() }, 1000);
                         return false;
                     }
 
                     if (parseFloat(IssQty) > parseFloat(AvbQty)) {
                         alert('Issue Qty Should be less than Available Qty');
-                        setTimeout(function () { document.getElementById('txtIssQty_' + k).focus() }, 10);
+                        setTimeout(function () { document.getElementById('txtIssQty_' + k).focus() }, 1000);
                         return false;
                     }
 
@@ -683,6 +683,50 @@
 
         });
 
+        function checkqty(id, Avbqty, reqqty) {
+
+
+            if ((document.getElementById(id).value == '')) {
+                alert('Please Enter Proper Qty')
+                setTimeout(function () { document.getElementById(id).focus() }, 10);
+                return false;
+            }
+
+            if ((document.getElementById(id).value == '0') && parseFloat(Avbqty) != 0) {
+                alert('Please Enter Proper Qty');
+                setTimeout(function () { document.getElementById(id).focus() }, 10);
+
+                return false;
+            }
+            if (IsNumeric(document.getElementById(id).value) == true) {
+                if (parseFloat(document.getElementById(id).value) > parseFloat(reqqty)) {
+                    alert('Should be less than or Equal to Request Qty')
+                    setTimeout(function () { document.getElementById(id).focus() }, 10);
+                    return false;
+                }
+            }
+            else {
+                alert('Please Enter Proper Qty')
+                setTimeout(function () { document.getElementById(id).focus() }, 10);
+                return false;
+            }
+
+
+            if (IsNumeric(document.getElementById(id).value) == true) {
+                if (parseFloat(document.getElementById(id).value) > parseFloat(Avbqty)) {
+                    alert('Should be less than or Equal to Available Qty')
+                    setTimeout(function () { document.getElementById(id).focus() }, 10);
+                    return false;
+                }
+            }
+            else {
+                alert('Please Enter Proper Qty')
+                setTimeout(function () { document.getElementById(id).focus() }, 10);
+                return false;
+            }
+        }
+
+
         function ValIssQty(i) {
 
             //var pattern = /^[0-9]+$/;   //(^[0-9]*[1-9]+[0-9]*\.[0-9]*$)|(^[0-9]*\.[0-9]*[1-9]+[0-9]*$)|(^[0-9]*[1-9]+[0-9]*$)
@@ -697,17 +741,26 @@
             //                if (!pattern.test(txtIssQty.value.trim())) {
             if (IsNumeric(txtIssQty.value.trim()) == false) {
                 alert('Enter only numeric value');
-                setTimeout(function () { txtIssQty.focus() }, 10);
+                txtIssQty.vaue = '';
+                setTimeout(function () { txtIssQty.focus() }, 7000);
+                return false;
+            }
+            if (parseInt(txtIssQty.value.trim()) <= 0) {
+                alert('Enter Proper Qty');
+                txtIssQty.vaue = '';
+                setTimeout(function () { txtIssQty.focus() }, 7000);
                 return false;
             }
             if (parseInt(txtIssQty.value.trim()) > parseInt(tdAvlqty.innerHTML.trim())) {
                 alert('Issue Qty Should not greater then Available Qty');
-                setTimeout(function () { txtIssQty.focus() }, 10);
+                txtIssQty.vaue = '';
+                setTimeout(function () { txtIssQty.focus() }, 7000);
                 return false;
             }
             if ((parseInt(txtIssQty.value.trim()) + parseInt(tdIssuedQty.innerHTML.trim())) > parseInt(tdqty.innerHTML.trim())) {
                 alert('Issue Qty Should not greater then Requested Qty');
-                setTimeout(function () { txtIssQty.focus() }, 10);
+                txtIssQty.vaue = '';
+                setTimeout(function () { txtIssQty.focus() }, 7000);
                 return false;
             }
             return true;

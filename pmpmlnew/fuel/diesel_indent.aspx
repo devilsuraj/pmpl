@@ -1,12 +1,7 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="diesel_indent.aspx.vb" Inherits="kdmt.diesel_indent" %>
-
-<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
-    TagPrefix="BDP" %>
-<%@ Register Src="~/Includes/controls/header.ascx" TagName="header" TagPrefix="uc" %>
-<%@ Register Src="~/Includes/controls/leftmenu.ascx" TagName="leftmenu" TagPrefix="uc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<%@ Page Title="" Language="VB" EnableEventValidation="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="diesel_indent.aspx.vb"
+    Inherits="kdmt.diesel_indent" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Diesel Indent</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
@@ -405,13 +400,16 @@ xmlHttp.send(null);
 			
     </script>
 
-</head>
-<body onload="MM_preloadImages('../images/btn_h.gif')">
-    <form id="Form1" runat="server">
-    <div align="center">
-        <uc:header ID="Header1" runat="server" />
+    <link href="../css/newmvc.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+    <div class="breadcrumbs">
+        <h1>Job Order Card Master</h1>
+    </div>
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <div class="form-horizontal">
         <div id="middal">
-            <uc:leftmenu runat="server" />
+          
             <div class="contantbox">
                 <div class="orgtop">
                 </div>
@@ -444,8 +442,11 @@ xmlHttp.send(null);
                                                         Advanced Cheque Date
                                                     </td>
                                                     <td align="left">
-                                                        <BDP:BDPLite ID="bdpchqdate" runat="server" TextBoxStyle-CssClass="textfield">
-                                                        </BDP:BDPLite>
+                                                    
+                                                                 <asp:TextBox ID="bdpchqdate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="bdpchqdate"
+                                        PopupButtonID="bdpchqdate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -481,8 +482,11 @@ xmlHttp.send(null);
                                                         Tanker Date
                                                     </td>
                                                     <td align="left">
-                                                        <BDP:BDPLite ID="bdptankerdate" runat="server" TextBoxStyle-CssClass="textfield">
-                                                        </BDP:BDPLite>
+                                                  
+                                                                 <asp:TextBox ID="bdptankerdate" Width="180px" CssClass="form-control input-sm" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="bdptankerdate"
+                                        PopupButtonID="bdptankerdate" Format="dd-MMM-yyyy">
+                                    </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -540,5 +544,4 @@ $("#txtdepot").autocompleteArray(
 
     </script>
 
-</body>
-</html>
+</asp:Content>

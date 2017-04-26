@@ -356,7 +356,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
     <div class="breadcrumbs">
-        <h1>Job Order Card Master</h1>
+        <h1>INSPECTION CARD MASTER</h1>
     </div>
     <div class="form-horizontal" style="overflow:auto">
   
@@ -392,7 +392,7 @@
                                             Job Card No
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="txtjob" Width="30px" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtjob" Width="60px" runat="server"></asp:TextBox>
                                             <asp:TextBox ID="txtjobno" Width="40px" MaxLength="4" TabIndex="1" AutoPostBack="True"
                                                 runat="server"></asp:TextBox>
                                         </td>

@@ -16,6 +16,7 @@ Namespace KDMT
 
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 3
             'strVendor = getAutoCompleteList("select vendor_name  from stock_vendor order by vendor_name", "vendor_name")
             'strdept = getAutoCompleteList("select cont_name from contractor_master where subid=1 order by cont_name", "cont_name")
             stritem = getAutoCompleteList("select item_name from tbl_Repair_Item order by item_name", "item_name")
@@ -31,9 +32,9 @@ Namespace KDMT
                     ' edit_combo(nmmtdept, "gpdeptid", "gpdeptdesc", "tbl_gatepassdept", "0=0  ")
 
                     If Not Session("LocID").ToString Is Nothing Then
-                        'BDPLite1.SelectedDate = Now.Date
-                        secdate.SelectedDate = Now.Date
-                        BDPChalldate.SelectedDate = Now.Date
+                        'BDPLite1.Text = Now.Date
+                        secdate.Text = Now.Date
+                        BDPChalldate.Text = Now.Date
                     Else
                         Response.Write("<script>alert('You Are Logout;Please Login again');window.location.href='login.aspx'</script>")
                     End If
@@ -67,10 +68,10 @@ Namespace KDMT
                 'cmd.Parameters.AddWithValue("@gatepasstype", ddltoloc.SelectedValue)
                 'cmd.Parameters.AddWithValue("@challanno", txtvendor.Text)
                 'cmd.Parameters.AddWithValue("@gatepasstypeno", txtChallan.Text)
-                'cmd.Parameters.AddWithValue("@reqdate", BDPChalldate.SelectedDate)
+                'cmd.Parameters.AddWithValue("@reqdate", BDPChalldate.Text)
                 'cmd.Parameters.AddWithValue("@nmmtchallan", txtnote.Text)
 
-                '' cmd.Parameters.AddWithValue("@challandate", BDPLite1.SelectedDate)
+                '' cmd.Parameters.AddWithValue("@challandate", BDPLite1.Text)
                 ''cmd.Parameters.AddWithValue("@fromdept", nmmtdept.SelectedValue)
                 'If (ddltoloc.SelectedValue <> "1") Then
                 '    cmd.Parameters.AddWithValue("@toplace", 0)
@@ -137,7 +138,7 @@ Namespace KDMT
                 '            cmd.Parameters.AddWithValue("@inchallanno", txtChallan.Text)
                 '            cmd.Parameters.AddWithValue("@recqty", mainarray(8))
                 '            cmd.Parameters.AddWithValue("@recremark", mainarray(10))
-                '            cmd.Parameters.AddWithValue("@recdate", BDPChalldate.SelectedDate)
+                '            cmd.Parameters.AddWithValue("@recdate", BDPChalldate.Text)
 
                 '            cmd.Parameters.AddWithValue("@ItemId", ItemId)
                 '            cmd.Parameters.AddWithValue("@SerialNo", mainarray(0))
@@ -213,7 +214,7 @@ Namespace KDMT
                         cmd.Parameters.AddWithValue("@inchallanno", txtChallan.Text)
                         cmd.Parameters.AddWithValue("@recqty", dgresult.Items(i).Cells(4).Text)
                         cmd.Parameters.AddWithValue("@recremark", txtRemark.Text) '  dgresult.Items(i).Cells(6).Text)
-                        cmd.Parameters.AddWithValue("@recdate", BDPChalldate.SelectedDate)
+                        cmd.Parameters.AddWithValue("@recdate", BDPChalldate.Text)
 
                         cmd.Parameters.AddWithValue("@ItemId", ItemId)
                         cmd.Parameters.AddWithValue("@SerialNo", dgresult.Items(i).Cells(2).Text)
@@ -225,7 +226,9 @@ Namespace KDMT
 
                         con.Open()
                         cmd.ExecuteNonQuery()
+
                         con.Close()
+
                         check = 1
 
                     End If
@@ -240,7 +243,8 @@ Namespace KDMT
 
             Catch ex As Exception
             End Try
-            Response.Redirect("AsudgaonRepairRec_Gatepass.aspx")
+            Response.Write("<script>alert('Saved Successfuly');window.location.href='AsudgaonRepairRec_Gatepass.aspx'</script>")
+
             ' BindGrid(dgresult, con, "viewGatepassStoreIssue")
 
         End Sub
@@ -258,7 +262,7 @@ Namespace KDMT
 
                 cmd.Parameters.AddWithValue("@gatemstid", hdngatepassid.Value)
                 cmd.Parameters.AddWithValue("@secdepotname", txtsecname.Text)
-                cmd.Parameters.AddWithValue("@securitdate", secdate.SelectedDate)
+                cmd.Parameters.AddWithValue("@securitdate", secdate.Text)
                 cmd.Parameters.AddWithValue("@gateno", txtgateno.Text)
                 cmd.Parameters.AddWithValue("@gatetime", txttime.Text)
                 cmd.Parameters.AddWithValue("@checkedby", txtcheckedby.Text)

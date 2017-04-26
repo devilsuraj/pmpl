@@ -1056,7 +1056,7 @@
                                                         <asp:Label ID="Label2" runat="server" Text="  Vendor Name"></asp:Label>
                                                     </td>
                                                     <td align="left">
-                                                        <input type="text" id="txtvendor" onblur="chkvendorname();" style="width: 220px"
+                                                        <input type="text" id="txtvendor" onblur="chkvendorname();" style="width: 300px"
                                                             class="textfield" runat="server" />
                                                     </td>
                                                     <td align="right">PO Type
@@ -1118,7 +1118,7 @@
                                                     <td align="right">Challan No
                                                     </td>
                                                     <td align="left">
-                                                        <asp:TextBox ID="txtchalan" runat="server" class="textfield"></asp:TextBox>
+                                                        <asp:TextBox ID="txtchalan" Width="180px" runat="server" class="textfield"></asp:TextBox>
                                                     </td>
                                                     <td align="right">Challan Date
                                                     </td>
@@ -1135,7 +1135,7 @@
                                                     <td align="right">Bill No
                                                     </td>
                                                     <td align="left">
-                                                        <asp:TextBox ID="txtbill" runat="server" class="textfield"></asp:TextBox>
+                                                        <asp:TextBox ID="txtbill"  Width="180px" runat="server" class="textfield"></asp:TextBox>
                                                     </td>
                                                     <td align="right">Bill Date
                                                     </td>
@@ -1151,7 +1151,7 @@
                                                     <td align="right">Rec No
                                                     </td>
                                                     <td align="left">
-                                                        <asp:TextBox ID="txtRecNo" ForeColor="red" ReadOnly="true" runat="server" class="textfield"></asp:TextBox>
+                                                        <asp:TextBox ID="txtRecNo" Width="180px" ForeColor="red" ReadOnly="true" runat="server" class="textfield"></asp:TextBox>
                                                     </td>
                                                     <td align="right">Rec Date
                                                     </td>

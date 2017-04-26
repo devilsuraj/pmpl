@@ -157,7 +157,7 @@ function chkall ()
     </style>
         <link href="../css/newmvc.css" rel="stylesheet" />
 </asp:content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static" EnableViewState="true" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" ClientIDMode="Static"  EnableViewState="true" runat="Server">
       <div class="breadcrumbs">
         <h1>Delete Invoice Item </h1>
     </div>

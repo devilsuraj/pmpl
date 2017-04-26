@@ -8,17 +8,18 @@ Namespace KDMT
         Public strspdisc As String = ""
         Public strVendor As String = ""
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            Session("MenuId") = 5
             Button1.Attributes.Add("onclick", "return validatedata();")
             If Not IsPostBack Then
                 Dim SQL As String
                 Dim SQL1 As String
                 ' lbldepttype.Text = (Session("Dept_type").ToString)
                 hdnrwcnt.Value = 0
-                dtPODate.SelectedDate = Now.Date
-                dtOurRefNo.SelectedDate = Now.Date
-                dtYourRefNo.SelectedDate = Now.Date
-                Date1.SelectedDate = Now.Date
-                Date2.SelectedDate = Now.Date
+                dtPODate.Text = Now.Date
+                dtOurRefNo.Text = Now.Date
+                dtYourRefNo.Text = Now.Date
+                Date1.Text = Now.Date
+                Date2.Text = Now.Date
                 Dim fin_year1 As String = GetFinYear(1)
                 'txtindent.Value = ExecuteQuery("select isnull(max(indent_no),0)+1 from Indent_Request_master")
                 'Fill_Combo("Vendor_ID", "Vendor_Name", "Stock_Vendor", ddlvendor, Con, "Vendor_Name is not null", "Select")
@@ -30,7 +31,7 @@ Namespace KDMT
                 SQL1 = "select top 829 special_discount,po_master.special_discount  from po_master  where po_master.special_discount is not null order by po_master.special_discount"
                 strspdisc = getAutoCompleteList(SQL1, "special_discount")
                 'Fill_Combo("Scrap_ID", "Scrap_Reason", "Scrap_Reason_Master", ddlScrapRsn, Con)
-               
+
 
             End If
         End Sub
@@ -43,11 +44,11 @@ Namespace KDMT
 
                 Dim vendorId As String = ExecuteQuery("SELECT VENDOR_ID FROM STOCK_VENDOR WHERE VENDOR_NAME = '" & ddlvendor.Text & "'")
                 Dim PONoId As String = Request.Form("ddlPONo")
-                ' Dim PODate As String = dtPODate.SelectedDate
+                ' Dim PODate As String = dtPODate.Text
                 Dim OurRefNo As String = Request.Form("txtOurRefNo")
-                'Dim dtOurRefNo As String = dtOurRefNo.SelectedDate
+                'Dim dtOurRefNo As String = dtOurRefNo.Text
                 Dim YourRefNo As String = Request.Form("txtYourRefNo")
-                'Dim dtYourRefNo As String = dtYourRefNo.SelectedDate
+                'Dim dtYourRefNo As String = dtYourRefNo.Text
 
                 'Dim strIndentdetails As String = Request.Form("Indentdetails")
                 Dim intOptype As Integer = 0
@@ -89,7 +90,7 @@ Namespace KDMT
                     'Dim strSql As String
                     '          "alter_Indent_master " & intId & "," & strDefectId & ",'" & strIndentDate & "','" & strApprovedby & "','" & strRemark & "','" & strIndentdetails & "'," & intOptype
                     'strSql = "alter_Indent_master " & ID & ", " & vendorId & "','" & PONoId & ",'" & PODate & "','" & OurRefNo & "','" & dtOurRefNo & "','" & YourRefNo & "'," & dtYourRefNo
-                    'intExst = ExecuteQuery(strSql)   PONoId, txtPONo.Text,dtPODate.SelectedDate,ddlCategory
+                    'intExst = ExecuteQuery(strSql)   PONoId, txtPONo.Text,dtPODate.Text,ddlCategory
 
                 Else
                     Dim fin_year As String = GetFinYear(1)
@@ -100,11 +101,11 @@ Namespace KDMT
                     cmd.Parameters.AddWithValue("@vendor_id", vendorId)
                     cmd.Parameters.AddWithValue("@po_str", "OIL")
                     cmd.Parameters.AddWithValue("@po_no ", txtPONo.Text)
-                    cmd.Parameters.AddWithValue("@po_date", dtPODate.SelectedDate)
+                    cmd.Parameters.AddWithValue("@po_date", dtPODate.Text)
                     cmd.Parameters.AddWithValue("@po_our_ref_no", OurRefNo)
-                    cmd.Parameters.AddWithValue("@po_our_ref_date ", dtOurRefNo.SelectedDate)
+                    cmd.Parameters.AddWithValue("@po_our_ref_date ", dtOurRefNo.Text)
                     cmd.Parameters.AddWithValue("@po_your_ref_no ", YourRefNo)
-                    cmd.Parameters.AddWithValue("@po_your_ref_date", dtYourRefNo.SelectedDate)
+                    cmd.Parameters.AddWithValue("@po_your_ref_date", dtYourRefNo.Text)
 
                     cmd.Parameters.AddWithValue("@payment_Mode", txtPayment)
                     cmd.Parameters.AddWithValue("@Discount_Material_Amout", txtDescount)
@@ -118,11 +119,11 @@ Namespace KDMT
                     cmd.Parameters.AddWithValue("@B_C_Reg", txtBCReg)
                     cmd.Parameters.AddWithValue("@SrNo", txtSrNo)
                     cmd.Parameters.AddWithValue("@CL", txtCl)
-                    cmd.Parameters.AddWithValue("@DT", Date1.SelectedDate)
+                    cmd.Parameters.AddWithValue("@DT", Date1.Text)
                     cmd.Parameters.AddWithValue("@Audited_By", txtAudited)
                     cmd.Parameters.AddWithValue("@Audit_officer ", txtAudit_officer)
                     cmd.Parameters.AddWithValue("@Res_No", txtResNo)
-                    cmd.Parameters.AddWithValue("@DT_Trans_Manager ", Date2.SelectedDate)
+                    cmd.Parameters.AddWithValue("@DT_Trans_Manager ", Date2.Text)
 
                     cmd.Parameters.AddWithValue("@Purchas_Authorised_By", txtPurchase)
 
@@ -239,7 +240,7 @@ Namespace KDMT
         End Sub
         Private Function GetFinYear(ByVal yearinc As Integer)
             Dim finyear As String = ""
-            Dim s As DateTime = dtPODate.SelectedDate
+            Dim s As DateTime = dtPODate.Text
             Dim m As Integer = s.Month
             Dim y As Integer = s.Year
             If (m > 3) Then
